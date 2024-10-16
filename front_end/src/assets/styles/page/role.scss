@@ -1,0 +1,15 @@
+@import "../available";
+
+.page-role{
+    
+}
+
+.page-role-detail{
+    .select-permission{
+        padding: 8px;
+        background-color: $-page-backgground;
+        height: 500px; 
+        overflow: scroll;
+        width: 100%
+    }
+}

@@ -1,0 +1,13 @@
+.vc-dialog{
+  .v-card{
+    min-width: 400px;
+    padding: 12px;
+    .v-card-text{
+      padding: 16px !important;
+      opacity: 1;
+    }
+    .vc-button{
+      min-width: 80px;
+    }
+  }
+}

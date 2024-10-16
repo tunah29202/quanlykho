@@ -1,0 +1,13 @@
+@import '../available';
+
+.vc-toast {
+  position: fixed;
+  z-index: 9999;
+  bottom: 15px;
+  right: 15px;
+  .vc-alert {
+    margin-top: 5px;
+    max-width: 450px;
+    min-width: 300px;
+  }
+}

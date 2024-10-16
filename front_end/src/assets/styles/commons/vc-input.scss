@@ -1,0 +1,17 @@
+@import '../available';
+
+.el-input{
+  &.el-date-editor{
+    width: 100% !important;
+  }
+  .el-input__wrapper{
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+    input{
+      padding: 0 10px;
+    }
+    .el-input__prefix-inner{
+      padding-left: 8px;
+    }
+  }
+}

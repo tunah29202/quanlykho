@@ -1,0 +1,108 @@
+$background-color_1: rgba(255, 255, 255, 0.5);
+$background-color_2: #f4f4f4;
+$background-color_3: white;
+
+.header-mapping {
+  width: 100%;
+  position: fixed;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.5);
+  height: 90px;
+}
+
+.container-custom {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.content-sm {
+  padding-top: 60px;
+  padding-bottom: 70px;
+}
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+.margin-bottom-40 {
+  margin-bottom: 40px;
+}
+.margin-bottom-60 {
+  margin-bottom: 60px !important;
+}
+.margin-bottom-80 {
+  margin-bottom: 80px !important;
+}
+.margin-top-40 {
+  margin-top: 40px !important;
+  border-top: 1px solid #eeeeee;
+}
+
+.text-border-blue {
+  border-color: #3498db !important;
+}
+.text-border {
+  border-bottom: dashed 1px #555;
+}
+.container {
+  border: none !important;
+}
+.bg-none {
+  background: none;
+}
+.list-style-none {
+  list-style: circle !important;
+}
+.pad-left {
+  padding-left: 30px;
+  margin: 30px -6px 0px -6px;
+}
+.t-center-v1 {
+  text-align: center;
+}
+.f-size-17 {
+  font-size: 17px !important;
+}
+.f-size-14 {
+  font-size: $-input-font-size !important;
+}
+.f-icon {
+  font-size: 100%;
+}
+.header-none {
+  margin-bottom: 0px !important;
+  padding-bottom: 20px !important;
+  border-bottom: none !important;
+}
+.text-rigth {
+  text-align: right !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-end {
+  text-align: end !important;
+}
+.border-top {
+  border-top: 1px solid #eee;
+  border-bottom: none !important;
+}
+.col-left {
+  padding-left: 15px !important;
+}
+.col-right {
+  padding-right: 15px !important;
+}
+
+.icon-size-custom > svg {
+  font-size: 100% !important;
+}
+.icon-size-custom-map > svg {
+  font-size: 100% !important;
+  color: white !important;
+}

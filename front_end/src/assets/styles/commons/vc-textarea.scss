@@ -1,0 +1,43 @@
+@import '../available';
+
+.v-textarea {
+  font-size: $-input-font-size;
+  .v-field {
+    border-radius: $-input-border;
+    overflow: hidden;
+    .v-field__field {
+      background-color: #fff;
+      padding: 0;
+      .v-field__input {
+        font-size: $-input-font-size;
+        border-radius: $-input-border;
+        padding: 6px 10px;
+      }
+    }
+    .v-field__outline {
+      border-radius: $-input-border;
+      border: 1px solid $-input-border-color;
+      &::before {
+        width: 0;
+      }
+    }
+  }
+
+  .v-input__details {
+    margin-bottom: 0px;
+    padding: 0px;
+    padding-top: 4px;
+    height: 15px;
+    .v-messages__item {
+      text-align: right;
+    }
+    .v-messages__message {
+      text-align: right;
+    }
+  }
+  &.v-input--error {
+    .v-field__outline {
+      border: 1px solid #d8082e;
+    }
+  }
+}

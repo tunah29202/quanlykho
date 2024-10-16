@@ -1,0 +1,66 @@
+@import '../available';
+
+.el-form-item {
+  padding-bottom: 14px !important;
+  padding-top: 14px !important;
+  margin-bottom: 0px ;
+}
+
+.container-account-setting {
+  color: var(--text-color-text-income);
+  line-height: 1.6;
+  width: inherit;
+  padding: 0px 15px 0px 15px;
+  margin: 10px auto 30px auto;
+
+  .headline {
+    display: block;
+    margin: 20px 0 25px 0;
+    border-bottom: 1px dotted #e4e9f0;
+
+    h2 {
+      border-bottom: 2px solid #03a9f4;
+      margin: 0 0 -2px 0;
+      padding-bottom: 9px;
+      display: inline-block;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-color-text-income);
+    }
+  }
+  .margin-bottom-0 {
+    p {
+      padding: 5px 0px 10px 0px;
+    }
+  }
+  .margin-bottom-20 {
+    margin-bottom: 20px;
+  }
+  .income-form {
+    &__card {
+      margin-top: 25px;
+
+      h3 {
+        font-size: 22px;
+        font-weight: 400;
+        margin-bottom: 10px;
+        display: inline-block;
+        border-bottom: 2px solid $-container-color;
+      }
+      .container-button-save {
+        text-align: center;
+      }
+      .table-accountsetting {
+        .column-order {
+          .input-order {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.input-order {
+  width: 100% !important;
+}

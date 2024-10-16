@@ -1,0 +1,32 @@
+@import '../_available';
+
+.vc-table {
+  border-radius: $-input-border;
+  thead {
+    border-radius: $-input-border;
+    //     display: table;
+    //     width: 100%;
+    //     table-layout: fixed;
+    tr {
+      th {
+        background-color: $-table-header-color !important;
+        font-weight: bold;
+        color: $-text-color;
+        //         height: 40px !important;
+        //         .vc-checkbox {
+        //           .mdi-checkbox-blank-outline {
+        //             color: #fff;
+        //           }
+        //           .mdi-checkbox-marked {
+        //             color: #fff;
+        //           }
+      }
+    }
+  }
+  .el-table__cell {
+    padding: 4px 0px !important;
+  }
+  .table-footer {
+    background-color: #fff;
+  }
+}

@@ -1,0 +1,164 @@
+@import '../../available';
+@import './commonsPage';
+
+.header {
+  background-color: $background-color_3;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  .header-none-v1 {
+    display: block !important;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .header.scrolled {
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+  }
+  li {
+    // padding: 10px;
+    a {
+      display: block;
+      padding: 20px 20px;
+      text-decoration: none;
+      color: black !important;
+      font-weight: 300;
+      span {
+        font-size: $-input-font-size;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .menu-btn {
+    &:hover {
+      background-color: $background-color_2;
+    }
+    display: none;
+    &:checked {
+      ~ {
+        .menu {
+          max-height: 240px;
+        }
+        .menu-icon {
+          .navicon {
+            //   background: transparent;
+            background-color: $background-color_2;
+            &:before {
+              transform: rotate(-45deg);
+            }
+            &:after {
+              transform: rotate(45deg);
+            }
+          }
+          &:not(.steps) {
+            .navicon {
+              &:before {
+                top: 0;
+              }
+              &:after {
+                top: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .logo {
+    display: block;
+    float: left;
+    font-size: 2em;
+    text-decoration: none;
+    width: 35%;
+    padding: 18px;
+  }
+  .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+  }
+  .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 36px;
+    position: relative;
+    user-select: none;
+    .navicon {
+      background: #333;
+      display: block;
+      height: 2px;
+      position: relative;
+      transition: background 0.2s ease-out;
+      width: 18px;
+      &:before {
+        background: #333;
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all 0.2s ease-out;
+        width: 100%;
+        top: 5px;
+      }
+      &:after {
+        background: #333;
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all 0.2s ease-out;
+        width: 100%;
+        top: -5px;
+      }
+    }
+  }
+}
+
+@media (min-width: 48em) {
+  .header {
+    display: block;
+    background-color: $background-color_1;
+    .header-none-v1 {
+      display: flex !important;
+      height: 80px;
+    }
+    .link-home-page {
+      width: 35%;
+      .logo {
+        line-height: 20px;
+      }
+    }
+    .logo {
+      width: 12%;
+    }
+    li {
+      float: left;
+      a {
+        padding: 20px 30px;
+        span {
+          color: black;
+        }
+      }
+    }
+    .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    .menu-icon {
+      display: none;
+    }
+  }
+}

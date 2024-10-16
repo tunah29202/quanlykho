@@ -1,0 +1,19 @@
+Controller
+	Common
+	Core
+	Profilemapper
+	wwwroot
+Services
+	Common
+	ProductServices
+	Repository
+Models 
+	Common
+	Entities
+	Configuration
+	Migrations
+	
+Common
+	Enums.cs
+Helpers
+	

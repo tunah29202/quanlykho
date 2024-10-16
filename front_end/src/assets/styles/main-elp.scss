@@ -1,0 +1,103 @@
+:root {
+  color-scheme: light;
+  --el-color-white: #ffffff;
+  --el-color-black: #000000;
+
+  --el-menu-active-color: var(--el-color-primary);
+  --el-menu-text-color: var(--el-text-color-primary);
+  --el-menu-hover-text-color: var(--el-color-primary);
+  --el-menu-bg-color: var(--el-fill-color-blank);
+  --el-menu-hover-bg-color: var(--el-color-primary-light-9);
+  --el-menu-item-height: 45px;
+  --el-menu-sub-item-height: calc(var(--el-menu-item-height) - 6px);
+  --el-menu-horizontal-height: 60px;
+  --el-menu-horizontal-sub-item-height: 36px;
+  --el-menu-item-font-size: var(--el-font-size-base);
+  --el-menu-item-hover-fill: var(--el-color-primary-light-9);
+  --el-menu-border-color: var(--el-border-color);
+  --el-menu-base-level-padding: 20px;
+  --el-menu-level-padding: 20px;
+  --el-menu-icon-width: 24px;
+
+  --el-border-radius-base: 4px;
+  --el-text-color-regular: #000;
+  --el-border-color: #a8abb2;
+}
+
+.v-application {
+  .el-header {
+    padding: 0;
+    height: 45px;
+    // border-bottom: 1px solid $-input-border-color;
+  }
+  .el-menu {
+    border-right: none;
+  }
+  .el-main {
+    padding: 0;
+    .vc-page {
+      padding: 20px;
+    }
+  }
+
+  .page-container {
+    background-color: $-page-backgground;
+    width: 100vw;
+  }
+
+  .el-card {
+    border-color: #fff;
+  }
+  .el-card--visible {
+    overflow: unset;
+  }
+
+  .el-form-item__error {
+    text-align: right;
+    width: 100%;
+  }
+
+  .el-input__suffix{
+    width: 30px;
+  }
+}
+
+// @media only screen and (max-width: 575px){
+//   .el-container {
+//     .page-container {
+//       width: 100%;
+//     }
+//   }
+// }
+
+// @media only screen and (max-width: 767px) and (min-width: 576px)  {
+//   .el-container {
+//     .page-container {
+//       width: 540px;
+//     }
+//   }
+// }
+
+// @media only screen and (max-width: 991px) and (min-width: 768px)  {
+//   .el-container {
+//     .page-container {
+//       width: 720px;
+//     }
+//   }
+// }
+
+// @media only screen and (max-width: 1199px) and (min-width: 992px)  {
+//   .el-container {
+//     .page-container {
+//       width: 960px;
+//     }
+//   }
+// }
+
+// @media only screen and (min-width: 1200px)  {
+//   .el-container {
+//     .page-container {
+//       width: 1140px;
+//     }
+//   }
+// }
