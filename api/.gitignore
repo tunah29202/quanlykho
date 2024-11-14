@@ -1,0 +1,8 @@
+*.vsidx
+bin/
+obj/
+out/
+*.suo
+.vs/
+*.slnx.sqlite
+*.sqlite
