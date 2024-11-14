@@ -1,10 +1,6 @@
-using Microsoft.EntityFrameworkCore;
-using Services.Common.Repository;
-using Services.Core.Interfaces;
-using Services.Core.Contracts;
-using Common;
 using Helpers.Cache;
-using System.Globalization;
+using Services.Core.Contracts;
+using Services.Core.Interfaces;
 namespace Services.Core.Services
 {
     public class LocalizeServices : ILocalizeServices
@@ -12,7 +8,7 @@ namespace Services.Core.Services
         private readonly IResourceServices resourceServices;
         private readonly ICacheServices cacheServices;
         public LocalizeServices(IResourceServices _resourceServices, ICacheServices _cacheServices)
-        { 
+        {
             resourceServices = _resourceServices;
             cacheServices = _cacheServices;
         }
@@ -24,12 +20,12 @@ namespace Services.Core.Services
             var data = cacheServices.Get(cacheKey, () =>
             {
                 var items = resourceServices.GetByScreen(lang, module, screen);
-                return items.Count() > 0 ? items : null;    
+                return items.Count() > 0 ? items : null;
             });
-            if(data != null && data.Count > 0)
+            if (data != null && data.Count > 0)
             {
-                var dataItem = data.Where(x=>x.key==key).FirstOrDefault();
-                if(dataItem != null)
+                var dataItem = data.Where(x => x.key == key).FirstOrDefault();
+                if (dataItem != null)
                 {
                     return dataItem.text;
                 }

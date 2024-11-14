@@ -251,7 +251,7 @@ namespace api.Migrations
                     b.Property<bool>("del_flg")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid>("package_id")
+                    b.Property<Guid>("product_id")
                         .HasColumnType("uuid");
 
                     b.Property<int>("quantity")
@@ -272,7 +272,7 @@ namespace api.Migrations
 
                     b.HasIndex("carton_id");
 
-                    b.HasIndex("package_id");
+                    b.HasIndex("product_id");
 
                     b.ToTable("a_carton_detail", "public");
                 });
@@ -660,106 +660,6 @@ namespace api.Migrations
                     b.HasKey("id");
 
                     b.ToTable("m_log_exception", "public");
-                });
-
-            modelBuilder.Entity("Database.Entities.Package", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("created_by")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("customer_id")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("del_flg")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("note")
-                        .HasMaxLength(2048)
-                        .HasColumnType("character varying(2048)");
-
-                    b.Property<string>("origin")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<int>("quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("updated_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid?>("updated_by")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("warehouse_id")
-                        .HasColumnType("uuid");
-
-                    b.Property<double?>("weight")
-                        .HasColumnType("double precision");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("customer_id");
-
-                    b.HasIndex("warehouse_id");
-
-                    b.ToTable("a_package", "public");
-                });
-
-            modelBuilder.Entity("Database.Entities.PackageDetail", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("created_by")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("del_flg")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("package_id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("product_id")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("unit")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<DateTime?>("updated_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid?>("updated_by")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("package_id");
-
-                    b.HasIndex("product_id");
-
-                    b.ToTable("a_package_detail", "public");
                 });
 
             modelBuilder.Entity("Database.Entities.PaymentMethod", b =>
@@ -1283,15 +1183,15 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Database.Entities.Package", "package")
+                    b.HasOne("Database.Entities.Product", "product")
                         .WithMany("carton_details")
-                        .HasForeignKey("package_id")
+                        .HasForeignKey("product_id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("carton");
 
-                    b.Navigation("package");
+                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Database.Entities.Function", b =>
@@ -1374,43 +1274,6 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("user");
-                });
-
-            modelBuilder.Entity("Database.Entities.Package", b =>
-                {
-                    b.HasOne("Database.Entities.Customer", "customer")
-                        .WithMany("packages")
-                        .HasForeignKey("customer_id")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Database.Entities.Warehouse", "warehouse")
-                        .WithMany("packages")
-                        .HasForeignKey("warehouse_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("customer");
-
-                    b.Navigation("warehouse");
-                });
-
-            modelBuilder.Entity("Database.Entities.PackageDetail", b =>
-                {
-                    b.HasOne("Database.Entities.Package", "package")
-                        .WithMany("package_details")
-                        .HasForeignKey("package_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Database.Entities.Product", "product")
-                        .WithMany("package_details")
-                        .HasForeignKey("product_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("package");
-
-                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Database.Entities.Permission", b =>
@@ -1533,8 +1396,6 @@ namespace api.Migrations
             modelBuilder.Entity("Database.Entities.Customer", b =>
                 {
                     b.Navigation("cartons");
-
-                    b.Navigation("packages");
                 });
 
             modelBuilder.Entity("Database.Entities.Function", b =>
@@ -1542,13 +1403,6 @@ namespace api.Migrations
                     b.Navigation("children");
 
                     b.Navigation("permissions");
-                });
-
-            modelBuilder.Entity("Database.Entities.Package", b =>
-                {
-                    b.Navigation("carton_details");
-
-                    b.Navigation("package_details");
                 });
 
             modelBuilder.Entity("Database.Entities.PaymentMethod", b =>
@@ -1560,7 +1414,7 @@ namespace api.Migrations
 
             modelBuilder.Entity("Database.Entities.Product", b =>
                 {
-                    b.Navigation("package_details");
+                    b.Navigation("carton_details");
                 });
 
             modelBuilder.Entity("Database.Entities.Role", b =>
@@ -1590,8 +1444,6 @@ namespace api.Migrations
                     b.Navigation("cartons");
 
                     b.Navigation("invoices");
-
-                    b.Navigation("packages");
 
                     b.Navigation("products");
 

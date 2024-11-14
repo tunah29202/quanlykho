@@ -42,13 +42,11 @@ namespace Services.Core.Services
         public async Task<WarehouseResponse> GetById(Guid id)
         {
             var Warehouse = await warehouseRepository
-                         .GetByIdAsync(id);
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             var data = _mapper.Map<WarehouseResponse>(Warehouse);
-            return data;
-        }
-        public async Task<WarehouseResponse> GetInfoLoginById(Guid id)
-        {
-            var data = await GetById(id);
             return data;
         }
 
@@ -63,8 +61,11 @@ namespace Services.Core.Services
         public async Task<int> Update(Guid id, WarehouseRequest request)
         {
             var Warehouse = await _unitOfWork
-                        .GetRepository<Warehouse>()
-                        .GetByIdAsync(id);
+                                    .GetRepository<Warehouse>()
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             if(Warehouse == null)
             {
                 return -1;
@@ -77,7 +78,11 @@ namespace Services.Core.Services
 
         public async Task<int> Delete(Guid id)
         {
-            var Warehouse = await warehouseRepository.GetByIdAsync(id);
+            var Warehouse = await warehouseRepository           
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             if(Warehouse == null)
             {
                 return -1;

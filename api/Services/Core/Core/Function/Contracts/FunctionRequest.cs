@@ -13,8 +13,8 @@ namespace Services.Core.Contracts
     {
         public FunctionRequestValidator()
         {
-            RuleFor(x=>x.code).NotNull().NotEmpty().MaximumLength(50);
-            RuleFor(x=>x.name).NotNull().NotEmpty().MaximumLength(250);
+            RuleFor(x => x.code).NotNull().NotEmpty().MaximumLength(50);
+            RuleFor(x => x.name).NotNull().NotEmpty().MaximumLength(250);
         }
     }
 }

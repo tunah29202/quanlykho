@@ -1,6 +1,6 @@
+using Database.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Database.Entities;
 
 namespace Database.EntityConfigurations
 {
@@ -17,11 +17,11 @@ namespace Database.EntityConfigurations
             builder.Property(t => t.parent_cd).HasMaxLength(15);
 
             builder
-        .HasOne(x => x.parent)
-        .WithMany(y => y.children)
-        .HasPrincipalKey(w => w.code)
-        .HasForeignKey(z => z.parent_cd)
-        .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(x => x.parent)
+            .WithMany(y => y.children)
+            .HasPrincipalKey(w => w.code)
+            .HasForeignKey(z => z.parent_cd)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -1,5 +1,3 @@
-using Common;
-using System.Threading.Tasks;
 namespace Services.Core.Interfaces
 {
     public interface ILocalizeServices

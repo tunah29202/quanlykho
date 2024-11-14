@@ -1,25 +1,24 @@
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using Services.Core.Contracts;
-using Services.Common.Repository;
-using Services.Core.Interfaces;
-using Database.Entities;
 using Common;
-using Helpers.Auth;
+using Database.Entities;
+using Microsoft.EntityFrameworkCore;
+using Services.Common.Repository;
+using Services.Core.Contracts;
+using Services.Core.Interfaces;
 namespace Services.Core.Services
 {
     public class ConsigneeServices : BaseServices, IConsigneeServices
     {
         private readonly IRepository<Consignee> consigneeRepository;
-        public ConsigneeServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper) 
-        { 
+        public ConsigneeServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper)
+        {
             consigneeRepository = _unitOfWork.GetRepository<Consignee>();
         }
 
         public async Task<PagedList<ConsigneeResponse>> GetAll(PagedRequest request)
         {
             PagedList<Consignee> Consignees;
-            if(request.get_all)
+            if (request.get_all)
             {
                 Consignees = consigneeRepository
                             .GetQuery()
@@ -42,13 +41,11 @@ namespace Services.Core.Services
         public async Task<ConsigneeResponse> GetById(Guid id)
         {
             var Consignee = await consigneeRepository
-                         .GetByIdAsync(id);
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             var data = _mapper.Map<ConsigneeResponse>(Consignee);
-            return data;
-        }
-        public async Task<ConsigneeResponse> GetInfoLoginById(Guid id)
-        {
-            var data = await GetById(id);
             return data;
         }
 
@@ -63,9 +60,12 @@ namespace Services.Core.Services
         public async Task<int> Update(Guid id, ConsigneeRequest request)
         {
             var Consignee = await _unitOfWork
-                        .GetRepository<Consignee>()
-                        .GetByIdAsync(id);
-            if(Consignee == null)
+                                    .GetRepository<Consignee>()
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
+            if (Consignee == null)
             {
                 return -1;
             }
@@ -77,8 +77,12 @@ namespace Services.Core.Services
 
         public async Task<int> Delete(Guid id)
         {
-            var Consignee = await consigneeRepository.GetByIdAsync(id);
-            if(Consignee == null)
+            var Consignee = await consigneeRepository
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
+            if (Consignee == null)
             {
                 return -1;
             }

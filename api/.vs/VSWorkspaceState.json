@@ -1,15 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Common",
     "\\Controllers",
     "\\Controllers\\Core",
+    "\\Controllers\\Core\\App",
     "\\Database",
-    "\\Database\\Common",
-    "\\Database\\Entities",
-    "\\Database\\Entities\\Core",
-    "\\Database\\Entities\\Log",
-    "\\Database\\EntityConfigurations"
+    "\\Database\\EntityConfigurations",
+    "\\Helpers",
+    "\\Helpers\\Excel",
+    "\\Services",
+    "\\Services\\Core",
+    "\\Services\\Core\\App",
+    "\\Services\\Core\\App\\Carton"
   ],
   "SelectedNode": "\\api.sln",
   "PreviewInSolutionExplorer": false

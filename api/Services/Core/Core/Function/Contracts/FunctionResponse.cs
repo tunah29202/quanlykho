@@ -10,6 +10,6 @@ namespace Services.Core.Contracts
         public string? method { get; set; }
         public string? parent_cd { get; set; }
         public Function? parent { get; set; }
-        public List<FunctionResponse>? items { get; set; }  
+        public List<FunctionResponse>? items { get; set; }
     }
 }

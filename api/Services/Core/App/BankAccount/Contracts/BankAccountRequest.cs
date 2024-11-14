@@ -15,12 +15,12 @@ namespace Services.Core.Contracts
     {
         public BankAccountRequestValidator()
         {
-            RuleFor(x=>x.code).NotNull().NotEmpty().MaximumLength(20);
-            RuleFor(x=>x.BankAccount_name).NotNull().NotEmpty().MaximumLength(250);
-            RuleFor(x=>x.full_name).NotNull().NotEmpty().MaximumLength(250);
-            RuleFor(x=>x.gender).NotNull().NotEmpty();
-            RuleFor(x=>x.email).NotNull().NotEmpty().MaximumLength(200);
-            RuleFor(x=>x.email).NotNull().NotEmpty().MaximumLength(20);
+            RuleFor(x => x.code).NotNull().NotEmpty().MaximumLength(20);
+            RuleFor(x => x.BankAccount_name).NotNull().NotEmpty().MaximumLength(250);
+            RuleFor(x => x.full_name).NotNull().NotEmpty().MaximumLength(250);
+            RuleFor(x => x.gender).NotNull().NotEmpty();
+            RuleFor(x => x.email).NotNull().NotEmpty().MaximumLength(200);
+            RuleFor(x => x.email).NotNull().NotEmpty().MaximumLength(20);
         }
     }
 }

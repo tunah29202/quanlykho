@@ -1,11 +1,7 @@
-using Microsoft.AspNetCore.Authorization;
+using Common;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Services.Core.Contracts;
 using Services.Core.Interfaces;
-using Helpers;
-using Common;
-using Services.Common.Enums;
 namespace Controllers.Core
 {
     [Route("api/auth")]
@@ -15,7 +11,7 @@ namespace Controllers.Core
         private IAuthServices authServices { get; set; }
         private IUserServices userServices { get; set; }
         private ICurrentUserService servicesContext { get; set; }
-        private ILocalizeServices ls {get; set; }
+        private ILocalizeServices ls { get; set; }
         public AuthController(IAuthServices _authServices, IUserServices _userServices, ICurrentUserService _servicesContext, ILocalizeServices _ls) : base()
         {
             servicesContext = _servicesContext;
@@ -28,7 +24,7 @@ namespace Controllers.Core
         public async Task<IActionResult> Login([FromBody] AuthLoginRequest request)
         {
             var res = await authServices.Login(request);
-            if(res!=null)
+            if (res != null)
                 return Ok(res);
             else
                 return Unauthorized(res);
@@ -49,7 +45,7 @@ namespace Controllers.Core
         public async Task<IActionResult> RefreshToken([FromBody] string refresh_token)
         {
             var res = await authServices.Refresh(refresh_token);
-            if(res!=null)
+            if (res != null)
                 return Ok(res);
             else
                 return Unauthorized(res);
@@ -60,10 +56,10 @@ namespace Controllers.Core
         public async Task<IActionResult> ChangePassword([FromBody] AuthChangePassRequest request, Guid id)
         {
             var count = await authServices.ChangePassword(id, request);
-            if(count>=1)
-                return Ok(new{code = ResponseCode.Success, message= ls.Get(Modules.Core, Screen.ChangePassword, MessageKey.S_CHANGE)});
-            else 
-                return BadRequest(new {code = ResponseCode.SystemError, message= ls.Get(Modules.Core, Screen.ChangePassword, MessageKey.E_CHANGE)});
+            if (count >= 1)
+                return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, Screen.ChangePassword, MessageKey.S_CHANGE) });
+            else
+                return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, Screen.ChangePassword, MessageKey.E_CHANGE) });
         }
     }
 }

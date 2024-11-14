@@ -1,11 +1,8 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Services.Core.Contracts;
-using Services.Core.Interfaces;
-using Helpers;
 using Common;
 using Controllers.Common;
+using Microsoft.AspNetCore.Mvc;
+using Services.Core.Contracts;
+using Services.Core.Interfaces;
 namespace Controllers.Core
 {
     [Route("api/Category")]
@@ -39,7 +36,7 @@ namespace Controllers.Core
             }
             else
             {
-                return BadRequest(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND)});
+                return BadRequest(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
             }
         }
 
@@ -72,7 +69,7 @@ namespace Controllers.Core
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
             }
         }
-        
+
         [HttpDelete]
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)

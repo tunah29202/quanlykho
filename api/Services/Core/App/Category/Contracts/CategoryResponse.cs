@@ -5,6 +5,6 @@ namespace Services.Core.Contracts
     {
         public Guid id { get; set; }
         public string? name { get; set; }
-        public List<Ingredient>? ingredients{ get; set; }
+        public List<Ingredient>? ingredients { get; set; }
     }
 }

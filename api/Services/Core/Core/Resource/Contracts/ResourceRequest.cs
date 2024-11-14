@@ -13,11 +13,11 @@ namespace Services.Core.Contracts
     {
         public ResourceRequestValidator()
         {
-            RuleFor(x=>x.lang).NotNull().NotEmpty().MaximumLength(20);
-            RuleFor(x=>x.module).NotNull().NotEmpty().MaximumLength(250);
-            RuleFor(x=>x.screen).NotNull().NotEmpty().MaximumLength(250);
-            RuleFor(x=>x.key).NotNull().NotEmpty();
-            RuleFor(x=>x.text).NotNull().NotEmpty().MaximumLength(200);
+            RuleFor(x => x.lang).NotNull().NotEmpty().MaximumLength(20);
+            RuleFor(x => x.module).NotNull().NotEmpty().MaximumLength(250);
+            RuleFor(x => x.screen).NotNull().NotEmpty().MaximumLength(250);
+            RuleFor(x => x.key).NotNull().NotEmpty();
+            RuleFor(x => x.text).NotNull().NotEmpty().MaximumLength(200);
         }
     }
 }

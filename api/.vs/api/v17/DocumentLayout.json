@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\excel\\excelexport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\excel\\excelexport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Package.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\Entities\\App\\Package.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\api.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:api.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\Role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\Entities\\Core\\Role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\Resource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\Entities\\Core\\Resource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\Entities\\Core\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\UserRole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\Entities\\Core\\UserRole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\EntityConfigurations\\ResourceConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,22 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\EntityConfigurations\\LogExceptionConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\EntityConfigurations\\LogExceptionConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Log\\LogException.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\Entities\\Log\\LogException.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Log\\LogAction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\Entities\\Log\\LogAction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Common\\BaseEntity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\Common\\BaseEntity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\Interface\\IEntity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\Interface\\IEntity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\Core\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -63,24 +39,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\WeatherForecastController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Auth\\AuthServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\Auth\\AuthServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\MiddleWare\\ValidationExceptionMiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\MiddleWare\\ValidationExceptionMiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Auth\\JwtHelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Auth\\JwtHelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\User\\IUserServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -91,10 +51,6 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\User\\UserServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\APIServiceContext\\ApiServiceContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\APIServiceContext\\ApiServiceContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\Core\\ResourceController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\Core\\ResourceController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -103,28 +59,12 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\Resource\\ResourceServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelImport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Excel\\ExcelImport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\IResourceServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\Resource\\IResourceServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelImage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Excel\\ExcelImage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\Contracts\\ResourceRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\Resource\\Contracts\\ResourceRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\BaseServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Common\\BaseServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\Contracts\\ResourcePagedRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -135,84 +75,16 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\Resource\\Contracts\\ResourceResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelExport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Excel\\ExcelExport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Excel\\ExcelItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Csv\\CsvHelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Csv\\CsvHelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Csv\\CsvItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Csv\\CsvItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\APIServiceContext\\ApiAuthorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\APIServiceContext\\ApiAuthorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\LogAction\\LogServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\LogAction\\LogServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\MiddleWare\\ValidatorInterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\MiddleWare\\ValidatorInterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Properties\\launchSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Properties\\launchSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\Core\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\Core\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\MiddleWare\\BaseResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\MiddleWare\\BaseResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\MiddleWare\\BaseResponseError.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\MiddleWare\\BaseResponseError.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\ProfileMapper\\MappingProfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\ProfileMapper\\MappingProfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Enums\\LogEnums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Common\\Enums\\LogEnums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Localize\\ILocalizeServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\Localize\\ILocalizeServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\ServicesRegister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\ServicesRegister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Cache\\CacheServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Cache\\CacheServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Cache\\ICacheServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Cache\\ICacheServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\IUnitOfWork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Common\\Repository\\IUnitOfWork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Localize\\LocalizeServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -223,60 +95,248 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\User\\Contracts\\UserResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\UnitOfWork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Common\\Repository\\UnitOfWork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\Repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Common\\Repository\\Repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\Interface\\ICurrentUserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\Interface\\ICurrentUserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\Query\\QueryExtention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\Query\\QueryExtention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\User\\Contracts\\UserRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\User\\Contracts\\UserRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Auth\\CryptographyProcessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Helpers\\Auth\\CryptographyProcessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\IRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Common\\Repository\\IRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\EntityConfigurations\\UserConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\EntityConfigurations\\UserConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Database\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\Sort\\SortExtention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\Sort\\SortExtention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\PagedList\\PagedListExtention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\PagedList\\PagedListExtention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\PagedList\\PagedList.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Common\\PagedList\\PagedList.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\Contracts\\ResourceImportRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\Core\\Resource\\Contracts\\ResourceImportRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\controllers\\core\\app\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:controllers\\core\\app\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\core\\app\\carton\\contracts\\cartondetailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\core\\app\\carton\\contracts\\cartondetailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\core\\app\\product\\productservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\core\\app\\product\\productservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\core\\app\\carton\\cartonservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\core\\app\\carton\\cartonservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\core\\app\\category\\categoryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\core\\app\\category\\categoryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\app\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\app\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\app\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\app\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\app\\consignee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\app\\consignee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\core\\app\\carton\\contracts\\cartonrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\core\\app\\carton\\contracts\\cartonrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\app\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\app\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\core\\function.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\core\\function.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\core\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\core\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\controllers\\profilemapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:controllers\\profilemapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\common\\repository\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\common\\repository\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\core\\app\\category\\icategoryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\core\\app\\category\\icategoryservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\app\\userwarehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\app\\userwarehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\app\\warehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\app\\warehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\log\\logaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\log\\logaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\log\\logexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\log\\logexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\core\\resource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\core\\resource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\middleware\\validationexceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\middleware\\validationexceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\core\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\core\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\entities\\core\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\entities\\core\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\auth\\jwthelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\auth\\jwthelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\common\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\common\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\interface\\ientity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\interface\\ientity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\apiservicecontext\\apiservicecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\apiservicecontext\\apiservicecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\excel\\excelimport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\excel\\excelimport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\excel\\excelimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\excel\\excelimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\common\\baseservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\common\\baseservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\excel\\excelitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\excel\\excelitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\csv\\csvhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\csv\\csvhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\csv\\csvitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\csv\\csvitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\apiservicecontext\\apiauthorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\apiservicecontext\\apiauthorize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\middleware\\validatorinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\middleware\\validatorinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\middleware\\baseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\middleware\\baseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\middleware\\baseresponseerror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\middleware\\baseresponseerror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\common\\enums\\logenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\common\\enums\\logenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\core\\servicesregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\core\\servicesregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\cache\\cacheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\cache\\cacheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\cache\\icacheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\cache\\icacheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\common\\repository\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\common\\repository\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\common\\repository\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\common\\repository\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\services\\common\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:services\\common\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\interface\\icurrentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\interface\\icurrentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\query\\queryextention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\query\\queryextention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\helpers\\auth\\cryptographyprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:helpers\\auth\\cryptographyprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\database\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:database\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\sort\\sortextention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\sort\\sortextention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\pagedlist\\pagedlistextention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\pagedlist\\pagedlistextention.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|c:\\users\\bxt\\desktop\\quanlykho\\api\\common\\pagedlist\\pagedlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC96C639-A170-4A8A-8E77-041BF44813C6}|api.csproj|solutionrelative:common\\pagedlist\\pagedlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -342,19 +402,224 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\Core\\App\\ProductController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Core\\App\\ProductController.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\Core\\App\\ProductController.cs",
+              "RelativeToolTip": "Controllers\\Core\\App\\ProductController.cs",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAwwHYAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-12T04:52:59.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CartonDetailRequest.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Carton\\Contracts\\CartonDetailRequest.cs",
+              "RelativeDocumentMoniker": "Services\\Core\\App\\Carton\\Contracts\\CartonDetailRequest.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Carton\\Contracts\\CartonDetailRequest.cs",
+              "RelativeToolTip": "Services\\Core\\App\\Carton\\Contracts\\CartonDetailRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T11:23:31.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ProductServices.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Product\\ProductServices.cs",
+              "RelativeDocumentMoniker": "Services\\Core\\App\\Product\\ProductServices.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Product\\ProductServices.cs",
+              "RelativeToolTip": "Services\\Core\\App\\Product\\ProductServices.cs",
+              "ViewState": "AQIAAOYAAAAAAAAAAAAawPIAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T10:23:40.001Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "CartonServices.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Carton\\CartonServices.cs",
+              "RelativeDocumentMoniker": "Services\\Core\\App\\Carton\\CartonServices.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Carton\\CartonServices.cs",
+              "RelativeToolTip": "Services\\Core\\App\\Carton\\CartonServices.cs",
+              "ViewState": "AQIAAKsAAAAAAAAAAAAuwL4AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T09:44:22.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "CategoryServices.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Category\\CategoryServices.cs",
+              "RelativeDocumentMoniker": "Services\\Core\\App\\Category\\CategoryServices.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Category\\CategoryServices.cs",
+              "RelativeToolTip": "Services\\Core\\App\\Category\\CategoryServices.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAgwDsAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T09:18:31.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Product.cs",
+              "RelativeDocumentMoniker": "Database\\Entities\\App\\Product.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Product.cs",
+              "RelativeToolTip": "Database\\Entities\\App\\Product.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T02:46:54.091Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Package.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Package.cs",
+              "RelativeDocumentMoniker": "Database\\Entities\\App\\Package.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Package.cs",
+              "RelativeToolTip": "Database\\Entities\\App\\Package.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T02:45:59.656Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Invoice.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Invoice.cs",
+              "RelativeDocumentMoniker": "Database\\Entities\\App\\Invoice.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Invoice.cs",
+              "RelativeToolTip": "Database\\Entities\\App\\Invoice.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAIwCEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T02:44:20.718Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Consignee.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Consignee.cs",
+              "RelativeDocumentMoniker": "Database\\Entities\\App\\Consignee.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Consignee.cs",
+              "RelativeToolTip": "Database\\Entities\\App\\Consignee.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T02:43:17.893Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ExcelExport.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelExport.cs",
+              "RelativeDocumentMoniker": "Helpers\\Excel\\ExcelExport.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelExport.cs",
+              "RelativeToolTip": "Helpers\\Excel\\ExcelExport.cs",
+              "ViewState": "AQIAABgBAAAAAAAAAAAlwCgBAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T08:19:35.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "CartonRequest.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Carton\\Contracts\\CartonRequest.cs",
+              "RelativeDocumentMoniker": "Services\\Core\\App\\Carton\\Contracts\\CartonRequest.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Carton\\Contracts\\CartonRequest.cs",
+              "RelativeToolTip": "Services\\Core\\App\\Carton\\Contracts\\CartonRequest.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAYwBgAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T15:22:14.864Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Category.cs",
+              "RelativeDocumentMoniker": "Database\\Entities\\App\\Category.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Category.cs",
+              "RelativeToolTip": "Database\\Entities\\App\\Category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T02:42:45.042Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Function.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\Function.cs",
+              "RelativeDocumentMoniker": "Database\\Entities\\Core\\Function.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\Function.cs",
+              "RelativeToolTip": "Database\\Entities\\Core\\Function.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T02:41:05.27Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
               "Title": "Role.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\Role.cs",
               "RelativeDocumentMoniker": "Database\\Entities\\Core\\Role.cs",
               "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\Role.cs",
               "RelativeToolTip": "Database\\Entities\\Core\\Role.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAwAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T02:20:43.693Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 38,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\ProfileMapper\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProfileMapper\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\ProfileMapper\\MappingProfile.cs",
+              "RelativeToolTip": "Controllers\\ProfileMapper\\MappingProfile.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACMAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-13T04:32:16.609Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\IRepository.cs",
+              "RelativeDocumentMoniker": "Services\\Common\\Repository\\IRepository.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\IRepository.cs",
+              "RelativeToolTip": "Services\\Common\\Repository\\IRepository.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAvwA4AAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-13T09:46:16.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ICategoryServices.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Category\\ICategoryServices.cs",
+              "RelativeDocumentMoniker": "Services\\Core\\App\\Category\\ICategoryServices.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\App\\Category\\ICategoryServices.cs",
+              "RelativeToolTip": "Services\\Core\\App\\Category\\ICategoryServices.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T09:18:31.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "UserWarehouse.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\UserWarehouse.cs",
+              "RelativeDocumentMoniker": "Database\\Entities\\App\\UserWarehouse.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\UserWarehouse.cs",
+              "RelativeToolTip": "Database\\Entities\\App\\UserWarehouse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T02:48:24.007Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ResourceConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\EntityConfigurations\\ResourceConfiguration.cs",
               "RelativeDocumentMoniker": "Database\\EntityConfigurations\\ResourceConfiguration.cs",
@@ -366,7 +631,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 42,
+              "Title": "Warehouse.cs",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Warehouse.cs",
+              "RelativeDocumentMoniker": "Database\\Entities\\App\\Warehouse.cs",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\App\\Warehouse.cs",
+              "RelativeToolTip": "Database\\Entities\\App\\Warehouse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T02:48:27.025Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "LogExceptionConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\EntityConfigurations\\LogExceptionConfiguration.cs",
               "RelativeDocumentMoniker": "Database\\EntityConfigurations\\LogExceptionConfiguration.cs",
@@ -378,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 43,
               "Title": "LogAction.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Log\\LogAction.cs",
               "RelativeDocumentMoniker": "Database\\Entities\\Log\\LogAction.cs",
@@ -390,7 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 44,
               "Title": "LogException.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Log\\LogException.cs",
               "RelativeDocumentMoniker": "Database\\Entities\\Log\\LogException.cs",
@@ -402,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 45,
               "Title": "Resource.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\Resource.cs",
               "RelativeDocumentMoniker": "Database\\Entities\\Core\\Resource.cs",
@@ -414,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\Core\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\Core\\AuthController.cs",
@@ -426,7 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 46,
               "Title": "ValidationExceptionMiddleware.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\MiddleWare\\ValidationExceptionMiddleware.cs",
               "RelativeDocumentMoniker": "Common\\MiddleWare\\ValidationExceptionMiddleware.cs",
@@ -438,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 47,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\User.cs",
               "RelativeDocumentMoniker": "Database\\Entities\\Core\\User.cs",
@@ -450,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "api.csproj.user",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\api.csproj.user",
               "RelativeDocumentMoniker": "api.csproj.user",
@@ -458,12 +735,11 @@
               "RelativeToolTip": "api.csproj.user",
               "ViewState": "AQIAAAgAAAAAAAAAAAAAAAgAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003464|",
-              "WhenOpened": "2024-09-13T01:40:37.203Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-13T01:40:37.203Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 48,
               "Title": "UserRole.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Entities\\Core\\UserRole.cs",
               "RelativeDocumentMoniker": "Database\\Entities\\Core\\UserRole.cs",
@@ -475,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 9,
               "Title": "AuthServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Auth\\AuthServices.cs",
               "RelativeDocumentMoniker": "Services\\Core\\Auth\\AuthServices.cs",
@@ -487,7 +763,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 49,
               "Title": "JwtHelpers.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Auth\\JwtHelpers.cs",
               "RelativeDocumentMoniker": "Helpers\\Auth\\JwtHelpers.cs",
@@ -499,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 10,
               "Title": "IUserServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\User\\IUserServices.cs",
               "RelativeDocumentMoniker": "Services\\Core\\User\\IUserServices.cs",
@@ -511,7 +787,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 50,
               "Title": "BaseEntity.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\Common\\BaseEntity.cs",
               "RelativeDocumentMoniker": "Database\\Common\\BaseEntity.cs",
@@ -523,7 +799,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 51,
               "Title": "IEntity.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\Interface\\IEntity.cs",
               "RelativeDocumentMoniker": "Common\\Interface\\IEntity.cs",
@@ -535,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 52,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -547,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 53,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
@@ -559,7 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 11,
               "Title": "UserServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\User\\UserServices.cs",
               "RelativeDocumentMoniker": "Services\\Core\\User\\UserServices.cs",
@@ -571,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 54,
               "Title": "ApiServiceContext.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\APIServiceContext\\ApiServiceContext.cs",
               "RelativeDocumentMoniker": "Common\\APIServiceContext\\ApiServiceContext.cs",
@@ -583,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 12,
               "Title": "ResourceController.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\Core\\ResourceController.cs",
               "RelativeDocumentMoniker": "Controllers\\Core\\ResourceController.cs",
@@ -595,7 +871,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 13,
               "Title": "ResourceServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\ResourceServices.cs",
               "RelativeDocumentMoniker": "Services\\Core\\Resource\\ResourceServices.cs",
@@ -607,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 55,
               "Title": "ExcelImport.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelImport.cs",
               "RelativeDocumentMoniker": "Helpers\\Excel\\ExcelImport.cs",
@@ -619,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 14,
               "Title": "IResourceServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\IResourceServices.cs",
               "RelativeDocumentMoniker": "Services\\Core\\Resource\\IResourceServices.cs",
@@ -631,7 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 56,
               "Title": "ExcelImage.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelImage.cs",
               "RelativeDocumentMoniker": "Helpers\\Excel\\ExcelImage.cs",
@@ -643,7 +919,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 15,
               "Title": "ResourceRequest.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\Contracts\\ResourceRequest.cs",
               "RelativeDocumentMoniker": "Services\\Core\\Resource\\Contracts\\ResourceRequest.cs",
@@ -655,7 +931,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 57,
               "Title": "BaseServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\BaseServices.cs",
               "RelativeDocumentMoniker": "Services\\Common\\BaseServices.cs",
@@ -667,7 +943,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 58,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -679,7 +955,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 16,
               "Title": "ResourcePagedRequest.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\Contracts\\ResourcePagedRequest.cs",
               "RelativeDocumentMoniker": "Services\\Core\\Resource\\Contracts\\ResourcePagedRequest.cs",
@@ -691,7 +967,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 17,
               "Title": "ResourceResponse.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\Contracts\\ResourceResponse.cs",
               "RelativeDocumentMoniker": "Services\\Core\\Resource\\Contracts\\ResourceResponse.cs",
@@ -703,19 +979,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "ExcelExport.cs",
-              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelExport.cs",
-              "RelativeDocumentMoniker": "Helpers\\Excel\\ExcelExport.cs",
-              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelExport.cs",
-              "RelativeToolTip": "Helpers\\Excel\\ExcelExport.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAYwEoAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T08:19:35.436Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 59,
               "Title": "ExcelItem.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Excel\\ExcelItem.cs",
               "RelativeDocumentMoniker": "Helpers\\Excel\\ExcelItem.cs",
@@ -727,7 +991,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 60,
               "Title": "CsvHelpers.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Csv\\CsvHelpers.cs",
               "RelativeDocumentMoniker": "Helpers\\Csv\\CsvHelpers.cs",
@@ -739,7 +1003,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 61,
               "Title": "CsvItem.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Csv\\CsvItem.cs",
               "RelativeDocumentMoniker": "Helpers\\Csv\\CsvItem.cs",
@@ -751,7 +1015,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 62,
               "Title": "ApiAuthorize.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\APIServiceContext\\ApiAuthorize.cs",
               "RelativeDocumentMoniker": "Common\\APIServiceContext\\ApiAuthorize.cs",
@@ -763,7 +1027,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 18,
               "Title": "LogServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\LogAction\\LogServices.cs",
               "RelativeDocumentMoniker": "Services\\Core\\LogAction\\LogServices.cs",
@@ -775,7 +1039,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 63,
               "Title": "ValidatorInterceptor.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\MiddleWare\\ValidatorInterceptor.cs",
               "RelativeDocumentMoniker": "Common\\MiddleWare\\ValidatorInterceptor.cs",
@@ -787,7 +1051,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 64,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -799,7 +1063,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 19,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\Core\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\Core\\UserController.cs",
@@ -811,7 +1075,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 65,
               "Title": "api.csproj",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\api.csproj",
               "RelativeDocumentMoniker": "api.csproj",
@@ -823,7 +1087,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 66,
               "Title": "BaseResponse.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\MiddleWare\\BaseResponse.cs",
               "RelativeDocumentMoniker": "Common\\MiddleWare\\BaseResponse.cs",
@@ -835,7 +1099,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 67,
               "Title": "Enums.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Enums.cs",
               "RelativeDocumentMoniker": "Helpers\\Enums.cs",
@@ -847,7 +1111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 68,
               "Title": "BaseResponseError.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\MiddleWare\\BaseResponseError.cs",
               "RelativeDocumentMoniker": "Common\\MiddleWare\\BaseResponseError.cs",
@@ -859,19 +1123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\ProfileMapper\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProfileMapper\\MappingProfile.cs",
-              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\ProfileMapper\\MappingProfile.cs",
-              "RelativeToolTip": "Controllers\\ProfileMapper\\MappingProfile.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-13T04:32:16.609Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 69,
               "Title": "LogEnums.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Enums\\LogEnums.cs",
               "RelativeDocumentMoniker": "Services\\Common\\Enums\\LogEnums.cs",
@@ -883,7 +1135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 20,
               "Title": "ILocalizeServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Localize\\ILocalizeServices.cs",
               "RelativeDocumentMoniker": "Services\\Core\\Localize\\ILocalizeServices.cs",
@@ -895,7 +1147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 70,
               "Title": "ServicesRegister.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\ServicesRegister.cs",
               "RelativeDocumentMoniker": "Services\\Core\\ServicesRegister.cs",
@@ -907,7 +1159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 71,
               "Title": "CacheServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Cache\\CacheServices.cs",
               "RelativeDocumentMoniker": "Helpers\\Cache\\CacheServices.cs",
@@ -919,7 +1171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 72,
               "Title": "ICacheServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Cache\\ICacheServices.cs",
               "RelativeDocumentMoniker": "Helpers\\Cache\\ICacheServices.cs",
@@ -931,7 +1183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 73,
               "Title": "IUnitOfWork.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\IUnitOfWork.cs",
               "RelativeDocumentMoniker": "Services\\Common\\Repository\\IUnitOfWork.cs",
@@ -943,7 +1195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 21,
               "Title": "LocalizeServices.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Localize\\LocalizeServices.cs",
               "RelativeDocumentMoniker": "Services\\Core\\Localize\\LocalizeServices.cs",
@@ -955,7 +1207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 22,
               "Title": "UserResponse.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\User\\Contracts\\UserResponse.cs",
               "RelativeDocumentMoniker": "Services\\Core\\User\\Contracts\\UserResponse.cs",
@@ -967,7 +1219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 74,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "Services\\Common\\Repository\\UnitOfWork.cs",
@@ -979,7 +1231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 75,
               "Title": "Repository.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\Repository.cs",
               "RelativeDocumentMoniker": "Services\\Common\\Repository\\Repository.cs",
@@ -991,7 +1243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 76,
               "Title": "ICurrentUserService.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\Interface\\ICurrentUserService.cs",
               "RelativeDocumentMoniker": "Common\\Interface\\ICurrentUserService.cs",
@@ -1003,7 +1255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 77,
               "Title": "QueryExtention.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\Query\\QueryExtention.cs",
               "RelativeDocumentMoniker": "Common\\Query\\QueryExtention.cs",
@@ -1015,7 +1267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 23,
               "Title": "UserRequest.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\User\\Contracts\\UserRequest.cs",
               "RelativeDocumentMoniker": "Services\\Core\\User\\Contracts\\UserRequest.cs",
@@ -1027,7 +1279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 7,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "WeatherForecast.cs",
@@ -1038,7 +1290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 78,
               "Title": "CryptographyProcessor.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Helpers\\Auth\\CryptographyProcessor.cs",
               "RelativeDocumentMoniker": "Helpers\\Auth\\CryptographyProcessor.cs",
@@ -1050,19 +1302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "IRepository.cs",
-              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\IRepository.cs",
-              "RelativeDocumentMoniker": "Services\\Common\\Repository\\IRepository.cs",
-              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Common\\Repository\\IRepository.cs",
-              "RelativeToolTip": "Services\\Common\\Repository\\IRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-13T09:46:16.249Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 24,
               "Title": "UserConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\EntityConfigurations\\UserConfiguration.cs",
               "RelativeDocumentMoniker": "Database\\EntityConfigurations\\UserConfiguration.cs",
@@ -1074,7 +1314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 79,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Database\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Database\\AppDbContext.cs",
@@ -1086,7 +1326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 80,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Dockerfile",
               "RelativeDocumentMoniker": "Dockerfile",
@@ -1098,7 +1338,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 81,
               "Title": "SortExtention.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\Sort\\SortExtention.cs",
               "RelativeDocumentMoniker": "Common\\Sort\\SortExtention.cs",
@@ -1110,7 +1350,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 82,
               "Title": "PagedListExtention.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\PagedList\\PagedListExtention.cs",
               "RelativeDocumentMoniker": "Common\\PagedList\\PagedListExtention.cs",
@@ -1122,7 +1362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 83,
               "Title": "PagedList.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Common\\PagedList\\PagedList.cs",
               "RelativeDocumentMoniker": "Common\\PagedList\\PagedList.cs",
@@ -1134,7 +1374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 6,
               "Title": "UserResquest.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\User\\Contracts\\UserResquest.cs",
               "RelativeDocumentMoniker": "Services\\Core\\User\\Contracts\\UserResquest.cs",
@@ -1145,7 +1385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 8,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "Controllers\\WeatherForecastController.cs",
@@ -1156,7 +1396,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 25,
               "Title": "ResourceImportRequest.cs",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\api\\Services\\Core\\Resource\\Contracts\\ResourceImportRequest.cs",
               "RelativeDocumentMoniker": "Services\\Core\\Resource\\Contracts\\ResourceImportRequest.cs",
@@ -1165,10 +1405,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-07T02:37:43.252Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             }
           ]
         }

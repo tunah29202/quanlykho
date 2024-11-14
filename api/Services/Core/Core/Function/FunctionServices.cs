@@ -31,16 +31,13 @@ namespace Services.Core.Services
         public async Task<FunctionResponse> GetById(Guid id)
         {
             var Function = await functionRepository
-                         .GetByIdAsync(id);
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             var data = _mapper.Map<FunctionResponse>(Function);
             return data;
         }
-        public async Task<FunctionResponse> GetInfoLoginById(Guid id)
-        {
-            var data = await GetById(id);
-            return data;
-        }
-
         public async Task<int> Create(FunctionRequest request)
         {
             var Function = _mapper.Map<Function>(request);
@@ -52,8 +49,11 @@ namespace Services.Core.Services
         public async Task<int> Update(Guid id, FunctionRequest request)
         {
             var Function = await _unitOfWork
-                        .GetRepository<Function>()
-                        .GetByIdAsync(id);
+                                    .GetRepository<Function>()
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             if(Function == null)
             {
                 return -1;
@@ -66,7 +66,11 @@ namespace Services.Core.Services
 
         public async Task<int> Delete(Guid id)
         {
-            var Function = await functionRepository.GetByIdAsync(id);
+            var Function = await functionRepository           
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             if(Function == null)
             {
                 return -1;

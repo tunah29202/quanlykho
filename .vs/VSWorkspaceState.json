@@ -1,9 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\front_end",
-    "\\front_end\\src"
+    "\\api",
+    "\\api\\Controllers",
+    "\\api\\Controllers\\Common",
+    "\\api\\Controllers\\Core",
+    "\\api\\Controllers\\Core\\App",
+    "\\api\\Controllers\\Core\\App\\PaymentMethod",
+    "\\front_end"
   ],
-  "SelectedNode": "\\front_end\\vite.config.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -42,13 +42,11 @@ namespace Services.Core.Services
         public async Task<IngredientResponse> GetById(Guid id)
         {
             var Ingredient = await ingredientRepository
-                         .GetByIdAsync(id);
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             var data = _mapper.Map<IngredientResponse>(Ingredient);
-            return data;
-        }
-        public async Task<IngredientResponse> GetInfoLoginById(Guid id)
-        {
-            var data = await GetById(id);
             return data;
         }
 
@@ -63,8 +61,11 @@ namespace Services.Core.Services
         public async Task<int> Update(Guid id, IngredientRequest request)
         {
             var Ingredient = await _unitOfWork
-                        .GetRepository<Ingredient>()
-                        .GetByIdAsync(id);
+                                        .GetRepository<Ingredient>()
+                                        .GetQuery()
+                                        .ExcludeSoftDeleted()
+                                        .FilterById(id)
+                                        .FirstOrDefaultAsync();
             if(Ingredient == null)
             {
                 return -1;
@@ -77,7 +78,11 @@ namespace Services.Core.Services
 
         public async Task<int> Delete(Guid id)
         {
-            var Ingredient = await ingredientRepository.GetByIdAsync(id);
+            var Ingredient = await ingredientRepository
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             if(Ingredient == null)
             {
                 return -1;

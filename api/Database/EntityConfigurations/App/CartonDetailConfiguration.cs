@@ -1,6 +1,6 @@
+using Database.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Database.Entities;
 
 namespace Database.EntityConfigurations
 {
@@ -11,7 +11,6 @@ namespace Database.EntityConfigurations
             builder.ToTable("a_carton_detail", "public");
 
             builder.Property(t => t.carton_id).IsRequired();
-            builder.Property(t => t.package_id).IsRequired();
             builder.Property(t => t.quantity).IsRequired();
             builder.Property(t => t.unit).IsRequired().HasMaxLength(20);
 
@@ -23,10 +22,10 @@ namespace Database.EntityConfigurations
             .OnDelete(DeleteBehavior.Restrict);
 
             builder
-            .HasOne(x => x.package)
+            .HasOne(x => x.product)
             .WithMany(y => y.carton_details)
             .HasPrincipalKey(w => w.id)
-            .HasForeignKey(z => z.package_id)
+            .HasForeignKey(z => z.product_id)
             .OnDelete(DeleteBehavior.Restrict);
         }
     }

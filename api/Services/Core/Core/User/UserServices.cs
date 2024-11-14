@@ -1,18 +1,18 @@
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using Services.Core.Contracts;
-using Services.Common.Repository;
-using Services.Core.Interfaces;
-using Database.Entities;
 using Common;
+using Database.Entities;
 using Helpers.Auth;
+using Microsoft.EntityFrameworkCore;
+using Services.Common.Repository;
+using Services.Core.Contracts;
+using Services.Core.Interfaces;
 namespace Services.Core.Services
 {
     public class UserServices : BaseServices, IUserServices
     {
         private readonly IRepository<User> userRepository;
-        public UserServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper) 
-        { 
+        public UserServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper)
+        {
             userRepository = _unitOfWork.GetRepository<User>();
         }
 
@@ -31,7 +31,10 @@ namespace Services.Core.Services
         public async Task<UserResponse> GetById(Guid id)
         {
             var user = await userRepository
-                         .GetByIdAsync(id);
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .FilterById(id)
+                                .FirstOrDefaultAsync();
             var data = _mapper.Map<UserResponse>(user);
             return data;
         }
@@ -54,9 +57,12 @@ namespace Services.Core.Services
         public async Task<int> Update(Guid id, UserRequest request)
         {
             var user = await _unitOfWork
-                        .GetRepository<User>()
-                        .GetByIdAsync(id);
-            if(user == null)
+                                .GetRepository<User>()
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .FilterById(id)
+                                .FirstOrDefaultAsync();
+            if (user == null)
             {
                 return -1;
             }
@@ -68,8 +74,12 @@ namespace Services.Core.Services
 
         public async Task<int> Delete(Guid id)
         {
-            var user = await userRepository.GetByIdAsync(id);
-            if(user == null)
+            var user = await userRepository
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .FilterById(id)
+                                .FirstOrDefaultAsync();
+            if (user == null)
             {
                 return -1;
             }

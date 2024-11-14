@@ -46,11 +46,6 @@ namespace Services.Core.Services
             var data = _mapper.Map<PaymentMethodResponse>(PaymentMethod);
             return data;
         }
-        public async Task<PaymentMethodResponse> GetInfoLoginById(Guid id)
-        {
-            var data = await GetById(id);
-            return data;
-        }
 
         public async Task<int> Create(PaymentMethodRequest request)
         {

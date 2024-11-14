@@ -1,4 +1,3 @@
-using System;
 using Database.Common;
 using System.Text.Json.Serialization;
 
@@ -14,7 +13,6 @@ namespace Database.Entities
 
         public string? tel { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Package>? packages { get; set; }
         public virtual ICollection<Carton>? cartons { get; set; }
         public Customer()
         {

@@ -46,12 +46,6 @@ namespace Services.Core.Services
             var data = _mapper.Map<BankAccountResponse>(BankAccount);
             return data;
         }
-        public async Task<BankAccountResponse> GetInfoLoginById(Guid id)
-        {
-            var data = await GetById(id);
-            return data;
-        }
-
         public async Task<int> Create(BankAccountRequest request)
         {
             var BankAccount = _mapper.Map<BankAccount>(request);

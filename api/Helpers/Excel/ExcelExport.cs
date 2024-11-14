@@ -423,18 +423,83 @@ namespace Helpers.Excel
         }
         private static Stylesheet DefaultStylesheetData()
         {
-            return new Stylesheet(
-                new Fonts(
-                    new Font(new FontSize() { Val = 11 }, new FontName() { Val = "Meiryo UI" }),
-                    new Font(new Bold(), new FontSize() { Val = 11 }, new FontName() { Val = "Meiryo UI" })),
-                new Fills(
-                    new Fill(new PatternFill() { PatternType = PatternValues.None }),
-                    new Fill(new PatternFill(new ForegroundColor() { Rgb = "E8E8E8" }) { PatternType = PatternValues.Solid })),
-                new Borders(new Border(new LeftBorder(), new RightBorder(), new TopBorder(), new BottomBorder())),
-                new CellFormats(
-                    new CellFormat() { FontId = 0, FillId = 0, BorderId = 0 },
-                    new CellFormat() { FontId = 1, FillId = 1, BorderId = 0, ApplyFont = true })
+            Stylesheet ss = new Stylesheet();
+
+            //var fontFamily = "Arial";
+            var fontFamily = "Arial";
+            Fonts fts = new Fonts(
+                // Cell normal
+                new Font(
+                    new FontSize() { Val = 11 },
+                    new Color() { Rgb = new HexBinaryValue() { Value = "000000" } },
+                    new FontName() { Val = fontFamily }),
+                // Table header
+                new Font(
+                    new Bold(),
+                    new FontSize() { Val = 11 },
+                    new Color() { Rgb = new HexBinaryValue() { Value = "000000" } },
+                    new FontName() { Val = fontFamily }),
+                // Page header
+                new Font(
+                    new Bold(),
+                    new FontSize() { Val = 14 },
+                    new Color() { Rgb = new HexBinaryValue() { Value = "000000" } },
+                    new FontName() { Val = fontFamily })
             );
+            ss.Append(fts);
+
+            Fills fills = new Fills(
+                new Fill(new PatternFill() { PatternType = PatternValues.Solid, BackgroundColor = new BackgroundColor() { } }), // Don't remove, it excel default
+                new Fill(new PatternFill() { PatternType = PatternValues.Solid, BackgroundColor = new BackgroundColor() { } }), // Don't remove, it excel default 
+                new Fill(new PatternFill(new ForegroundColor() { Rgb = new HexBinaryValue() { Value = "E8E8E8" } }) { PatternType = PatternValues.Solid }) // start from FillId = 2
+            );
+            ss.Append(fills);
+
+            Borders borders = new Borders(
+                new Border(new LeftBorder(), new RightBorder(), new TopBorder(), new BottomBorder(), new DiagonalBorder()),
+                new Border(
+                    new LeftBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                    new RightBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                    new TopBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                    new BottomBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                    new DiagonalBorder()),
+                new Border(
+                    new LeftBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                    new RightBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                    new TopBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                    new BottomBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                    new DiagonalBorder())
+            );
+
+            ss.Append(borders);
+            CellFormats csfs = new CellFormats(
+                new CellFormat(new Alignment() { WrapText = false }) { FontId = 0, FillId = 0, BorderId = 1 },
+                new CellFormat(new Alignment() { WrapText = false, Horizontal = HorizontalAlignmentValues.Center }) { FontId = 1, FillId = 2, BorderId = 1, Alignment = GenerateAlignment(HorizontalAlignmentValues.Center), ApplyFont = true, ApplyFill = true, ApplyBorder = true, ApplyAlignment = true },
+                new CellFormat(new Alignment() { WrapText = false }) { FontId = 0, FillId = 0, BorderId = 2, ApplyFont = true, ApplyBorder = true }, // table text cell
+                new CellFormat(new Alignment() { WrapText = false }) { FontId = 0, FillId = 0, BorderId = 2, NumberFormatId = 37, ApplyNumberFormat = true, ApplyFont = true, ApplyBorder = true }, // table number cell
+                new CellFormat(new Alignment() { WrapText = false }) { FontId = 0, FillId = 0, BorderId = 2, NumberFormatId = 14, ApplyNumberFormat = true, ApplyFont = true, ApplyFill = true, ApplyBorder = true }, // table date cell
+                new CellFormat(new Alignment() { WrapText = false }) { FontId = 0, FillId = 0, BorderId = 2, NumberFormatId = 0, ApplyNumberFormat = true, ApplyFont = true, ApplyFill = true, ApplyBorder = true }, // table date cell
+                new CellFormat(new Alignment() { WrapText = false, Horizontal = HorizontalAlignmentValues.Center }) { FontId = 2, FillId = 0, BorderId = 0, Alignment = GenerateAlignment(HorizontalAlignmentValues.Center), ApplyFont = true, ApplyBorder = true, ApplyAlignment = true }, // template title
+                new CellFormat(new Alignment() { WrapText = false, Horizontal = HorizontalAlignmentValues.Center }) { FontId = 0, FillId = 0, BorderId = 0, Alignment = GenerateAlignment(HorizontalAlignmentValues.Center), ApplyFont = true, ApplyBorder = true, ApplyAlignment = true }, // template title not bold
+                new CellFormat(new Alignment() { WrapText = true, Horizontal = HorizontalAlignmentValues.Left }) { FontId = 0, FillId = 0, BorderId = 2, Alignment = GenerateAlignment(HorizontalAlignmentValues.Left, true), ApplyFont = true, ApplyBorder = true, ApplyAlignment = true }, // template title Alignment Right
+                new CellFormat(new Alignment() { WrapText = false, Horizontal = HorizontalAlignmentValues.Right }) { FontId = 0, FillId = 0, BorderId = 0, Alignment = GenerateAlignment(HorizontalAlignmentValues.Right), ApplyFont = true, ApplyBorder = true, ApplyAlignment = true }, // template title Alignment Right
+                new CellFormat(new Alignment() { WrapText = false, Horizontal = HorizontalAlignmentValues.Center, Vertical = VerticalAlignmentValues.Center }) { FontId = 0, FillId = 0, BorderId = 2, Alignment = GenerateAlignment(HorizontalAlignmentValues.Center), ApplyFont = true, ApplyBorder = true, ApplyAlignment = true }, // Border Alignment center
+                new CellFormat(new Alignment() { WrapText = false, Horizontal = HorizontalAlignmentValues.Left }) { FontId = 2, FillId = 0, BorderId = 0, Alignment = GenerateAlignment(HorizontalAlignmentValues.Left), ApplyFont = true, ApplyBorder = true, ApplyAlignment = true } // template title
+            );
+
+            ss.Append(csfs);
+
+            return ss;
+        }
+
+        private static Alignment GenerateAlignment(HorizontalAlignmentValues values, bool wrapText = false)
+        {
+            return new Alignment()
+            {
+                Horizontal = values,
+                Vertical = VerticalAlignmentValues.Center,
+                WrapText = wrapText
+            };
         }
 
         private static string GetCellReference(int columnIndex, int rowIndex)

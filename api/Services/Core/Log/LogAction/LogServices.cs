@@ -1,17 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using AutoMapper;
-using Services.Core.Contracts;
+﻿using AutoMapper;
+using Common;
+using Database.Entities;
+using Services.Common.Enums;
 using Services.Common.Repository;
 using Services.Core.Interfaces;
-using Database.Entities;
-using Common;
-using Helpers.Auth;
-using System.Threading.Tasks;
-using Services.Common.Enums;
-using System.Collections.Generic;
-using System.Reflection;
-using System;
-using System.Linq;
 namespace Services.Core.Services
 {
     public class LogServices : BaseServices, ILogServices
@@ -65,7 +57,7 @@ namespace Services.Core.Services
                     await trans.CommitAsync();
                     return;
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     trans.Rollback();
                     throw;

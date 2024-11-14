@@ -1,3 +1,4 @@
+using Database.Entities;
 using FluentValidation;
 namespace Services.Core.Contracts
 {
@@ -13,6 +14,7 @@ namespace Services.Core.Contracts
         public double total_amount { get; set; }
         public Guid? customer_id { get; set; }
         public Guid warehouse_id { get; set; }
+        public List<CartonDetailRequest> carton_details { get; set; }
     }
     public class CartonRequestValidator : AbstractValidator<CartonRequest>
     {

@@ -31,13 +31,11 @@ namespace Services.Core.Services
         public async Task<RoleResponse> GetById(Guid id)
         {
             var Role = await roleRepository
-                         .GetByIdAsync(id);
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .FilterById(id)
+                                .FirstOrDefaultAsync();
             var data = _mapper.Map<RoleResponse>(Role);
-            return data;
-        }
-        public async Task<RoleResponse> GetInfoLoginById(Guid id)
-        {
-            var data = await GetById(id);
             return data;
         }
 
@@ -52,8 +50,11 @@ namespace Services.Core.Services
         public async Task<int> Update(Guid id, RoleRequest request)
         {
             var Role = await _unitOfWork
-                        .GetRepository<Role>()
-                        .GetByIdAsync(id);
+                                .GetRepository<Role>()
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .FilterById(id)
+                                .FirstOrDefaultAsync();
             if(Role == null)
             {
                 return -1;
@@ -66,7 +67,11 @@ namespace Services.Core.Services
 
         public async Task<int> Delete(Guid id)
         {
-            var Role = await roleRepository.GetByIdAsync(id);
+            var Role = await roleRepository
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .FilterById(id)
+                                .FirstOrDefaultAsync();
             if(Role == null)
             {
                 return -1;

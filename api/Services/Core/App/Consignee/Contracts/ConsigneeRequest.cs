@@ -24,7 +24,7 @@ namespace Services.Core.Contracts
             RuleFor(_ => _.tax).NotNull().NotEmpty().MaximumLength(15);
             RuleFor(_ => _.email).MaximumLength(250);
             RuleFor(_ => _.tel).NotNull().NotEmpty().MaximumLength(15);
-            RuleFor(_ => _.fax).MaximumLength(15); 
+            RuleFor(_ => _.fax).MaximumLength(15);
         }
     }
 }

@@ -25,7 +25,6 @@ namespace Services.Core
                 services.AddScoped<ICustomerServices, CustomerServices>();
                 services.AddScoped<IIngredientServices, IngredientServices>();
                 services.AddScoped<IInvoiceServices, InvoiceServices>();
-                services.AddScoped<IPackageServices, PackageServices>();
                 services.AddScoped<IProductServices, ProductServices>();
                 services.AddScoped<IShipperServices, ShipperServices>();
                 services.AddScoped<IWarehouseServices, WarehouseServices>();

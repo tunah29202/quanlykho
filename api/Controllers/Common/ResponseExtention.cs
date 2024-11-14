@@ -1,5 +1,4 @@
 using Common;
-using Helpers;
 
 namespace Controllers.Common
 {
@@ -7,7 +6,7 @@ namespace Controllers.Common
     {
         public static BaseResponse<T> ToResponse<T>(this T data, CancellationToken cancellationToken = default(CancellationToken)) where T : class
         {
-            if(data != null)
+            if (data != null)
             {
                 return new BaseResponse<T>(data, ResponseCode.Success, "Success");
             }

@@ -1,16 +1,12 @@
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using Services.Core.Contracts;
-using Services.Common.Repository;
-using Services.Core.Interfaces;
-using Database.Entities;
 using Common;
-using Helpers.Auth;
-using Helpers;
-using Helpers.Cache;
-using Helpers.Excel;
-using System.ComponentModel.DataAnnotations;
+using Database.Entities;
 using FluentValidation;
+using Helpers.Excel;
+using Microsoft.EntityFrameworkCore;
+using Services.Common.Repository;
+using Services.Core.Contracts;
+using Services.Core.Interfaces;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace Services.Core.Services
@@ -20,8 +16,8 @@ namespace Services.Core.Services
         private readonly IRepository<Resource> resourceRepository;
         private readonly IWebHostEnvironment _env;
         private readonly string _imageStoragePath = "Images";
-        public ResourceServices(IUnitOfWork _unitOfWork, IMapper _mapper, IWebHostEnvironment env) : base(_unitOfWork, _mapper) 
-        { 
+        public ResourceServices(IUnitOfWork _unitOfWork, IMapper _mapper, IWebHostEnvironment env) : base(_unitOfWork, _mapper)
+        {
             resourceRepository = _unitOfWork.GetRepository<Resource>();
             _env = env;
         }
@@ -54,7 +50,10 @@ namespace Services.Core.Services
         public async Task<ResourceResponse> GetById(Guid id)
         {
             var resource = await resourceRepository
-                         .GetByIdAsync(id);
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             var data = _mapper.Map<ResourceResponse>(resource);
             return data;
         }
@@ -70,12 +69,12 @@ namespace Services.Core.Services
             (List<ResourceRequest> lstResource, List<string> messages) = await ExcelImport.getDataFromExcel<ResourceRequest>(request.file, totalCol, directory);
             Dictionary<int, List<string>> lstErrors = new Dictionary<int, List<string>>();
             ResourceRequestValidator validator = new ResourceRequestValidator();
-            for(int i = 0; i < lstResource.Count; i++)
+            for (int i = 0; i < lstResource.Count; i++)
             {
                 ValidationResult results = validator.Validate(lstResource[i]);
                 if (!results.IsValid)
                 {
-                    foreach(var error in results.Errors)
+                    foreach (var error in results.Errors)
                     {
                         ExcelImport.addError(lstErrors, i, error.ErrorMessage);
                     }
@@ -85,14 +84,14 @@ namespace Services.Core.Services
             {
                 return (new BaseResponse(ResponseCode.Invalid, "Duplicate Errors"), null);
             }
-            if(lstErrors.Count > 0)
+            if (lstErrors.Count > 0)
             {
-                var result = await ExcelImport.getFileError(request.file, lstErrors, ExcelImport.ColumnIndexToLetter(totalCol+1));
+                var result = await ExcelImport.getFileError(request.file, lstErrors, ExcelImport.ColumnIndexToLetter(totalCol + 1));
                 if (result.Item1 != null)
                     return (result.Item1, null);
-                return(null, result.Item2);
+                return (null, result.Item2);
             }
-            foreach(var item in lstResource)
+            foreach (var item in lstResource)
             {
                 await CreateNewResource(item);
             };
@@ -118,9 +117,12 @@ namespace Services.Core.Services
         public async Task<int> Update(Guid id, ResourceRequest request)
         {
             var resource = await _unitOfWork
-                        .GetRepository<Resource>()
-                        .GetByIdAsync(id);
-            if(resource == null)
+                                    .GetRepository<Resource>()
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
+            if (resource == null)
             {
                 return -1;
             }
@@ -132,8 +134,12 @@ namespace Services.Core.Services
 
         public async Task<int> Delete(Guid id)
         {
-            var resource = await resourceRepository.GetByIdAsync(id);
-            if(resource == null)
+            var resource = await resourceRepository
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
+            if (resource == null)
             {
                 return -1;
             }

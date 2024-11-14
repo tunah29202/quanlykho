@@ -1,25 +1,24 @@
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using Services.Core.Contracts;
-using Services.Common.Repository;
-using Services.Core.Interfaces;
-using Database.Entities;
 using Common;
-using Helpers.Auth;
+using Database.Entities;
+using Microsoft.EntityFrameworkCore;
+using Services.Common.Repository;
+using Services.Core.Contracts;
+using Services.Core.Interfaces;
 namespace Services.Core.Services
 {
     public class CustomerServices : BaseServices, ICustomerServices
     {
         private readonly IRepository<Customer> customerRepository;
-        public CustomerServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper) 
-        { 
+        public CustomerServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper)
+        {
             customerRepository = _unitOfWork.GetRepository<Customer>();
         }
 
         public async Task<PagedList<CustomerResponse>> GetAll(PagedRequest request)
         {
             PagedList<Customer> Customers;
-            if(request.get_all)
+            if (request.get_all)
             {
                 Customers = customerRepository
                             .GetQuery()
@@ -42,13 +41,11 @@ namespace Services.Core.Services
         public async Task<CustomerResponse> GetById(Guid id)
         {
             var Customer = await customerRepository
-                         .GetByIdAsync(id);
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
             var data = _mapper.Map<CustomerResponse>(Customer);
-            return data;
-        }
-        public async Task<CustomerResponse> GetInfoLoginById(Guid id)
-        {
-            var data = await GetById(id);
             return data;
         }
 
@@ -63,9 +60,12 @@ namespace Services.Core.Services
         public async Task<int> Update(Guid id, CustomerRequest request)
         {
             var Customer = await _unitOfWork
-                        .GetRepository<Customer>()
-                        .GetByIdAsync(id);
-            if(Customer == null)
+                                    .GetRepository<Customer>()
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
+            if (Customer == null)
             {
                 return -1;
             }
@@ -77,8 +77,12 @@ namespace Services.Core.Services
 
         public async Task<int> Delete(Guid id)
         {
-            var Customer = await customerRepository.GetByIdAsync(id);
-            if(Customer == null)
+            var Customer = await customerRepository
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
+            if (Customer == null)
             {
                 return -1;
             }

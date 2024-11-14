@@ -6,7 +6,6 @@ namespace Services.Core.Interfaces
     {
         Task<PagedList<FunctionResponse>> GetAll(PagedRequest request);
         Task<FunctionResponse> GetById(Guid id);
-        Task<FunctionResponse> GetInfoLoginById(Guid id);
         Task<int> Create(FunctionRequest request);
         Task<int> Update(Guid id, FunctionRequest request);
         Task<int> Delete(Guid id);

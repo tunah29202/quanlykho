@@ -32,12 +32,12 @@ using System.Reflection;
                                 bool add = true;
                                 if (previousRow != null)
                                 {
-                                    /*
+                                    
                                     if (AreRowsEqual(row, previousRow, doc, totalCol, out isRowEmpty))
                                     {
                                         messages.Add("Duplicate rows at index: " + row.RowIndex.Value + "and" + previousRow.RowIndex.Value);
                                         add = false;
-                                    } */
+                                    } 
                                 }
                                 if (isRowEmpty)
                                 {
@@ -153,12 +153,12 @@ using System.Reflection;
                 }
             }
             public static (int,string) CheckValueRow(SpreadsheetDocument doc, Row row, int cellIndex, int rowIndex)
-        {
-            string val = getCellValue(doc, (Cell)row.ElementAt(cellIndex));
-            if (val != null && val.Length > 0)
-                return (rowIndex, val);
-            return (0,"");
-        }
+            {
+                string val = getCellValue(doc, (Cell)row.ElementAt(cellIndex));
+                if (val != null && val.Length > 0)
+                    return (rowIndex, val);
+                return (0,"");
+            }
 
             public static void ApplyStyle(this Cell cell, WorkbookStylesPart stylePart, bool isBold, bool noFill, bool isCenter = false, bool isWraptext = false, BorderStyleValues? borderStyle = null, string fontColor = "ff0000", string fillColor = "E8E8E8")
             {

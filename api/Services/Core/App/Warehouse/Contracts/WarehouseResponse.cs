@@ -1,4 +1,3 @@
-using Database.Entities;
 namespace Services.Core.Contracts
 {
     public class WarehouseResponse

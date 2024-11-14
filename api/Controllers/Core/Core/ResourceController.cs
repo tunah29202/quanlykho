@@ -1,12 +1,8 @@
-using Microsoft.AspNetCore.Authorization;
+using Common;
+using Controllers.Common;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Services.Core.Contracts;
 using Services.Core.Interfaces;
-using Helpers;
-using Common;
-using Helpers.Cache;
-using Controllers.Common;
 namespace Controllers.Core
 {
     [Route("api/resource")]
@@ -72,7 +68,7 @@ namespace Controllers.Core
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.E_UPDATE) });
             }
         }
-        
+
         [HttpDelete]
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
@@ -92,7 +88,7 @@ namespace Controllers.Core
         [Route("import-resource")]
         public async Task<IActionResult> ImportExcel([FromForm] ResourceImportRequest request)
         {
-            if(request.file == null || request.file.Length == 0)
+            if (request.file == null || request.file.Length == 0)
             {
                 return BadRequest(new { code = ResponseCode.Invalid, message = "File Not Null!" });
             }
@@ -100,7 +96,7 @@ namespace Controllers.Core
             if (result.Item2 != null)
             {
                 var fileError = $"insert_products_error_{DateTime.UtcNow.ToString()}.xlsx";
-                return File(result.Item2.ToArray(), "application/octetstream", fileError);   
+                return File(result.Item2.ToArray(), "application/octetstream", fileError);
             }
             return Ok(result.Item1);
         }

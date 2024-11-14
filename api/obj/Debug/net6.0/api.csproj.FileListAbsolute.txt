@@ -89,3 +89,4 @@ C:\Users\BXT\Desktop\quanlykho\api\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
 C:\Users\BXT\Desktop\quanlykho\api\bin\Debug\net6.0\System.IO.Packaging.dll
 C:\Users\BXT\Desktop\quanlykho\api\bin\Debug\net6.0\SixLabors.ImageSharp.dll
 C:\Users\BXT\Desktop\quanlykho\api\bin\Debug\net6.0\RestSharp.dll
+C:\Users\BXT\Desktop\quanlykho\api\obj\Debug\net6.0\api.sourcelink.json

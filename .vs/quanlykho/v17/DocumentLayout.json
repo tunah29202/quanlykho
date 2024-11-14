@@ -270,7 +270,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -323,30 +323,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.vue",
-              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\App.vue",
-              "RelativeDocumentMoniker": "front_end\\src\\App.vue",
-              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\App.vue",
-              "RelativeToolTip": "front_end\\src\\App.vue",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-09-26T04:24:03.554Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HelloWorld.vue",
-              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\components\\HelloWorld.vue",
-              "RelativeDocumentMoniker": "front_end\\src\\components\\HelloWorld.vue",
-              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\components\\HelloWorld.vue",
-              "RelativeToolTip": "front_end\\src\\components\\HelloWorld.vue",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-09-26T04:15:28.854Z"
             },
             {
               "$type": "Document",
@@ -466,6 +442,34 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-09-26T03:22:18.714Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HelloWorld.vue",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\components\\HelloWorld.vue",
+              "RelativeDocumentMoniker": "front_end\\src\\components\\HelloWorld.vue",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\components\\HelloWorld.vue",
+              "RelativeToolTip": "front_end\\src\\components\\HelloWorld.vue",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-26T04:15:28.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.vue",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\App.vue",
+              "RelativeDocumentMoniker": "front_end\\src\\App.vue",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\App.vue",
+              "RelativeToolTip": "front_end\\src\\App.vue",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-26T04:24:03.554Z"
             },
             {
               "$type": "Document",

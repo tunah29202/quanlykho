@@ -20,7 +20,6 @@ namespace Services.Core.Contracts
             RuleFor(x=>x.full_name).NotNull().NotEmpty().MaximumLength(250);
             RuleFor(x=>x.gender).NotNull().NotEmpty();
             RuleFor(x=>x.email).NotNull().NotEmpty().MaximumLength(200);
-            RuleFor(x=>x.email).NotNull().NotEmpty().MaximumLength(20);
         }
     }
 }

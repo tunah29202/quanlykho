@@ -9,7 +9,7 @@ namespace Services.Core.Contracts
         {
             public ResourceImportRequestValidator()
             {
-                RuleFor ( x=>x.file).NotNull().NotEmpty();
+                RuleFor(x => x.file).NotNull().NotEmpty();
             }
         }
     }

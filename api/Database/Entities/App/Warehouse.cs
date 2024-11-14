@@ -18,8 +18,6 @@ namespace Database.Entities
         [JsonIgnore]
         public virtual ICollection<Product>? products { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Package>? packages { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Carton>? cartons { get; set; }
         [JsonIgnore]
         public virtual ICollection<Invoice>? invoices { get; set; }

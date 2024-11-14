@@ -1,6 +1,6 @@
+using Database.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Database.Entities;
 
 namespace Database.EntityConfigurations
 {
@@ -62,7 +62,7 @@ namespace Database.EntityConfigurations
             .WithMany(y => y.invoices)
             .HasPrincipalKey(w => w.id)
             .HasForeignKey(z => z.bank_account_id)
-            .OnDelete(DeleteBehavior.Restrict); 
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

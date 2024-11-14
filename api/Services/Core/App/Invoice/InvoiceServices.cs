@@ -1,25 +1,24 @@
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using Services.Core.Contracts;
-using Services.Common.Repository;
-using Services.Core.Interfaces;
-using Database.Entities;
 using Common;
-using Helpers.Auth;
+using Database.Entities;
+using Microsoft.EntityFrameworkCore;
+using Services.Common.Repository;
+using Services.Core.Contracts;
+using Services.Core.Interfaces;
 namespace Services.Core.Services
 {
     public class InvoiceServices : BaseServices, IInvoiceServices
     {
         private readonly IRepository<Invoice> invoiceRepository;
-        public InvoiceServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper) 
-        { 
+        public InvoiceServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper)
+        {
             invoiceRepository = _unitOfWork.GetRepository<Invoice>();
         }
 
         public async Task<PagedList<InvoiceResponse>> GetAll(PagedRequest request)
         {
             PagedList<Invoice> Invoices;
-            if(request.get_all)
+            if (request.get_all)
             {
                 Invoices = invoiceRepository
                             .GetQuery()
@@ -42,20 +41,30 @@ namespace Services.Core.Services
         public async Task<InvoiceResponse> GetById(Guid id)
         {
             var Invoice = await invoiceRepository
-                         .GetByIdAsync(id);
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .Include(x => x.carton_details)
+                                    .FirstOrDefaultAsync();
             var data = _mapper.Map<InvoiceResponse>(Invoice);
-            return data;
-        }
-        public async Task<InvoiceResponse> GetInfoLoginById(Guid id)
-        {
-            var data = await GetById(id);
             return data;
         }
 
         public async Task<int> Create(InvoiceRequest request)
         {
-            var Invoice = _mapper.Map<Invoice>(request);
-            await invoiceRepository.AddAsync(Invoice);
+            var checkInvoice = await invoiceRepository.GetQuery()
+                                        .FirstOrDefaultAsync(i => i.carton_id == request.carton_id);
+            if (checkInvoice != null)
+            {
+                _mapper.Map(request, checkInvoice);
+                checkInvoice.del_flg = false;
+                await invoiceRepository.UpdateAsync(checkInvoice);
+            }
+            else
+            {
+                var Invoice = _mapper.Map<Invoice>(request);
+                await invoiceRepository.AddAsync(Invoice);
+            }
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
         }
@@ -63,9 +72,12 @@ namespace Services.Core.Services
         public async Task<int> Update(Guid id, InvoiceRequest request)
         {
             var Invoice = await _unitOfWork
-                        .GetRepository<Invoice>()
-                        .GetByIdAsync(id);
-            if(Invoice == null)
+                                    .GetRepository<Invoice>()
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
+            if (Invoice == null)
             {
                 return -1;
             }
@@ -77,8 +89,12 @@ namespace Services.Core.Services
 
         public async Task<int> Delete(Guid id)
         {
-            var Invoice = await invoiceRepository.GetByIdAsync(id);
-            if(Invoice == null)
+            var Invoice = await invoiceRepository
+                                    .GetQuery()
+                                    .ExcludeSoftDeleted()
+                                    .FilterById(id)
+                                    .FirstOrDefaultAsync();
+            if (Invoice == null)
             {
                 return -1;
             }
