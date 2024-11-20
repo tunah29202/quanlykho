@@ -39,6 +39,17 @@ namespace Controllers.Core
                 return BadRequest(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
             }
         }
+        [HttpGet]
+        [Route("export-invoice")]
+        public async Task<IActionResult> ExportInvoiceById(Guid id)
+        {
+            var fileName = $"Invoice_{DateTimeExtention.ToDateTimeStampString(DateTime.Now)}.xlsx";
+            var data = await invoiceServices.ExportInvoiceById(id);
+            if (data != null)
+                return File(data.ToArray(), "application/octetstream", fileName);
+            else
+                return BadRequest(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, Screen.Invoice, MessageKey.TEMPLATE_NOT_FOUND) });
+        }
 
         [HttpPost]
         [Route("create")]

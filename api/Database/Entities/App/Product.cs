@@ -32,7 +32,8 @@ namespace Database.Entities
         public string? status { get; set; }
         public int quantity { get; set; }
         [JsonIgnore]
-        public virtual ICollection<CartonDetail> carton_details { get; set; }
+        public virtual ICollection<CartonDetail>? carton_details { get; set; }
+        public virtual ICollection<OrderDetail>? order_details { get; set; }
 
         public Product()
         {

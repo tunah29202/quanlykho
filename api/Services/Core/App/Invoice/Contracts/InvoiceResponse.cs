@@ -16,10 +16,9 @@ namespace Services.Core.Contracts
         public Guid shipper_id { get; set; }
 
         public Shipper shipper { get; set; }
+        public Guid order_id { get; set; }
 
-        public Guid consignee_id { get; set; }
-
-        public Consignee consignee { get; set; }
+        public Order order { get; set; }
 
         public int status { get; set; }
 

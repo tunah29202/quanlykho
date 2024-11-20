@@ -5,23 +5,23 @@ using Services.Core.Contracts;
 using Services.Core.Interfaces;
 namespace Controllers.Core
 {
-    [Route("api/consignee")]
+    [Route("api/Order")]
     [ApiAuthorize]
     [ApiController]
-    public class ConsigneeController : ControllerBase
+    public class OrderController : ControllerBase
     {
-        private IConsigneeServices consigneeServices { get; set; }
+        private IOrderServices orderServices { get; set; }
         private readonly ILocalizeServices ls;
-        public ConsigneeController(IConsigneeServices _consigneeServices, ILocalizeServices _ls) : base()
+        public OrderController(IOrderServices _orderServices, ILocalizeServices _ls) : base()
         {
-            consigneeServices = _consigneeServices;
+            orderServices = _orderServices;
             ls = _ls;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PagedRequest request)
         {
-            var data = await consigneeServices.GetAll(request);
+            var data = await orderServices.GetAll(request);
             return Ok(data);
         }
 
@@ -29,7 +29,7 @@ namespace Controllers.Core
         [Route("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var data = await consigneeServices.GetById(id);
+            var data = await orderServices.GetById(id);
             if (data != null)
             {
                 return Ok(data.ToResponse());
@@ -42,9 +42,9 @@ namespace Controllers.Core
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> Create([FromBody] ConsigneeRequest request)
+        public async Task<IActionResult> Create([FromBody] OrderRequest request)
         {
-            int count = await consigneeServices.Create(request);
+            int count = await orderServices.Create(request);
             if (count >= 1)
             {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_CREATE) });
@@ -57,9 +57,9 @@ namespace Controllers.Core
 
         [HttpPut]
         [Route("update/{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] ConsigneeRequest request)
+        public async Task<IActionResult> Update(Guid id, [FromBody] OrderRequest request)
         {
-            int count = await consigneeServices.Update(id, request);
+            int count = await orderServices.Update(id, request);
             if (count >= 1)
             {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_UPDATE) });
@@ -74,7 +74,7 @@ namespace Controllers.Core
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            int count = await consigneeServices.Delete(id);
+            int count = await orderServices.Delete(id);
             if (count >= 1)
             {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_DELETE) });

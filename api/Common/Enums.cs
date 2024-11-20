@@ -12,11 +12,10 @@ namespace Common
         public static string LogAction = "LogAction";
         public static string User = "User";
         public static string Carton = "Carton";
-        public static string Consignee = "Consignee";
         public static string GroupProduct = "GroupProduct";
         public static string Ingredient = "Ingredient";
         public static string Invoice = "Invoice";
-        public static string Packing = "Packing";
+        public static string Order = "Order";
         public static string Product = "Product";
         public static string Shipper = "Shipper";
         public static string Warehouse = "Warehouse";
@@ -129,9 +128,10 @@ namespace Common
     {
         public const string FILE_NAME = "INVOICE_TEMPLATE.xlsx";
         public const string SHEET_INVOICE = "INVOICE";
-        public const string SHEET_PACKINGLIST = "PACKINGLIST";
-        public const string SHEET_INGREDIENT = "INGREDIENT";
-        public const int COLUMN_START_INDEX = 13;
+        public const string SHEET_CARTON = "CARTON";
+        public const int CARTON_COLUMN_START_INDEX = 3;
+        public const int PRODUCT_COLUMN_START_INDEX = 6;
+
     }
 
     public class PackingExcel

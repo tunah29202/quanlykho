@@ -1,22 +1,26 @@
-using Database.Common;
-using System.Text.Json.Serialization;
+    using Database.Common;
+    using System.Text.Json.Serialization;
 
-namespace Database.Entities
-{
-    public partial class Customer : BaseEntity
+    namespace Database.Entities
     {
-        public string code { get; set; }
-
-        public string name { get; set; }
-
-        public string? address { get; set; }
-
-        public string? tel { get; set; }
-        [JsonIgnore]
-        public virtual ICollection<Carton>? cartons { get; set; }
-        public Customer()
+        public partial class Customer : BaseEntity
         {
-            id = Guid.NewGuid();
+            public string code { get; set; }
+            public string name { get; set; }
+            public string company_name { get; set; }
+            public string company_type { get; set; }
+            public string? address { get; set; }
+            public string? tax { get; set; }
+            public string? tel { get; set; }
+            public string? email { get; set; }
+            [JsonIgnore]
+            public virtual ICollection<Carton>? cartons { get; set; }
+            [JsonIgnore]            
+            public virtual ICollection<Order>? Orders { get; set; }
+            
+            public Customer()
+            {
+                id = Guid.NewGuid();
+            }
         }
     }
-}

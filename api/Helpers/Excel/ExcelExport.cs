@@ -168,6 +168,7 @@ namespace Helpers.Excel
                 return newCell;
             }
         }
+        
         private static int InsertSharedStringItem(string? text, SharedStringTablePart shareStringPart)
         {
             // If the part does not contain a SharedStringTable, create one.
@@ -193,6 +194,142 @@ namespace Helpers.Excel
             shareStringPart.SharedStringTable.Save();
 
             return i;
+        }
+        public static Cell? GetCell(int rowidx, string columnName, SheetData sheetData)
+        {
+            if (rowidx < 0) return null;
+            var row = sheetData.Elements<Row>().Where(r => r.RowIndex == rowidx).FirstOrDefault();
+            if (row != null)
+            {
+                return row.Elements<Cell>().Where(c => string.Compare(c.CellReference.Value, columnName + rowidx, true) == 0).FirstOrDefault();
+            }
+            return null;
+        }
+
+        public static string ColumnIndexToLetter(int colIndex)
+        {
+            if (colIndex > 16384)
+            {
+                return string.Empty;
+            }
+            int div = colIndex;
+            string colLetter = String.Empty;
+            while (div > 0)
+            {
+                var mod = (div - 1) % 26;
+                colLetter = (char)(65 + mod) + colLetter;
+                div = (int)((div - mod) / 26);
+            }
+            return colLetter;
+        }
+
+        public static void WriteCellValue(int rowidx, 
+                                          int colidx, 
+                                          SheetData? sheetData, 
+                                          string? data,
+                                          string? formula = null,
+                                          bool isFormula = false,
+                                          bool keepIsString = false,
+                                          WorkbookPart? workbookPart = null)
+        {
+            if (sheetData == null)
+            {
+                return;
+            }
+
+            var colName = ColumnIndexToLetter(colidx);
+            var cell = GetCell(rowidx, colName, sheetData);
+            if (cell != null)
+            {
+
+                if (isFormula && formula != null)
+                {
+                    cell.CellFormula = new CellFormula(formula);
+                    return;
+                }
+
+                if (data == null)
+                {
+                    return;
+                }
+
+                if (!keepIsString && (double.TryParse(data, out _) || int.TryParse(data, out _)))
+                {
+                    cell.DataType = new EnumValue<CellValues>(CellValues.Number);
+                }
+                else
+                {
+                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+                }
+
+                cell.CellValue = new CellValue(EncodeSpecialCharacters(data));
+            }
+        }
+
+        public static Row? InsertCopyRow(int rowidx, SheetData sheetData)
+        {
+            Row? row;
+            Row? refRow = sheetData.Elements<Row>().Where(r => rowidx == r.RowIndex).FirstOrDefault();
+            if ((refRow != null))
+            {
+                //Copy row from refRow and insert it
+                row = CopyToLine(sheetData, refRow, (uint)rowidx, false);
+            }
+            else
+            {
+                row = new Row() { RowIndex = (uint)rowidx };
+                sheetData.Append(row);
+            }
+            return row;
+        }
+
+        private static Row? CopyToLine(SheetData sheetData, Row refRow, uint rowidx, bool keepData = true)
+        {
+            uint newRowIndex;
+            var newRow = (Row)refRow.CloneNode(true);
+
+            IEnumerable<Row> rows = sheetData.Descendants<Row>().Where(r => r.RowIndex?.Value >= rowidx);
+            foreach (Row row in rows)
+            {
+                newRowIndex = Convert.ToUInt32(row.RowIndex?.Value + 1);
+
+                foreach (Cell cell in row.Elements<Cell>())
+                {
+                    if (!keepData)
+                    {
+                        cell.CellValue = null;
+                    }
+
+                    string? cellReference = cell.CellReference?.Value;
+                    cell.CellReference = new StringValue(cellReference?.Replace(row.RowIndex.Value.ToString(), newRowIndex.ToString()));
+                }
+                // Update the row index.
+                row.RowIndex = new UInt32Value(newRowIndex);
+            }
+
+            sheetData.InsertBefore(newRow, refRow);
+            return sheetData.Descendants<Row>().Where(r => r.RowIndex?.Value == rowidx + 1).SingleOrDefault();
+        }
+
+        public static string EncodeSpecialCharacters(string data)
+        {
+            try
+            {
+                string pattern = "[\x00-\x08\x0B\x0C\x0E-\x1F]";
+
+                MatchCollection matches = Regex.Matches(data, pattern, RegexOptions.Compiled);
+                foreach (Match match in matches)
+                {
+                    string encodedValue = ((int)Convert.ToChar(match.Value)).ToString("x4");
+                    data = data.Replace(match.Value, $"_x{encodedValue}_");
+                }
+
+                return data;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public static WorkbookPart FillGridData<T>(this WorkbookPart workbookpart, List<T> data, List<ExcelItem> cellConfigs)

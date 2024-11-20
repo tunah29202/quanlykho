@@ -307,60 +307,6 @@ namespace api.Migrations
                     b.ToTable("a_category", "public");
                 });
 
-            modelBuilder.Entity("Database.Entities.Consignee", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("address")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("created_by")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("del_flg")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("email")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("fax")
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("tax")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
-
-                    b.Property<string>("tel")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
-
-                    b.Property<DateTime?>("updated_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid?>("updated_by")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("id");
-
-                    b.ToTable("a_consignee", "public");
-                });
-
             modelBuilder.Entity("Database.Entities.Customer", b =>
                 {
                     b.Property<Guid>("id")
@@ -377,19 +323,36 @@ namespace api.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)");
 
+                    b.Property<string>("company_name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("company_type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("created_by")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("customer_id")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("del_flg")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("email")
+                        .HasColumnType("text");
 
                     b.Property<string>("name")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
+
+                    b.Property<string>("tax")
+                        .HasColumnType("text");
 
                     b.Property<string>("tel")
                         .HasMaxLength(15)
@@ -401,7 +364,12 @@ namespace api.Migrations
                     b.Property<Guid?>("updated_by")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("userid")
+                        .HasColumnType("uuid");
+
                     b.HasKey("id");
+
+                    b.HasIndex("userid");
 
                     b.ToTable("a_customer", "public");
                 });
@@ -504,9 +472,6 @@ namespace api.Migrations
                     b.Property<Guid>("carton_id")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("consignee_id")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp without time zone");
 
@@ -527,6 +492,10 @@ namespace api.Migrations
 
                     b.Property<string>("notes")
                         .HasColumnType("text");
+
+                    b.Property<Guid?>("order_id")
+                        .IsRequired()
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime?>("payment_date")
                         .HasColumnType("timestamp without time zone");
@@ -571,7 +540,8 @@ namespace api.Migrations
 
                     b.HasIndex("carton_id");
 
-                    b.HasIndex("consignee_id");
+                    b.HasIndex("order_id")
+                        .IsUnique();
 
                     b.HasIndex("payment_method_id");
 
@@ -660,6 +630,100 @@ namespace api.Migrations
                     b.HasKey("id");
 
                     b.ToTable("m_log_exception", "public");
+                });
+
+            modelBuilder.Entity("Database.Entities.Order", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("created_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("created_by")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("customer_id")
+                        .IsRequired()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("del_flg")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid?>("invoice_id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("order_date")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("order_no")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("total_amount")
+                        .HasColumnType("numeric(38,17)");
+
+                    b.Property<DateTime?>("updated_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid?>("updated_by")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("customer_id");
+
+                    b.ToTable("a_order", "public");
+                });
+
+            modelBuilder.Entity("Database.Entities.OrderDetail", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("created_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("created_by")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("del_flg")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("order_id")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("product_id")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("unit")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime?>("updated_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid?>("updated_by")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("order_id");
+
+                    b.HasIndex("product_id");
+
+                    b.ToTable("a_order_detail", "public");
                 });
 
             modelBuilder.Entity("Database.Entities.PaymentMethod", b =>
@@ -1194,6 +1258,15 @@ namespace api.Migrations
                     b.Navigation("product");
                 });
 
+            modelBuilder.Entity("Database.Entities.Customer", b =>
+                {
+                    b.HasOne("Database.Entities.User", "user")
+                        .WithMany()
+                        .HasForeignKey("userid");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("Database.Entities.Function", b =>
                 {
                     b.HasOne("Database.Entities.Function", "parent")
@@ -1229,9 +1302,9 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Database.Entities.Consignee", "consignee")
-                        .WithMany("invoices")
-                        .HasForeignKey("consignee_id")
+                    b.HasOne("Database.Entities.Order", "order")
+                        .WithOne("invoice")
+                        .HasForeignKey("Database.Entities.Invoice", "order_id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -1257,7 +1330,7 @@ namespace api.Migrations
 
                     b.Navigation("carton");
 
-                    b.Navigation("consignee");
+                    b.Navigation("order");
 
                     b.Navigation("payment_method");
 
@@ -1274,6 +1347,36 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("user");
+                });
+
+            modelBuilder.Entity("Database.Entities.Order", b =>
+                {
+                    b.HasOne("Database.Entities.Customer", "customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("customer_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("customer");
+                });
+
+            modelBuilder.Entity("Database.Entities.OrderDetail", b =>
+                {
+                    b.HasOne("Database.Entities.Order", "order")
+                        .WithMany("order_details")
+                        .HasForeignKey("order_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Database.Entities.Product", "product")
+                        .WithMany("order_details")
+                        .HasForeignKey("product_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("order");
+
+                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Database.Entities.Permission", b =>
@@ -1388,13 +1491,10 @@ namespace api.Migrations
                     b.Navigation("products");
                 });
 
-            modelBuilder.Entity("Database.Entities.Consignee", b =>
-                {
-                    b.Navigation("invoices");
-                });
-
             modelBuilder.Entity("Database.Entities.Customer", b =>
                 {
+                    b.Navigation("Orders");
+
                     b.Navigation("cartons");
                 });
 
@@ -1403,6 +1503,13 @@ namespace api.Migrations
                     b.Navigation("children");
 
                     b.Navigation("permissions");
+                });
+
+            modelBuilder.Entity("Database.Entities.Order", b =>
+                {
+                    b.Navigation("invoice");
+
+                    b.Navigation("order_details");
                 });
 
             modelBuilder.Entity("Database.Entities.PaymentMethod", b =>
@@ -1415,6 +1522,8 @@ namespace api.Migrations
             modelBuilder.Entity("Database.Entities.Product", b =>
                 {
                     b.Navigation("carton_details");
+
+                    b.Navigation("order_details");
                 });
 
             modelBuilder.Entity("Database.Entities.Role", b =>

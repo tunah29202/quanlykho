@@ -30,6 +30,10 @@ public class MappingProfile : Profile
         CreateMap<ShipperRequest, Shipper>();
         CreateMap<PagedList<Shipper>, PagedList<ShipperResponse>>();
         CreateMap<Shipper, ShipperResponse>();
+
+        CreateMap<InvoiceRequest, Invoice>();
+        CreateMap<PagedList<Invoice>, PagedList<InvoiceResponse>>();
+        CreateMap<Invoice, InvoiceResponse>();
         
         CreateMap<ProductRequest, Product>();
         CreateMap<ProductExportRequest, Product>();
@@ -40,6 +44,11 @@ public class MappingProfile : Profile
         CreateMap<CartonDetailRequest, CartonDetail>();
         CreateMap<PagedList<Carton>, PagedList<CartonResponse>>();
         CreateMap<Carton, CartonResponse>();
+
+        CreateMap<OrderRequest, Order>();
+        CreateMap<OrderDetailRequest, OrderDetail>();
+        CreateMap<PagedList<Order>, PagedList<OrderResponse>>();
+        CreateMap<Order, OrderResponse>();
         
         CreateMap<CategoryRequest, Category>()
             .ForMember(dest => dest.ingredients, opt => opt.Ignore());
@@ -49,10 +58,6 @@ public class MappingProfile : Profile
         CreateMap<CustomerRequest, Customer>();
         CreateMap<PagedList<Customer>, PagedList<CustomerResponse>>();
         CreateMap<Customer, CustomerResponse>();
-
-        CreateMap<ConsigneeRequest, Consignee>();
-        CreateMap<PagedList<Consignee>, PagedList<ConsigneeResponse>>();
-        CreateMap<Consignee, ConsigneeResponse>();
 
         CreateMap<IngredientRequest, Ingredient>();
         CreateMap<PagedList<Ingredient>, PagedList<IngredientResponse>>();

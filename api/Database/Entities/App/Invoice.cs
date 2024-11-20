@@ -20,10 +20,6 @@ namespace Database.Entities
 
         public Shipper shipper { get; set; }
 
-        public Guid consignee_id { get; set; }
-
-        public Consignee consignee { get; set; }
-
         public int status { get; set; }
 
         public string? notes { get; set; }
@@ -41,6 +37,9 @@ namespace Database.Entities
 
         public Guid warehouse_id { get; set; }
         public Warehouse warehouse { get; set; }
+        public Guid? order_id { get; set; }
+        public Order order { get; set; }
+
 
         public Invoice()
         {

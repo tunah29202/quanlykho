@@ -6,3 +6,6 @@ out/
 .vs/
 *.slnx.sqlite
 *.sqlite
+*.suo
+*.user
+*.db

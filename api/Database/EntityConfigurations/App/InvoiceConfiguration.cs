@@ -17,9 +17,9 @@ namespace Database.EntityConfigurations
             builder.Property(t => t.total_weight).HasMaxLength(20);
             builder.Property(t => t.total_volumn).HasColumnType("decimal(18,2)");
             builder.Property(t => t.shipper_id).IsRequired();
-            builder.Property(t => t.consignee_id).IsRequired();
             builder.Property(t => t.status).IsRequired();
             builder.Property(t => t.carton_id).IsRequired();
+            builder.Property(t => t.order_id).IsRequired();
             builder.Property(t => t.payment_method_id).IsRequired();
 
             builder
@@ -30,17 +30,16 @@ namespace Database.EntityConfigurations
             .OnDelete(DeleteBehavior.Restrict);
 
             builder
-            .HasOne(x => x.consignee)
-            .WithMany(y => y.invoices)
-            .HasPrincipalKey(w => w.id)
-            .HasForeignKey(z => z.consignee_id)
-            .OnDelete(DeleteBehavior.Restrict);
-
-            builder
             .HasOne(x => x.shipper)
             .WithMany(y => y.invoices)
             .HasPrincipalKey(w => w.id)
             .HasForeignKey(z => z.shipper_id)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+            .HasOne(x => x.order)
+            .WithOne(y => y.invoice)
+            .HasForeignKey<Invoice>(z => z.order_id)
             .OnDelete(DeleteBehavior.Restrict);
 
             builder

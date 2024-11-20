@@ -81,7 +81,6 @@ namespace Services.Core.Services
 
         public async Task<int> Update(Guid id, CartonRequest request)
         {
-            List<Guid> detailIds = new List<Guid>();
             var count = -1;
             Carton carton;
             List<CartonDetail> carton_details;
