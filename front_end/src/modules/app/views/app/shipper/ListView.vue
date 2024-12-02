@@ -2,11 +2,11 @@
     <div class="vc-page page-shipper">
         <vc-card>
             <h1 class="pb-4" style="border-bottom: 1px solid #cdcdcd">
-                {{ tl("Common", "manage_text", [tl("shipper", "shipper_text")]) }}
+                {{ tl("Common", "manage_text", [tl("Shipper", "shipper_text")]) }}
             </h1>
             <vc-row :gutter="12" class="mt-4">
                 <vc-col :span="8">
-                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('shipper', 'shipper_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
+                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('Shipper', 'shipper_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
                 </vc-col>
                 <vc-col :span="8">
                     <el-button type="primary" @click="onSearch" class="">
@@ -77,27 +77,27 @@
     };
     const onAddNew = () => {
         popupType.value = POPUP_TYPE.CREATE
-        detailRef.value.open(tl("Common", "title_modal_add", [tl("shipper", "shipper_text")]), null, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_add", [tl("Shipper", "shipper_text")]), null, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
     const onEdit = (item: any) => {
         popupType.value = POPUP_TYPE.EDIT;
-        detailRef.value.open(tl("Common", "title_modal_edit", [tl("shipper", "shipper_text")]), item.id, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_edit", [tl("Shipper", "shipper_text")]), item.id, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
     const onView = (item: any) => {
         popupType.value = POPUP_TYPE.VIEW;
-        detailRef.value.open(tl("Common", "title_modal_detail", [tl("shipper", "shipper_text")]), item.id)
+        detailRef.value.open(tl("Common", "title_modal_detail", [tl("Shipper", "shipper_text")]), item.id)
     };
 
     const onDeleteItem = (item: any) => {
         confirmDialog.value.confirm(
             tl("Common", "title_modal_delete"),
-            tl("Common", "comfirm_delete", [tl("shipper", "shipper_text")]),
+            tl("Common", "comfirm_delete", [tl("Shipper", "shipper_text")]),
             async (res: any) => {
                 if (res) {
                     await store.delete(item);

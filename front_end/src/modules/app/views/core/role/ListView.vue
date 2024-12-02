@@ -2,11 +2,11 @@
     <div class="vc-page page-role">
         <vc-card>
             <h1 class="pb-4" style="border-bottom: 1px solid #cdcdcd">
-                {{ tl("Common", "manage_text", [tl("role", "role_text")]) }}
+                {{ tl("Common", "manage_text", [tl("Role", "role_text")]) }}
             </h1>
             <vc-row :gutter="12" class="mt-4">
                 <vc-col :span="8">
-                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('role', 'role_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
+                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('Role', 'role_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
                 </vc-col>
                 <vc-col :span="8">
                     <el-button type="primary" @click="onSearch" class="">
@@ -77,27 +77,27 @@
     };
     const onAddNew = () => {
         popupType.value = POPUP_TYPE.CREATE
-        detailRef.value.open(tl("Common", "title_modal_add", [tl("role", "role_text")]), null, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_add", [tl("Role", "role_text")]), null, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
     const onEdit = (item: any) => {
         popupType.value = POPUP_TYPE.EDIT;
-        detailRef.value.open(tl("Common", "title_modal_edit", [tl("role", "role_text")]), item.id, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_edit", [tl("Role", "role_text")]), item.id, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
     const onView = (item: any) => {
         popupType.value = POPUP_TYPE.VIEW;
-        detailRef.value.open(tl("Common", "title_modal_detail", [tl("role", "role_text")]), item.id)
+        detailRef.value.open(tl("Common", "title_modal_detail", [tl("Role", "role_text")]), item.id)
     };
 
     const onDeleteItem = (item: any) => {
         confirmDialog.value.confirm(
             tl("Common", "title_modal_delete"),
-            tl("Common", "comfirm_delete", [tl("role", "role_text")]),
+            tl("Common", "comfirm_delete", [tl("Role", "role_text")]),
             async (res: any) => {
                 if (res) {
                     await store.delete(item);

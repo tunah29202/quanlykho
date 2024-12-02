@@ -66,5 +66,8 @@ export const useWarehouseStore = defineStore('useWarehouseStore', {
                     this.loading = false
                 })
         },
+        setWarehouseSelected(data: any){
+            localStorage.setItem('warehouse_selected', JSON.stringify(data));
+        },
     },
 })

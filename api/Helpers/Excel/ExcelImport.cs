@@ -17,7 +17,6 @@ using System.Reflection;
                     IEnumerable<Row> rows = worksheet.GetFirstChild<SheetData>().Descendants<Row>();
                     Row headerKey = rows.First();
                     var messages = new List<string>();
-                    List<Dictionary<string, string>> data = new List<Dictionary<string, string>>();
                     List<T> listData = new();
                     Row? previousRow = null;
                     int rowIndex = 0;
@@ -68,6 +67,7 @@ using System.Reflection;
                                             }
                                             dataTemp.Add(key, val);
                                         }
+                                            listData.Add(dictionaryToObject<T>(dataTemp));
                                     }
                                     else
                                     {
@@ -85,10 +85,13 @@ using System.Reflection;
                                             {
                                                 val = 0.ToString();
                                             }
+                                            if ((key.Contains("parent_cd")) && string.IsNullOrEmpty(val))
+                                            {
+                                                val = null;
+                                            }
 
                                             dataTemp.Add(key, val);
                                         }
-                                        data.Add(dataTemp);
                                         listData.Add(dictionaryToObject<T>(dataTemp));
                                     }
                                     previousRow = row;
@@ -117,14 +120,9 @@ using System.Reflection;
                             {
                                 var workSheetPart = (WorksheetPart)workBookPart.GetPartById(sheet.Id);
                                 var sheetData = workSheetPart.Worksheet.GetFirstChild<SheetData>();
-
-                                Row headerRow = sheetData.Elements<Row>().First();
-                                Cell cellHeader = InsertCellInWorksheetNews(insertedCol.ToUpper(), 2, workSheetPart);
-                                cellHeader.CellValue = new CellValue("Lỗi Import");
-                                cellHeader.DataType = new EnumValue<CellValues>(CellValues.String);
                                 var stylePart = workBookPart.WorkbookStylesPart ?? workBookPart.AddNewPart<WorkbookStylesPart>();
-                                cellHeader.ApplyStyle(stylePart, true, false, true);
 
+                                
                                 foreach(var entry in rowErrors)
                                 {
                                     int rowIndex = entry.Key + 3;
@@ -137,13 +135,9 @@ using System.Reflection;
                                         cell.ApplyStyle(stylePart, false, true, false, true);
                                     }
                                 }
-
-                                var headerRow1 = sheetData.Elements<Row>().First();
-                                workSheetPart.Worksheet.Save();
-
-                                var headerRow2 = sheetData.Elements<Row>().ElementAt(2); 
-                            }
+                            workSheetPart.Worksheet.Save();
                         }
+                    }
                         return (null, stream);
                     }
                 }
@@ -160,40 +154,45 @@ using System.Reflection;
                 return (0,"");
             }
 
-            public static void ApplyStyle(this Cell cell, WorkbookStylesPart stylePart, bool isBold, bool noFill, bool isCenter = false, bool isWraptext = false, BorderStyleValues? borderStyle = null, string fontColor = "ff0000", string fillColor = "E8E8E8")
+            public static void ApplyStyle(this Cell cell, WorkbookStylesPart stylesPart, bool isBold, bool noFill, bool isCenter = false, bool isWraptext = false, BorderStyleValues borderStyle = BorderStyleValues.Thin, string fontColor = "ff0000", string fillColor = "FDE9D9")
             {
-                borderStyle = borderStyle ?? BorderStyleValues.Thin;
+                // Đảm bảo stylesPart có Stylesheet
+                if (stylesPart.Stylesheet == null)
+                {
+                    stylesPart.Stylesheet = new Stylesheet();
+                }
 
-                if (stylePart.Stylesheet == null)
-                    {
-                        stylePart.Stylesheet = new Stylesheet();
-                    }
-                    var styleSheet = stylePart.Stylesheet;
-                    string fontName = "Meiryo UI";
-                    var font = new Font(
+                var stylesheet = stylesPart.Stylesheet;
+                // Tạo font mới
+                string fontName = "Arial";
+                var font = new Font(
                         new FontSize() { Val = 11 },
                         new Color() { Rgb = new HexBinaryValue() { Value = fontColor } },
                         new FontName() { Val = fontName });
-                if(isBold)
+                if (isBold)
                 {
                     font.Append(new Bold());
                 }
-                var fontId = InsertFont(styleSheet, font);
+
+                var fontId = InsertFont(stylesheet, font);
+                // Tạo fill mới
                 var fill = new Fill(new PatternFill(new ForegroundColor() { Rgb = new HexBinaryValue() { Value = fillColor } }) { PatternType = PatternValues.Solid });
                 if (noFill)
                 {
                     fill = new Fill(new PatternFill(new ForegroundColor() { Rgb = new HexBinaryValue() { Value = fillColor } }) { PatternType = PatternValues.None });
                 }
-                var fillId = InsertFill(styleSheet, fill);
+                var fillId = InsertFill(stylesheet, fill);
 
-                var borderId = InsertBorder(styleSheet, new Border()
+                // Tạo border mới
+                var borderId = InsertBorder(stylesheet, new Border()
                 {
                     LeftBorder = new LeftBorder() { Style = borderStyle },
                     RightBorder = new RightBorder() { Style = borderStyle },
                     TopBorder = new TopBorder() { Style = borderStyle },
                     BottomBorder = new BottomBorder() { Style = borderStyle }
                 });
-                var formatId = InsertCellFormat(styleSheet, fontId, fillId, borderId, isCenter, isWraptext);
+
+                var formatId = InsertCellFormat(stylesheet, fontId, fillId, borderId, isCenter, isWraptext);
                 cell.StyleIndex = formatId;
             }
 
@@ -243,6 +242,7 @@ using System.Reflection;
                 stylesheet.CellFormats.Count = (uint)cellFormats.Count();
                 return newFormatId;
             }
+
 
 
             public static Cell InsertCellInWorksheetNews(string columnName, int rowIndex, WorksheetPart worksheetPart)

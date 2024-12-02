@@ -5,7 +5,7 @@
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("shipper", "shipper_code_text") }}
+                            {{  tl("Shipper", "shipper_code_text") }}
                         </div>
                     </template>
                     {{ shipper.code ?? '-' }}
@@ -13,34 +13,34 @@
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("shipper", "full_name_text") }}
+                            {{  tl("Shipper", "name_text") }}
                         </div>
                     </template>
-                    {{ shipper.full_name ?? '-' }}
+                    {{ shipper.name ?? '-' }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("shipper", "gender_text") }}
+                    {{ tl("Shipper", "url_text") }}
                     </div>
                 </template>
-                {{ shipper.gender }}
+                {{ shipper.url }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("shipper", "email_text") }}
+                    {{ tl("Shipper", "method_text") }}
                     </div>
                 </template>
-                {{ shipper.email }}
+                {{ shipper.method }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("shipper", "phone_text") }}
+                    {{ tl("Shipper", "parent_cd_text") }}
                     </div>
                 </template>
-                {{ shipper.phone ?? '-' }}
+                {{ shipper.parent_cd ?? '-' }}
                 </el-descriptions-item>
             </el-descriptions>
 
@@ -48,52 +48,36 @@
             require-asterisk-position="right" v-else>
                 <vc-row :gutter=20>
                     <vc-col>
-                        <vc-input-group prop="code" :label="tl('shipper', 'shipper_code_text')">
-                            <vc-input v-model="shipper.code" :placeholder="tl('shipper', 'shipper_code_holder')"/>
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20">
-                    <vc-col :lg="12" :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="full_name" :label="tl('shipper', 'full_name_text')">
-                            <vc-input v-model="shipper.full_name" :placeholder="tl('shipper', 'full_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                    <vc-col :lg=12 :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="gender" :label="tl('shipper', 'gender_text')">
-                            <el-select v-model="shipper.gender" :placeholder="tl('shipper', 'gender_holder')">
-                                <el-option :label="tl('Common', 'gender_male')" :value="tl('Common', 'gender_male')" />
-                                <el-option :label="tl('Common', 'gender_female')" :value="tl('Common', 'gender_female')" />
-                                <el-option :label="tl('Common', 'gender_other')" :value="tl('Common', 'gender_other')" />
-                            </el-select>
+                        <vc-input-group prop="code" :label="tl('Shipper', 'shipper_code_text')">
+                            <vc-input v-model="shipper.code" :placeholder="tl('Shipper', 'shipper_code_holder')"/>
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="shipper_name" :label="tl('shipper', 'shipper_name_text')">
-                        <vc-input v-model="shipper.shipper_name" :placeholder="tl('shipper', 'shipper_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20" v-if="type == POPUP_TYPE.CREATE">
-                    <vc-col>
-                        <vc-input-group required prop="hashpass" :label="tl('shipper', 'password_text')">
-                            <vc-input v-model="shipper.hashpass" type="password" show-password minlength="6" :placeholder="tl('shipper', 'password_holder')"/>
+                        <vc-input-group required prop="name" :label="tl('Shipper', 'name_text')">
+                            <vc-input v-model="shipper.name" :placeholder="tl('Shipper', 'name_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="email" :label="tl('shipper', 'email_text')">
-                        <vc-input v-model="shipper.email" :placeholder="tl('shipper', 'email_holder')" />
+                        <vc-input-group required prop="url" :label="tl('Shipper', 'url_text')">
+                        <vc-input v-model="shipper.url" :placeholder="tl('Shipper', 'url_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group prop="phone" :label="tl('shipper', 'phone_text')">
-                        <vc-input v-model="shipper.phone" :placeholder="tl('shipper', 'phone_holder')" />
+                        <vc-input-group required prop="method" :label="tl('Shipper', 'method_text')">
+                        <vc-input v-model="shipper.method" :placeholder="tl('Shipper', 'method_holder')" />
+                        </vc-input-group>
+                    </vc-col>
+                </vc-row>
+                <vc-row :gutter="20">
+                    <vc-col>
+                        <vc-input-group prop="parent_cd" :label="tl('Shipper', 'parent_cd_text')">
+                        <vc-input v-model="shipper.parent_cd" :placeholder="tl('Shipper', 'parent_cd_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
@@ -114,31 +98,24 @@
     import { onBeforeMount, ref, reactive } from "vue";
     import validate from "@/utils/validate";
     import type { FormInstance } from "element-plus";
-    import shipperService from "@app/services/core/shipper.service";
+    import shipperService from "@app/services/app/shipper.service";
 
     const rules= reactive({
-        full_name: [
-            { label: tl("shipper", "full_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('shipper', 'full_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        code: [
+            { label: tl("Shipper", "code_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Shipper', 'code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
             ],
-        shipper_name: [
-            { label: tl("shipper", "shipper_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('shipper', 'shipper_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        name: [
+            { label: tl("Shipper", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Shipper', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        hashpass: [
-            { label: tl("shipper", "password_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('shipper', 'password_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 250 },
-            { label: tl('shipper', 'password_text'), validator: validate.validatePassword, trigger: ["change"] },
+        url: [{ label: tl("Shipper", "url_text"), required: true, validator: validate.required, trigger: ["blur"] }],
+        method: [
+            { label: tl("Shipper", "method_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Shipper', 'method_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        gender: [{ label: tl("shipper", "gender_text"), required: true, validator: validate.required, trigger: ["change"] }],
-        email: [
-            { label: tl("shipper", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl("shipper", "email_text"), validator: validate.emailRule, trigger: ["change"] },
-            { label: tl('shipper', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
-        ],
-        phone: [
-            { label: tl("shipper", "phone_text"), validator: validate.phoneNumberRule, trigger: ["change"] },
-            { label: tl('shipper', 'phone_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        parent_cd: [
+            { label: tl('Shipper', 'parent_cd_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
         ],
     });
     const props = defineProps<{
@@ -154,14 +131,12 @@
     let callback = (value: any) => { return value };
 
     const shipper = reactive({
-    id: '',
-    shipper_name: null,
-    hashpass: null,
-    full_name: null,
-    email: null,
-    phone: null,
-    gender: '',
-    code: '',
+        id: '',
+        code: '',
+        name: '',
+        url: '',
+        method: '',
+        parent_cd: '',
     });
 
     onBeforeMount(async () => {
@@ -196,18 +171,15 @@
     const open = async (title: any, item: any, _callback: any) => {
         let shipperInfo = {
             id: '',
-            shipper_name: null,
-            hashpass: null,
-            full_name: null,
-            email: null,
-            phone: null,
             code: null,
-            gender: tl('Common', 'gender_male'),
+            name: null,
+            url: null,
+            method: null,
+            parent_cd: null,
         };
         modalTitle.value = title;
         if (item)
             shipperInfo = (await shipperService.detail(item))
-        console.log(shipperInfo)
         callback = _callback;
         Object.assign(shipper, shipperInfo)
         modal.value.open();

@@ -24,39 +24,45 @@ namespace Common
             }
             catch (ValidationException ex)
             {
-                var response = new
+                if (!httpContext.Response.HasStarted)
                 {
-                    Title = "Validation Error",
-                    Status = 400,
-                    Errors = ex.Errors.Select(x => new { Field = x.PropertyName, Message = x.ErrorMessage })
-                };
-                httpContext.Response.StatusCode = 400;
-                await httpContext.Response.WriteAsJsonAsync(response);
+                    var response = new
+                    {
+                        Title = "Lỗi Xác Thực",
+                        Status = 400,
+                        Errors = ex.Errors.Select(x => new { Field = x.PropertyName, Message = x.ErrorMessage })
+                    };
+                    httpContext.Response.StatusCode = 400;
+                    await httpContext.Response.WriteAsJsonAsync(response);
+                }
             }
             catch (Exception error)
             {
                 var response = httpContext.Response;
-                response.ContentType = "application/json";
-                
-                switch (error)
+                if (!httpContext.Response.HasStarted)
                 {
-                    case KeyNotFoundException e:
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        break;
-                    default:
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
+                    response.ContentType = "application/json";
+                    switch (error)
+                    {
+                        case KeyNotFoundException e:
+                            response.StatusCode = (int)HttpStatusCode.NotFound;
+                            break;
+                        default:
+                            response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                            break;
+                    }
 
-                if(error != null)
-                {
-                    string path = httpContext.Request.Path;
-                    string action = httpContext.Request.Method;
-                    await logServices.WriteLogException($"{action} - {path}", error.Message, error.StackTrace);
+                    if (error != null)
+                    {
+                        string path = httpContext.Request.Path;
+                        string action = httpContext.Request.Method;
+                        await logServices.WriteLogException($"{action} - {path}", error.Message, error.StackTrace);
+                    }
+                    var result = JsonSerializer.Serialize(new BaseResponseError(ResponseCode.SystemError, ls.Get(Modules.Core, "Message", MessageKey.BE_003)));
+                    await response.WriteAsync(result);
                 }
-                var result = JsonSerializer.Serialize(new BaseResponseError(ResponseCode.SystemError, ls.Get(Modules.Core, "Message", MessageKey.BE_003)));
-                await response.WriteAsync(result);
             }
         }
     }
+
 }

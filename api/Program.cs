@@ -63,4 +63,5 @@ app.UseCors("AllowSpecificOrigins");
 app.UseAuthorization();
 app.UseMiddleware<ValidationExceptionMiddleware>();
 app.MapControllers();
+app.UseStaticFiles();
 app.Run();

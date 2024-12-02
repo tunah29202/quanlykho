@@ -1,99 +1,46 @@
 <template>
-    <vc-modal ref="modal" :title="modalTitle" :type="props.type" @close="close">
+    <vc-modal ref="modal" :title="modalTitle" width="30%" :type="props.type" @close="close">
         <template #content>
-            <el-descriptions style="padding: 12px 16px" :column="1" border v-if="type ==POPUP_TYPE.VIEW">
+            <el-descriptions style="padding: 12px 16px" :column="1" bcategory v-if="type ==POPUP_TYPE.VIEW">
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("category", "category_code_text") }}
+                            {{  tl("Category", "name_text") }}
                         </div>
                     </template>
-                    {{ category.code ?? '-' }}
+                    {{ category.name ?? '-' }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("category", "full_name_text") }}
+                            {{  tl("Category", "ingredient_id_text") }}
                         </div>
                     </template>
-                    {{ category.full_name ?? '-' }}
-                </el-descriptions-item>
-                <el-descriptions-item>
-                <template #label>
-                    <div class="cell-item">
-                    {{ tl("category", "gender_text") }}
-                    </div>
-                </template>
-                {{ category.gender }}
-                </el-descriptions-item>
-                <el-descriptions-item>
-                <template #label>
-                    <div class="cell-item">
-                    {{ tl("category", "email_text") }}
-                    </div>
-                </template>
-                {{ category.email }}
-                </el-descriptions-item>
-                <el-descriptions-item>
-                <template #label>
-                    <div class="cell-item">
-                    {{ tl("category", "phone_text") }}
-                    </div>
-                </template>
-                {{ category.phone ?? '-' }}
+                    {{ category.ingredients.length === 0 ?'-' : '' }}
+                    <template v-for="(item, index) in category.ingredients" :key="index">
+                        {{ item.name }}
+                        <span v-if="index !== category.ingredients.length -1">, </span>
+                    </template>
                 </el-descriptions-item>
             </el-descriptions>
 
-            <el-form  ref="categoryForm" :model="category" :rules="rules" label-position="right" style="padding: 12px 16px"
+            <el-form ref="categoryForm" :model="category" :rules="rules" label-position="right" style="padding: 12px 16px"
             require-asterisk-position="right" v-else>
-                <vc-row :gutter=20>
-                    <vc-col>
-                        <vc-input-group prop="code" :label="tl('category', 'category_code_text')">
-                            <vc-input v-model="category.code" :placeholder="tl('category', 'category_code_holder')"/>
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
                 <vc-row :gutter="20">
-                    <vc-col :lg="12" :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="full_name" :label="tl('category', 'full_name_text')">
-                            <vc-input v-model="category.full_name" :placeholder="tl('category', 'full_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                    <vc-col :lg=12 :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="gender" :label="tl('category', 'gender_text')">
-                            <el-select v-model="category.gender" :placeholder="tl('category', 'gender_holder')">
-                                <el-option :label="tl('Common', 'gender_male')" :value="tl('Common', 'gender_male')" />
-                                <el-option :label="tl('Common', 'gender_female')" :value="tl('Common', 'gender_female')" />
-                                <el-option :label="tl('Common', 'gender_other')" :value="tl('Common', 'gender_other')" />
-                            </el-select>
+                    <vc-col>
+                        <vc-input-group required prop="name" :label="tl('Category', 'name_text')">
+                            <vc-input v-model="category.name" :placeholder="tl('Category', 'name_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="category_name" :label="tl('category', 'category_name_text')">
-                        <vc-input v-model="category.category_name" :placeholder="tl('category', 'category_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20" v-if="type == POPUP_TYPE.CREATE">
-                    <vc-col>
-                        <vc-input-group required prop="hashpass" :label="tl('category', 'password_text')">
-                            <vc-input v-model="category.hashpass" type="password" show-password minlength="6" :placeholder="tl('category', 'password_holder')"/>
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20">
-                    <vc-col>
-                        <vc-input-group required prop="email" :label="tl('category', 'email_text')">
-                        <vc-input v-model="category.email" :placeholder="tl('category', 'email_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20">
-                    <vc-col>
-                        <vc-input-group prop="phone" :label="tl('category', 'phone_text')">
-                        <vc-input v-model="category.phone" :placeholder="tl('category', 'phone_holder')" />
+                        <vc-input-group required prop="ingredients" :label="tl('Category', 'ingredient_id_text')">
+                            <vc-input v-for="(ingredient, index) in category.ingredient_names" :key="index"
+                             v-model="ingredient.name" :placeholder="tl('Category', 'ingredient_id_holder')" class="mb-2"/>
+                            <el-button size="small" :icon="Plus" @click="addInput" style="width: 100%;">
+                                {{ tl('Category', 'btn_add_ingredient') }}
+                            </el-button> 
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
@@ -114,31 +61,13 @@
     import { onBeforeMount, ref, reactive } from "vue";
     import validate from "@/utils/validate";
     import type { FormInstance } from "element-plus";
-    import categoryService from "@app/services/core/category.service";
+    import categoryService from "@app/services/app/category.service";
+    import { Plus } from '@element-plus/icons-vue';
 
     const rules= reactive({
-        full_name: [
-            { label: tl("category", "full_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('category', 'full_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
-            ],
-        category_name: [
-            { label: tl("category", "category_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('category', 'category_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
-        ],
-        hashpass: [
-            { label: tl("category", "password_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('category', 'password_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 250 },
-            { label: tl('category', 'password_text'), validator: validate.validatePassword, trigger: ["change"] },
-        ],
-        gender: [{ label: tl("category", "gender_text"), required: true, validator: validate.required, trigger: ["change"] }],
-        email: [
-            { label: tl("category", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl("category", "email_text"), validator: validate.emailRule, trigger: ["change"] },
-            { label: tl('category', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
-        ],
-        phone: [
-            { label: tl("category", "phone_text"), validator: validate.phoneNumberRule, trigger: ["change"] },
-            { label: tl('category', 'phone_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        name: [
+            { label: tl("Category", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Category', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
     });
     const props = defineProps<{
@@ -154,16 +83,17 @@
     let callback = (value: any) => { return value };
 
     const category = reactive({
-    id: '',
-    category_name: null,
-    hashpass: null,
-    full_name: null,
-    email: null,
-    phone: null,
-    gender: '',
-    code: '',
+        id: '',
+        name: null,
+        ingredient_names: [],
+        ingredients: [],
     });
-
+    const addInput = () =>
+    {
+        category.ingredient_names.push({
+            name: ''
+        });
+    }
     onBeforeMount(async () => {
         if (category.id) await getcategoryDetail();
     });
@@ -196,18 +126,20 @@
     const open = async (title: any, item: any, _callback: any) => {
         let categoryInfo = {
             id: '',
-            category_name: null,
-            hashpass: null,
-            full_name: null,
-            email: null,
-            phone: null,
-            code: null,
-            gender: tl('Common', 'gender_male'),
+            name: null,
+            ingredient_names: [],
+            ingredients: [],
         };
         modalTitle.value = title;
         if (item)
+        {
             categoryInfo = (await categoryService.detail(item))
-        console.log(categoryInfo)
+            for(let i = 0; i < categoryInfo.ingredients.length; i++)
+            {
+                const ingredient = categoryInfo.ingredients[i];
+                category.ingredient_names.push({name: ingredient.name});
+            }
+        }
         callback = _callback;
         Object.assign(category, categoryInfo)
         modal.value.open();
@@ -218,6 +150,7 @@
             categoryForm.value.resetFields();
         }
         modal.value.close()
+        category.ingredient_names = [];
     };
 
     defineExpose({

@@ -10,11 +10,11 @@ namespace Database.EntityConfigurations
         {
             builder.ToTable("a_function", "public");
 
-            builder.Property(t => t.code).HasMaxLength(15).IsRequired();
+            builder.Property(t => t.code).HasMaxLength(30).IsRequired();
             builder.Property(t => t.name).HasMaxLength(250);
             builder.Property(t => t.url).HasMaxLength(250);
             builder.Property(t => t.method).HasMaxLength(10);
-            builder.Property(t => t.parent_cd).HasMaxLength(15);
+            builder.Property(t => t.parent_cd).HasMaxLength(30);
 
             builder
             .HasOne(x => x.parent)

@@ -2,6 +2,13 @@
     <div class="vc-table">
         <el-table stripe style="width:100%" :height="height ?? '400px'" :data="datas" border v-loading="loading"
                   @selection-change="onRowSelected" @row-dblclick="onRowDbClick">
+            <!-- EXPAND -->
+            <el-table-column type="expand" v-if="tableConfig.expand">
+                <template #default="scope">
+                  <slot name="detail" :data="scope.row.carton_details" :scope="scope"></slot>
+                </template>
+            </el-table-column>
+                  
             <!-- INDEX -->
             <el-table-column label="#" width="50" type="index" align="center" header-align="center"
               v-if="tableConfig.index" />
@@ -24,7 +31,7 @@
                     </template>
                 </el-table-column>
             </template>
-            <el-table-column :width="150" label="Tuỳ chỉnh">
+            <el-table-column v-if="tableConfig.action" :width="150" label="Tuỳ chỉnh" >
                 <template #default="scope">
                     <div class="d-flex flex-center btn-group-action">
                         <slot name="action" :data="scope.row" :scope="scope" class="btn-action"></slot>

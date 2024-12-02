@@ -9,6 +9,7 @@ export const useCartonStore = defineStore('useCartonStore', {
         search: <any>[],
         status: true,
         pageConfig: <any>[],
+        warehouse_id: <any>[],
         loading: false,
     }),
     getters: {
@@ -39,7 +40,9 @@ export const useCartonStore = defineStore('useCartonStore', {
         async delete(data: any) {
             await cartonService.delete(data.id)
         },
-
+        setWarehouseId(item: any){
+            this.warehouse_id = item;
+        },
         async getByKey(key: any) {
             this.loading = true
             await cartonService

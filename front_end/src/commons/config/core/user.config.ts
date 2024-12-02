@@ -8,7 +8,7 @@ export const ROUTER_USER = [
   {
     path: '/user',
     name: 'UserList',
-    component: () => import('@app/views/user/ListView.vue'),
+    component: () => import('@app/views/core/user/ListView.vue'),
   },
 ]
 

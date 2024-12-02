@@ -4,7 +4,7 @@ export const ROUTER_AUTH = [
     {
         path: '/login',
         name: 'Login',
-        component: () => import('@app/views/auth/LoginView.vue'),
+        component: () => import('@app/views/core/auth/LoginView.vue'),
         meta: {
             layout: "Client"
         }

@@ -1,12 +1,12 @@
 ﻿<template>
-    <div class="vc-page page-package">
+    <div class="vc-page page-order">
         <vc-card>
             <h1 class="pb-4" style="border-bottom: 1px solid #cdcdcd">
-                {{ tl("Common", "manage_text", [tl("package", "package_text")]) }}
+                {{ tl("Common", "manage_text", [tl("Order", "order_text")]) }}
             </h1>
             <vc-row :gutter="12" class="mt-4">
                 <vc-col :span="8">
-                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('package', 'package_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
+                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('Order', 'order_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
                 </vc-col>
                 <vc-col :span="8">
                     <el-button type="primary" @click="onSearch" class="">
@@ -51,13 +51,13 @@
     import { storeToRefs } from 'pinia'
     import { onMounted, ref } from 'vue'
     import tl from '@/utils/locallize'
-    import { colConfig, tableConfig } from '@/commons/config/app/package.config'
-    import { usePackageStore } from '@app/stores/app/package.store'
+    import { colConfig, tableConfig } from '@/commons/config/app/order.config'
+    import { useOrderStore } from '@app/stores/app/order.store'
     import { POPUP_TYPE } from '@/commons/const'
     import { Search } from '@element-plus/icons-vue'
     import DetailModal from './DetailModal.vue'
 
-    const store = usePackageStore();
+    const store = useOrderStore();
     const { dataGrid, pageConfig, search, loading } = storeToRefs(store);
     const popupType = ref<POPUP_TYPE>(POPUP_TYPE.CREATE);
     const confirmDialog = ref<any>(null);
@@ -77,27 +77,27 @@
     };
     const onAddNew = () => {
         popupType.value = POPUP_TYPE.CREATE
-        detailRef.value.open(tl("Common", "title_modal_add", [tl("package", "package_text")]), null, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_add", [tl("Order", "order_text")]), null, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
     const onEdit = (item: any) => {
         popupType.value = POPUP_TYPE.EDIT;
-        detailRef.value.open(tl("Common", "title_modal_edit", [tl("package", "package_text")]), item.id, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_edit", [tl("Order", "order_text")]), item.id, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
     const onView = (item: any) => {
         popupType.value = POPUP_TYPE.VIEW;
-        detailRef.value.open(tl("Common", "title_modal_detail", [tl("package", "package_text")]), item.id)
+        detailRef.value.open(tl("Common", "title_modal_detail", [tl("Order", "order_text")]), item.id)
     };
 
     const onDeleteItem = (item: any) => {
         confirmDialog.value.confirm(
             tl("Common", "title_modal_delete"),
-            tl("Common", "comfirm_delete", [tl("package", "package_text")]),
+            tl("Common", "comfirm_delete", [tl("Order", "order_text")]),
             async (res: any) => {
                 if (res) {
                     await store.delete(item);

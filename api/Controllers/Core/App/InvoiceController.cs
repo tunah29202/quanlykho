@@ -40,7 +40,7 @@ namespace Controllers.Core
             }
         }
         [HttpGet]
-        [Route("export-invoice")]
+        [Route("export-invoice/{id}")]
         public async Task<IActionResult> ExportInvoiceById(Guid id)
         {
             var fileName = $"Invoice_{DateTimeExtention.ToDateTimeStampString(DateTime.Now)}.xlsx";

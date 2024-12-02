@@ -1,10 +1,10 @@
 import apiClient from '@/utils/httpClient'
-import { API } from '@/commons/config/app/package.config'
+import { API } from '@/commons/config/app/order.config'
 import type { APIResponse } from '@/interfaces/response.interface'
 import { useToast } from '@/components/commons/alert/vc-toast.vue'
 import fileService from '@/utils/file'
 
-const packageService = {
+const orderService = {
     async getList(params?: unknown): Promise<APIResponse<any[]>> {
         return await apiClient.get(API.LIST, {
             params: params,
@@ -12,7 +12,8 @@ const packageService = {
     },
 
     async detail(id: string): Promise<APIResponse<any>> {
-        return await apiClient.get(API.DETAIL(id))
+        const res = await apiClient.get(API.DETAIL(id));
+        return res.data;    
     },
 
     async export(params?: unknown) {
@@ -64,4 +65,4 @@ const packageService = {
 
 }
 
-export default packageService
+export default orderService

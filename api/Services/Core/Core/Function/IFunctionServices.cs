@@ -9,5 +9,8 @@ namespace Services.Core.Interfaces
         Task<int> Create(FunctionRequest request);
         Task<int> Update(Guid id, FunctionRequest request);
         Task<int> Delete(Guid id);
+        Task<(object?, MemoryStream?)> ImportExcel(IFormFile file);
+        Task<List<FunctionResponse>> GetAsTreeView();
+
     }
 }

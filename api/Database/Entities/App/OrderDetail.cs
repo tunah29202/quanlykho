@@ -6,6 +6,7 @@ namespace Database.Entities
 {
     public partial class OrderDetail : BaseEntity
     {
+        [JsonIgnore]
         public Order order { get; set; }
         public Guid order_id { get; set; }
         public Product product { get; set; }

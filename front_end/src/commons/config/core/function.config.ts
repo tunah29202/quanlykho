@@ -8,7 +8,7 @@ export const ROUTER_FUNCTION = [
   {
     path: '/function',
     name: 'FunctionList',
-    component: () => import('@app/views/function/ListView.vue'),
+    component: () => import('@app/views/core/function/ListView.vue'),
   },
 ]
 
@@ -37,19 +37,19 @@ export const tableConfig = {
 export const colConfig = [
   {
     key: "code",
-    title: tl(FUNC_NAME, "user_code_text"),
+    title: tl(FUNC_NAME, "ode_text"),
   },
   {
-    key: "full_name",
-    title: tl(FUNC_NAME, "full_name_text"),
+    key: "name",
+    title: tl(FUNC_NAME, "name_text"),
   },
   {
-    key: "gender",
-    title: tl(FUNC_NAME, "gender_text"),
+    key: "url",
+    title: tl(FUNC_NAME, "url_text"),
   },
   {
-    key: "phone",
-    title: tl(FUNC_NAME, "phone_text"),
+    key: "method",
+    title: tl(FUNC_NAME, "method_text"),
   },
 ]
 

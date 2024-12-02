@@ -8,6 +8,7 @@ namespace Services.Core.Interfaces
         Task<UserResponse> GetById(Guid id);
         Task<UserResponse> GetInfoLoginById(Guid id);
         Task<int> Create(UserRequest request);
+        Task<int> Register(CustomerRegisterRequest request);
         Task<int> Update(Guid id, UserRequest request);
         Task<int> Delete(Guid id);
     }

@@ -3,6 +3,7 @@ namespace Services.Core.Contracts
 {
     public class InvoiceResponse
     {
+        public Guid id { get; set; }
         public string invoice_no { get; set; }
 
         public DateTime? invoice_date { get; set; }

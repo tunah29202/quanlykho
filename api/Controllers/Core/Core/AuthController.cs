@@ -29,6 +29,16 @@ namespace Controllers.Core
             else
                 return Unauthorized(res);
         }
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register([FromBody] CustomerRegisterRequest request)
+        {
+            int count = await userServices.Register(request);
+            if (count >= 1)
+                return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, Screen.Message, MessageKey.S_CREATE) });
+            else
+                return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, Screen.Message, MessageKey.E_CREATE) });
+        }
         [HttpGet]
         [Route("info")]
         public async Task<IActionResult> GetInfoLogin()

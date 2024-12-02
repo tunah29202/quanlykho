@@ -11,9 +11,15 @@ namespace Services.Core.Services
     public class UserServices : BaseServices, IUserServices
     {
         private readonly IRepository<User> userRepository;
+        private readonly IRepository<UserRole> userRoleRepository;
+        private readonly IRepository<UserWarehouse> userWarehouseRepository;
+        private readonly IRepository<Customer> customerRepository;
         public UserServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper)
         {
             userRepository = _unitOfWork.GetRepository<User>();
+            userRoleRepository = _unitOfWork.GetRepository<UserRole>();
+            userWarehouseRepository = _unitOfWork.GetRepository<UserWarehouse>();
+            customerRepository = _unitOfWork.GetRepository<Customer>();
         }
 
         public async Task<PagedList<UserResponse>> GetAll(PagedRequest request)
@@ -50,6 +56,53 @@ namespace Services.Core.Services
             user.salt = CryptographyProcessor.CreateSalt(20);
             user.hash_password = CryptographyProcessor.GenerateHash(request.password, user.salt);
             await userRepository.AddAsync(user);
+            if(request.role_cd != null)
+            {
+                await userRoleRepository.AddAsync(new UserRole()
+                {
+                    user_id = user.id,
+                    role_cd = request.role_cd
+                });
+            }
+            if(request.warehouse_ids != null)
+            {
+                foreach(var warehouse_id in request.warehouse_ids)
+                {
+                    await userWarehouseRepository.AddAsync(new UserWarehouse()
+                    {
+                        user_id = user.id,
+                        warehouse_id = warehouse_id,
+                    });
+                }
+            }
+            var count = await _unitOfWork.SaveChangeAsync();
+            return count;
+        }
+
+        public async Task<int> Register(CustomerRegisterRequest request)
+        {
+            var user = _mapper.Map<User>(request);
+            user.salt = CryptographyProcessor.CreateSalt(20);
+            user.hash_password = CryptographyProcessor.GenerateHash(request.password, user.salt);
+            var customer = new Customer()
+            {
+                code = "CUSTOMER",
+                name = request.full_name,
+                company_name = request.company_name,
+                company_type = request.company_type,
+                address = request.address,
+                tax = request.tax,
+                tel = request.phone,
+                email = request.email,
+            };
+            await customerRepository.AddAsync(customer);
+            user.customer_id = customer.id;
+            await userRepository.AddAsync(user);
+            await userRoleRepository.AddAsync(new UserRole()
+                {
+                    user_id = user.id,
+                    role_cd = "CUSTOMER"
+                });
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
         }

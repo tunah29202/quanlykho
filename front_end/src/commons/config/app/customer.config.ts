@@ -8,7 +8,7 @@ export const ROUTER_CUSTOMER = [
   {
     path: '/customer',
     name: 'CustomerList',
-    component: () => import('@app/views/customer/ListView.vue'),
+    component: () => import('@app/views/app/customer/ListView.vue'),
   },
 ]
 
@@ -40,8 +40,8 @@ export const colConfig = [
     title: tl(FUNC_NAME, "name_text"),
   },
   {
-    key: "code",
-    title: tl(FUNC_NAME, "code_text"),
+    key: "company_name",
+    title: tl(FUNC_NAME, "company_name_text"),
   },
   {
     key: "address",
@@ -50,6 +50,10 @@ export const colConfig = [
   {
     key: "tel",
     title: tl(FUNC_NAME, "tel_text"),
+  },
+  {
+    key: "email",
+    title: tl(FUNC_NAME, "email_text"),
   },
 ]
 

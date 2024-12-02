@@ -1,3 +1,4 @@
+using Database.Entities;
 using FluentValidation;
 namespace Services.Core.Contracts
 {
@@ -10,6 +11,9 @@ namespace Services.Core.Contracts
         public string? email { get; set; }
         public string? phone { get; set; }
         public string? password { get; set; }
+        public string? role_cd { get; set; }
+        public List<Guid>? warehouse_ids { get; set; }
+
     }
     public class UserRequestValidator : AbstractValidator<UserRequest>
     {

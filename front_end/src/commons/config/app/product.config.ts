@@ -8,7 +8,7 @@ export const ROUTER_PRODUCT = [
   {
     path: '/product',
     name: 'ProductList',
-    component: () => import('@app/views/product/ListView.vue'),
+    component: () => import('@app/views/app/product/ListView.vue'),
   },
 ]
 
@@ -42,10 +42,6 @@ export const colConfig = [
   {
     key: "name",
     title: tl(FUNC_NAME, "name_text"),
-  },
-  {
-    key: "image",
-    title: tl(FUNC_NAME, "image_text"),
   },
   {
     key: "origin",

@@ -8,7 +8,7 @@ export const ROUTER_SHIPPER = [
   {
     path: '/shipper',
     name: 'ShipperList',
-    component: () => import('@app/views/shipper/ListView.vue'),
+    component: () => import('@app/views/app/shipper/ListView.vue'),
   },
 ]
 
@@ -46,6 +46,10 @@ export const colConfig = [
   {
     key: "tel",
     title: tl(FUNC_NAME, "tel_holder"),
+  },
+  {
+    key: "fax",
+    title: tl(FUNC_NAME, "fax_holder"),
   },
   {
     key: "email",

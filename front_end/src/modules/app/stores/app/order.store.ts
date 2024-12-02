@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import packageService from '@app/services/app/package.service'
+import orderService from '@app/services/app/order.service'
 
-export const usePackageStore = defineStore('usePackageStore', {
+export const useOrderStore = defineStore('useOrderStore', {
     state: () => ({
         dataGrid: <any>[],
         formData: <any>{},
@@ -19,7 +19,7 @@ export const usePackageStore = defineStore('usePackageStore', {
     actions: {
         async getList() {
             this.loading = true
-            await packageService
+            await orderService
                 .getList({
                     sort: this.goSort,
                     is_actived: true,
@@ -37,12 +37,12 @@ export const usePackageStore = defineStore('usePackageStore', {
         },
 
         async delete(data: any) {
-            await packageService.delete(data.id)
+            await orderService.delete(data.id)
         },
 
         async getByKey(key: any) {
             this.loading = true
-            await packageService
+            await orderService
                 .detail(key)
                 .then((data) => {
                     this.formData = data.data ?? {}
@@ -54,7 +54,7 @@ export const usePackageStore = defineStore('usePackageStore', {
 
         async export() {
             this.loading = true
-            await packageService
+            await orderService
                 .export({
                     sort: this.goSort,
                     is_actived: true,

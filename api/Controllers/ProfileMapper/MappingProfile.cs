@@ -8,6 +8,7 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<UserRequest, User>();
+        CreateMap<CustomerRegisterRequest, User>();
         CreateMap<PagedList<User>, PagedList<UserResponse>>();
         CreateMap<User, UserResponse>();
 
@@ -15,9 +16,11 @@ public class MappingProfile : Profile
         CreateMap<PagedList<Resource>, PagedList<ResourceResponse>>();
         CreateMap<Resource, ResourceResponse>();
 
-        CreateMap<RoleRequest, Role>();
+        CreateMap<RoleRequest, Role>()
+               .ForMember(dest => dest.permissions, opt => opt.Ignore());
         CreateMap<PagedList<Role>, PagedList<RoleResponse>>();
-        CreateMap<Role, RoleResponse>();
+        CreateMap<Role, RoleResponse>()
+            .ForMember(dest => dest.permissions, opt => opt.MapFrom(src => src.permissions.Select(x => x.function.code).ToList()));
 
         CreateMap<FunctionRequest, Function>();
         CreateMap<PagedList<Function>, PagedList<FunctionResponse>>();

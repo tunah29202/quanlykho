@@ -8,6 +8,10 @@ const sass = require('sass');
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
+  console.log(import.meta.url);
+console.log(fileURLToPath(new URL('./src', import.meta.url))); // Debug lại đường dẫn '@'
+console.log(fileURLToPath(new URL('./src/modules/app', import.meta.url))); // Debug '@app'
+
   return {
     plugins: [vue()],
     css: {

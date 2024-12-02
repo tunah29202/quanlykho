@@ -84,5 +84,28 @@ namespace Controllers.Core
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
             }
         }
+        [HttpPost]
+        [Route("import-function")]
+        public async Task<IActionResult> ImportExcel(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {   
+                return BadRequest(new { code = ResponseCode.Invalid, message = "File Not Null!" });
+            }
+            var result = await functionServices.ImportExcel(file);
+            if (result.Item2 != null)
+            {
+                var fileError = $"insert_products_error_{DateTime.UtcNow.ToString()}.xlsx";
+                return File(result.Item2.ToArray(), "application/octetstream", fileError);
+            }
+            return Ok(result.Item1);
+        }
+        [HttpGet]
+        [Route("menu")]
+        public async Task<IActionResult> GetMenu()
+        {
+            var data =  functionServices.GetAsTreeView().ToResponse();
+            return Ok(data);
+        }
     }
 }

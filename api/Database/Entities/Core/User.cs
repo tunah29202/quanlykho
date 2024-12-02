@@ -16,6 +16,8 @@ namespace Database.Entities
         public string? verification_code { get; set; }
         public List<LogAction>? log_actions { get; set; }
         public UserRole user_role { get; set; }
+        public Guid? customer_id { get; set; }
+        public Customer? customer { get; set; }
         public virtual ICollection<UserWarehouse>? user_warehouses { get; set; }
 
         public User()

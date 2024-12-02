@@ -13,7 +13,9 @@ namespace Database.Entities
         public Guid? customer_id { get; set; }
         public Customer? customer { get; set; }
         public Guid? invoice_id { get; set; }
+        [JsonIgnore]
         public Invoice? invoice { get; set; }
+        [JsonIgnore]
         public virtual ICollection<OrderDetail>? order_details { get; set; }
 
         public Order()

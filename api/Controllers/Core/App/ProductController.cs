@@ -37,6 +37,13 @@ namespace Controllers.Core
             var data = await productServices.GetAll(request);
             return Ok(data);
         }
+        [HttpGet]
+        [Route("getProductInventory")]
+        public async Task<IActionResult> GetProductInventory([FromBody] ProductPagedRequest request)
+        {
+            var data = await productServices.GetAll(request);
+            return Ok(data);
+        }
 
         [HttpGet]
         [Route("{id}")]
@@ -97,8 +104,22 @@ namespace Controllers.Core
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
             }
         }
+        [HttpPost]
+        [Route("import-product")]
+        public async Task<IActionResult> ImportExcel([FromForm] ProductImportRequest request)
+        {
+            if(request.file == null || request.file.Length == 0)
+                return BadRequest(new { code = ResponseCode.Invalid, message = ls.Get(Modules.Core, Screen.Product, MessageKey.FILE_NOT_NULL) });
+            var result = await productServices.ImportExcel(request);
+            if (result.Item2 != null)
+            {
+                var fileError = $"insert_product_error_{DateTimeExtention.ToDateTimeStampString(DateTime.Now)}.xlsx";
+                return File(result.Item2.ToArray(), "application/octetstream", fileError);
+            }
+            return Ok(result.Item1);
+        }
         [HttpGet]
-        [Route("export-excel")]
+        [Route("export-product")]
         public async Task<IActionResult> ExportExcel([FromQuery] ProductPagedRequest request)
         {
             var fileName = $"Product_{DateTimeExtention.ToDateTimeStampString(DateTime.Now)}.xlsx";

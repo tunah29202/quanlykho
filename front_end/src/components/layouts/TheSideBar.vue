@@ -5,9 +5,9 @@
                 <vc-col :span="6">
                     <img src="@/assets/images/logo.jpg" style="cursor: pointer;" width="40" height="40" />
                 </vc-col>
-                <vc-col :span="18">
-                    <el-dropdown>
-                        <span class="el-dropdown-link, ml-2" style="color: white; cursor: pointer;">
+                <vc-col :span="18" style="display: grid;">
+                    <el-dropdown @command="handleDropdown">
+                        <span class="el-dropdown-link" style="color: white; cursor: pointer;">
                             Chọn kho
                             <el-icon class="el-icon--right">
                                 <arrow-down />
@@ -16,13 +16,14 @@
                         <template #dropdown>
                             <el-scrollbar max-height="400px">
                                 <el-dropdown-menu>
-                                    <el-dropdown-item v-for="item in dataGridAll" :key="item.code" :comman="item">
+                                    <el-dropdown-item v-for="item in dataGrid" :key="item.code" :command="item">
                                         {{item.name}}
                                     </el-dropdown-item>
                                 </el-dropdown-menu>
                             </el-scrollbar>
                         </template>
                     </el-dropdown>
+                    {{ selectedDropdownValue }}
                 </vc-col>
             </vc-row>
             <hr />
@@ -31,18 +32,61 @@
     </el-scrollbar>
 </template>
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { onMounted, ref, toRef } from "vue";
-import { useRoute, useRouter } from "vue-router";
+    import { storeToRefs } from "pinia";
+    import { onMounted, ref, toRef } from "vue";
+    import { useRoute, useRouter } from "vue-router";
+    import { useWarehouseStore } from "@app/stores/app/warehouse.store";
+    import { useProductStore } from "@app/stores/app/product.store";
+    import { useCartonStore } from "@app/stores/app/carton.store";
+    import { useInvoiceStore } from "@app/stores/app/invoice.store";
+
+    const storeProduct = useProductStore();
+    storeToRefs(storeProduct);
+    const storeCarton = useCartonStore();
+    storeToRefs(storeCarton);
+    const storeInvoice = useInvoiceStore();
+    storeToRefs(storeInvoice);
+    
+    const storeWarehouse = useWarehouseStore();
+    const {dataGrid} = storeToRefs(storeWarehouse);
+
+    const selectedDropdownValue = ref<any>(null);
+    onMounted(async()=>{
+        await storeWarehouse.getList();
+        const warehouseSelected = localStorage.getItem('warehouse_selected');
+        if(warehouseSelected === null){
+            if(dataGrid.value.length > 0){
+                localStorage.setItem('warehouse_selected', dataGrid.value[0])
+                handleDropdown(dataGrid.value[0])
+            }
+        }
+        else{
+            handleDropdown(JSON.parse(warehouseSelected));
+        }
+    })
+    const handleDropdown = async (item:any) =>{
+        await storeWarehouse.setWarehouseSelected(item);
+        selectedDropdownValue.value = item.name;
+        await storeProduct.setWarehouseId(item.id);
+        await storeCarton.setWarehouseId(item.id);
+        await storeInvoice.setWarehouseId(item.id);
+        if(currentRoute.path =='/'){
+            await storeProduct.getList();
+            await storeInvoice.getList();
+        }
+        else if(currentRoute.path =='/product'){
+            await storeProduct.getList();
+        }
+        else if(currentRoute.path =='/carton'){
+            await storeCarton.getList();
+        }
+        else if(currentRoute.path =='/invoice'){
+            await storeInvoice.getList();
+        }
+    }
 
     const currentRoute = useRoute();
     const router = useRouter();
-    const dataGridAll = ref([
-        { code: "W1", name: "Warehouse 1" },
-        { code: "W2", name: "Warehouse 2" },
-        { code: "W3", name: "Warehouse 3" },
-        { code: "W4", name: "Warehouse 4" },
-    ]);
 </script>
 <style lang="scss">
     @import "@/assets/styles/commons/sidebar";

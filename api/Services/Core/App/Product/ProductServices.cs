@@ -31,27 +31,50 @@ namespace Services.Core.Services
 
         public async Task<PagedList<ProductResponse>> GetAll(ProductPagedRequest request)
         {
-            PagedList<Product> Products;
             if(request.get_all)
             {
-                Products = productRepository
+                PagedList<Product>  Products = productRepository
                             .GetQuery()
                             .ExcludeSoftDeleted()
                             .Include(x => x.category)
                             .SortBy(request.sort ?? "updated_at.desc")
                             .ToAllPageList();
+                var dataMapping = _mapper.Map<PagedList<ProductResponse>>(Products);
+                return dataMapping;
             }
             else
             {
-                Products = await productRepository.GetQuery()
+                List<Guid> categoryIds = new();
+                if(!string.IsNullOrEmpty(request.category_name))
+                {
+                    categoryIds = categoryRepository
+                                    .GetQuery()
                                     .ExcludeSoftDeleted()
-                                    .Where(x => !string.IsNullOrEmpty(request.search) ? x.name.ToLower().Contains(request.search.ToLower()) : true)
+                                    .AsEnumerable()
+                                    .Where(x => x.name.ToLower().Contains(request.category_name.ToLower()))
+                                    .Select(x => x.id)
+                                    .ToList();
+                }
+                var query = productRepository.GetQuery()
+                                             .ExcludeSoftDeleted()
+                                             .Where(x => x.warehouse_id == request.warehouse_id);
+                if (!string.IsNullOrEmpty(request.search))
+                {
+                    query = query.Where(x => ((!string.IsNullOrEmpty(x.name) && x.name.ToLower().Contains(request.search.ToLower())) ||
+                                        (!string.IsNullOrEmpty(x.code) && x.code.ToLower().Contains(request.search.ToLower()))));
+                }
+                if (!string.IsNullOrEmpty(request.category_name))
+                {
+                    query = query.Where(x => (x.category_id != null && categoryIds.Contains((Guid)x.category_id)));
+                }
+                var products = await query
                                     .Include(x => x.category)
                                     .SortBy(request.sort ?? "updated_at.desc")
                                     .ToPagedListAsync(request.page, request.size);
+
+                var dataMapping = _mapper.Map<PagedList<ProductResponse>>(products);
+                return dataMapping;
             }
-            var dataMapping = _mapper.Map<PagedList<ProductResponse>>(Products);
-            return dataMapping;
         }
 
         public async Task<ProductResponse> GetById(Guid id)
@@ -171,7 +194,7 @@ namespace Services.Core.Services
             {
                 Directory.CreateDirectory(directory);
             };
-            const int totalCol = 13;
+            const int totalCol = 9;
             (List<ProductExportRequest> lstProduct, List<string> messages) = await ExcelImport.getDataFromExcel<ProductExportRequest>(request.file, totalCol, directory);
             Dictionary<int, List<string>> lstErrors = new Dictionary<int, List<string>>();
             ProductExportRequestValidator validator = new ProductExportRequestValidator();
@@ -231,7 +254,7 @@ namespace Services.Core.Services
         public async Task<int> CreateNewProduct(ProductExportRequest request)
         {
             var Product = _mapper.Map<Product>(request);
-            await productRepository.AddAsync(Product);
+                await productRepository.AddAsync(Product);
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
         }

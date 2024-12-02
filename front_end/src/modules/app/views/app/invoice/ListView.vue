@@ -1,12 +1,12 @@
 ﻿<template>
-    <div class="vc-page page-invoicee">
+    <div class="vc-page page-invoice">
         <vc-card>
             <h1 class="pb-4" style="border-bottom: 1px solid #cdcdcd">
-                {{ tl("Common", "manage_text", [tl("invoicee", "invoicee_text")]) }}
+                {{ tl("Common", "manage_text", [tl("Invoice", "invoice_text")]) }}
             </h1>
             <vc-row :gutter="12" class="mt-4">
                 <vc-col :span="8">
-                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('invoicee', 'invoicee_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
+                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('Invoice', 'invoice_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
                 </vc-col>
                 <vc-col :span="8">
                     <el-button type="primary" @click="onSearch" class="">
@@ -31,7 +31,7 @@
                               :loading="loading" @pageChanged="onPageChanged">
                         <template #action="{data}">
                             <div class="d-flex flex-center">
-                                <vc-button type="warning" size="small" class="btn-acttion" @click="onView(data)" :icon="'View'">
+                                <vc-button type="warning" size="small" class="btn-acttion" @click="onExport(data)" :icon="'View'">
                                 </vc-button>
                                 <vc-button type="primary" size="small" class="btn-acttion" @click="onEdit(data)" :icon="'Edit'">
                                 </vc-button>
@@ -51,11 +51,14 @@
     import { storeToRefs } from 'pinia'
     import { onMounted, ref } from 'vue'
     import tl from '@/utils/locallize'
-    import { colConfig, tableConfig } from '@/commons/config/app/invoicee.config'
-    import { useInvoiceStore } from '@app/stores/app/invoicee.store'
+    import { colConfig, tableConfig } from '@/commons/config/app/invoice.config'
+    import { useInvoiceStore } from '@app/stores/app/invoice.store'
     import { POPUP_TYPE } from '@/commons/const'
     import { Search } from '@element-plus/icons-vue'
     import DetailModal from './DetailModal.vue'
+    import { useRouter } from 'vue-router'
+    
+    const router = useRouter();
 
     const store = useInvoiceStore();
     const { dataGrid, pageConfig, search, loading } = storeToRefs(store);
@@ -69,6 +72,7 @@
 
     const onSearch = async () => {
         await store.getList()
+        console.log(dataGrid)
     }
 
     const onPageChanged = async (page: any) => {
@@ -77,27 +81,29 @@
     };
     const onAddNew = () => {
         popupType.value = POPUP_TYPE.CREATE
-        detailRef.value.open(tl("Common", "title_modal_add", [tl("invoicee", "invoicee_text")]), null, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_add", [tl("Invoice", "invoice_text")]), null, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
     const onEdit = (item: any) => {
         popupType.value = POPUP_TYPE.EDIT;
-        detailRef.value.open(tl("Common", "title_modal_edit", [tl("invoicee", "invoicee_text")]), item.id, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_edit", [tl("Invoice", "invoice_text")]), item.id, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
-    const onView = (item: any) => {
-        popupType.value = POPUP_TYPE.VIEW;
-        detailRef.value.open(tl("Common", "title_modal_detail", [tl("invoicee", "invoicee_text")]), item.id)
+    const onExport = (item: any) => {
+        console.log(item)
+        router.push({
+            name: 'ViewInvoice', params:{id: item.id}
+        })
     };
 
     const onDeleteItem = (item: any) => {
         confirmDialog.value.confirm(
             tl("Common", "title_modal_delete"),
-            tl("Common", "comfirm_delete", [tl("invoicee", "invoicee_text")]),
+            tl("Common", "comfirm_delete", [tl("Invoice", "invoice_text")]),
             async (res: any) => {
                 if (res) {
                     await store.delete(item);

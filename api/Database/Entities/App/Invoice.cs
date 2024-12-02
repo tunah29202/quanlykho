@@ -38,6 +38,7 @@ namespace Database.Entities
         public Guid warehouse_id { get; set; }
         public Warehouse warehouse { get; set; }
         public Guid? order_id { get; set; }
+        [JsonIgnore]
         public Order order { get; set; }
 
 

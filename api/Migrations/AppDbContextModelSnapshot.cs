@@ -320,8 +320,8 @@ namespace api.Migrations
 
                     b.Property<string>("code")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<string>("company_name")
                         .IsRequired()
@@ -335,9 +335,6 @@ namespace api.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("created_by")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("customer_id")
                         .HasColumnType("uuid");
 
                     b.Property<bool>("del_flg")
@@ -364,12 +361,10 @@ namespace api.Migrations
                     b.Property<Guid?>("updated_by")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("userid")
+                    b.Property<Guid?>("user_id")
                         .HasColumnType("uuid");
 
                     b.HasKey("id");
-
-                    b.HasIndex("userid");
 
                     b.ToTable("a_customer", "public");
                 });
@@ -382,8 +377,8 @@ namespace api.Migrations
 
                     b.Property<string>("code")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp without time zone");
@@ -404,8 +399,8 @@ namespace api.Migrations
                         .HasColumnType("character varying(250)");
 
                     b.Property<string>("parent_cd")
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<DateTime?>("updated_at")
                         .HasColumnType("timestamp without time zone");
@@ -774,13 +769,13 @@ namespace api.Migrations
 
                     b.Property<string>("function_cd")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<string>("role_cd")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<DateTime?>("updated_at")
                         .HasColumnType("timestamp without time zone");
@@ -920,8 +915,8 @@ namespace api.Migrations
 
                     b.Property<string>("code")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp without time zone");
@@ -977,8 +972,8 @@ namespace api.Migrations
                         .HasColumnType("character varying(250)");
 
                     b.Property<string>("fax")
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -1008,13 +1003,16 @@ namespace api.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("code")
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("created_by")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("customer_id")
                         .HasColumnType("uuid");
 
                     b.Property<bool>("del_flg")
@@ -1040,8 +1038,8 @@ namespace api.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("phone")
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<string>("salt")
                         .HasMaxLength(100)
@@ -1063,6 +1061,9 @@ namespace api.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("customer_id")
+                        .IsUnique();
+
                     b.ToTable("a_user", "public");
                 });
 
@@ -1083,8 +1084,8 @@ namespace api.Migrations
 
                     b.Property<string>("role_cd")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<DateTime?>("updated_at")
                         .HasColumnType("timestamp without time zone");
@@ -1154,8 +1155,8 @@ namespace api.Migrations
 
                     b.Property<string>("code")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp without time zone");
@@ -1256,15 +1257,6 @@ namespace api.Migrations
                     b.Navigation("carton");
 
                     b.Navigation("product");
-                });
-
-            modelBuilder.Entity("Database.Entities.Customer", b =>
-                {
-                    b.HasOne("Database.Entities.User", "user")
-                        .WithMany()
-                        .HasForeignKey("userid");
-
-                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("Database.Entities.Function", b =>
@@ -1418,6 +1410,16 @@ namespace api.Migrations
                     b.Navigation("warehouse");
                 });
 
+            modelBuilder.Entity("Database.Entities.User", b =>
+                {
+                    b.HasOne("Database.Entities.Customer", "customer")
+                        .WithOne("user")
+                        .HasForeignKey("Database.Entities.User", "customer_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("customer");
+                });
+
             modelBuilder.Entity("Database.Entities.UserRole", b =>
                 {
                     b.HasOne("Database.Entities.Role", "role")
@@ -1496,6 +1498,8 @@ namespace api.Migrations
                     b.Navigation("Orders");
 
                     b.Navigation("cartons");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("Database.Entities.Function", b =>

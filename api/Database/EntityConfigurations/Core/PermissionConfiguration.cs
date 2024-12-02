@@ -10,8 +10,8 @@ namespace Database.EntityConfigurations
         {
             builder.ToTable("a_permission", "public");
 
-            builder.Property(t => t.role_cd).HasMaxLength(15).IsRequired();
-            builder.Property(t => t.function_cd).HasMaxLength(15).IsRequired();
+            builder.Property(t => t.role_cd).HasMaxLength(30).IsRequired();
+            builder.Property(t => t.function_cd).HasMaxLength(30).IsRequired();
 
             builder
             .HasOne(x => x.role)

@@ -49,7 +49,7 @@ namespace Helpers.Excel
         {
             DrwS.Picture? picture;
             WorkbookPart? workbookPart = doc.WorkbookPart;
-            Sheet? sheet = workbookPart?.Workbook?.GetFirstChild<Sheet>()?.Elements<Sheet>().FirstOrDefault(x => x.Name == sheetName);
+            Sheet? sheet = workbookPart?.Workbook?.GetFirstChild<Sheets>()?.Elements<Sheet>().FirstOrDefault(x => x.Name == sheetName);
             WorksheetPart? worksheetPart = (WorksheetPart?)workbookPart?.GetPartById(sheet.Id);
             TwoCellAnchor? twoCellHodingPicture = worksheetPart?.DrawingsPart?.WorksheetDrawing.OfType<TwoCellAnchor>()
                 .Where(c => c.FromMarker?.RowId?.Text == row && c.FromMarker?.ColumnId?.Text == col).FirstOrDefault();

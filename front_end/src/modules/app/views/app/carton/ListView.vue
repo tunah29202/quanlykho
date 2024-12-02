@@ -2,11 +2,11 @@
     <div class="vc-page page-carton">
         <vc-card>
             <h1 class="pb-4" style="border-bottom: 1px solid #cdcdcd">
-                {{ tl("Common", "manage_text", [tl("carton", "carton_text")]) }}
+                {{ tl("Common", "manage_text", [tl("Carton", "carton_text")]) }}
             </h1>
             <vc-row :gutter="12" class="mt-4">
                 <vc-col :span="8">
-                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('carton', 'carton_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
+                    <el-input v-model="search" :placeholder="tl('Common', 'input_search_holder', [tl('Carton', 'carton_text')])" :prefix-icon="Search" @keyup.enter="onSearch" />
                 </vc-col>
                 <vc-col :span="8">
                     <el-button type="primary" @click="onSearch" class="">
@@ -29,10 +29,19 @@
                 <vc-col :span="24">
                     <vc-table :datas="dataGrid" :tableConfig="tableConfig" :colConfigs="colConfig" :page="pageConfig"
                               :loading="loading" @pageChanged="onPageChanged">
+                        <template #detail="scope">
+                            <el-table :data="scope.data" border>
+                                <el-table-column label="#" width="50" type="index" align="center" header-align="center"/>
+                                <el-table-column :label='tl("Product", "code_text")' prop="product.code"/>
+                                <el-table-column :label='tl("Category", "name_text")' prop="product.category.name"/>
+                                <el-table-column :label='tl("Product", "name_text")' prop="product.name"/>
+                                <el-table-column :label='tl("Product", "quantity_text")' prop="quantity"/>
+                                <el-table-column :label='tl("Product", "price_unit_text")' prop="product.price_unit"/>
+                                <el-table-column :label='tl("Carton", "unit_text")' prop="unit"/>
+                            </el-table>
+                        </template>      
                         <template #action="{data}">
                             <div class="d-flex flex-center">
-                                <vc-button type="warning" size="small" class="btn-acttion" @click="onView(data)" :icon="'View'">
-                                </vc-button>
                                 <vc-button type="primary" size="small" class="btn-acttion" @click="onEdit(data)" :icon="'Edit'">
                                 </vc-button>
                                 <vc-button type="danger" code="F00015" size="small" class="btn-acttion" @click="onDeleteItem(data)" :icon="'Delete'">
@@ -69,6 +78,7 @@
 
     const onSearch = async () => {
         await store.getList()
+        console.log(dataGrid)
     }
 
     const onPageChanged = async (page: any) => {
@@ -77,27 +87,27 @@
     };
     const onAddNew = () => {
         popupType.value = POPUP_TYPE.CREATE
-        detailRef.value.open(tl("Common", "title_modal_add", [tl("carton", "carton_text")]), null, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_add", [tl("Carton", "carton_text")]), null, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
     const onEdit = (item: any) => {
         popupType.value = POPUP_TYPE.EDIT;
-        detailRef.value.open(tl("Common", "title_modal_edit", [tl("carton", "carton_text")]), item.id, async (res: any) => {
+        detailRef.value.open(tl("Common", "title_modal_edit", [tl("Carton", "carton_text")]), item.id, async (res: any) => {
             if (res) await onSearch()
         })
     };
 
     const onView = (item: any) => {
         popupType.value = POPUP_TYPE.VIEW;
-        detailRef.value.open(tl("Common", "title_modal_detail", [tl("carton", "carton_text")]), item.id)
+        detailRef.value.open(tl("Common", "title_modal_detail", [tl("Carton", "carton_text")]), item.id)
     };
 
     const onDeleteItem = (item: any) => {
         confirmDialog.value.confirm(
             tl("Common", "title_modal_delete"),
-            tl("Common", "comfirm_delete", [tl("carton", "carton_text")]),
+            tl("Common", "comfirm_delete", [tl("Carton", "carton_text")]),
             async (res: any) => {
                 if (res) {
                     await store.delete(item);

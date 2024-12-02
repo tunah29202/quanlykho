@@ -1,11 +1,11 @@
 <template>
     <vc-modal ref="modal" :title="modalTitle" :type="props.type" @close="close">
         <template #content>
-            <el-descriptions style="padding: 12px 16px" :column="1" border v-if="type ==POPUP_TYPE.VIEW">
+            <el-descriptions style="padding: 12px 16px" :column="1" bcustomer v-if="type ==POPUP_TYPE.VIEW">
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("customer", "customer_code_text") }}
+                            {{  tl("Customer", "customer_code_text") }}
                         </div>
                     </template>
                     {{ customer.code ?? '-' }}
@@ -13,34 +13,58 @@
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("customer", "full_name_text") }}
+                            {{  tl("Customer", "name_text") }}
                         </div>
                     </template>
-                    {{ customer.full_name ?? '-' }}
+                    {{ customer.name ?? '-' }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("customer", "gender_text") }}
+                    {{ tl("Customer", "company_name_text") }}
                     </div>
                 </template>
-                {{ customer.gender }}
+                {{ customer.company_name }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("customer", "email_text") }}
+                    {{ tl("Customer", "company_type_text") }}
                     </div>
                 </template>
-                {{ customer.email }}
+                {{ customer.company_type }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("customer", "phone_text") }}
+                    {{ tl("Customer", "address_text") }}
                     </div>
                 </template>
-                {{ customer.phone ?? '-' }}
+                {{ customer.address ?? '-' }}
+                </el-descriptions-item>
+                <el-descriptions-item>
+                <template #label>
+                    <div class="cell-item">
+                    {{ tl("Customer", "tax_text") }}
+                    </div>
+                </template>
+                {{ customer.tax ?? '-' }}
+                </el-descriptions-item>
+                <el-descriptions-item>
+                <template #label>
+                    <div class="cell-item">
+                    {{ tl("Customer", "tel_text") }}
+                    </div>
+                </template>
+                {{ customer.tel ?? '-' }}
+                </el-descriptions-item>
+                <el-descriptions-item>
+                <template #label>
+                    <div class="cell-item">
+                    {{ tl("Customer", "email_text") }}
+                    </div>
+                </template>
+                {{ customer.email ?? '-' }}
                 </el-descriptions-item>
             </el-descriptions>
 
@@ -48,52 +72,55 @@
             require-asterisk-position="right" v-else>
                 <vc-row :gutter=20>
                     <vc-col>
-                        <vc-input-group prop="code" :label="tl('customer', 'customer_code_text')">
-                            <vc-input v-model="customer.code" :placeholder="tl('customer', 'customer_code_holder')"/>
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20">
-                    <vc-col :lg="12" :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="full_name" :label="tl('customer', 'full_name_text')">
-                            <vc-input v-model="customer.full_name" :placeholder="tl('customer', 'full_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                    <vc-col :lg=12 :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="gender" :label="tl('customer', 'gender_text')">
-                            <el-select v-model="customer.gender" :placeholder="tl('customer', 'gender_holder')">
-                                <el-option :label="tl('Common', 'gender_male')" :value="tl('Common', 'gender_male')" />
-                                <el-option :label="tl('Common', 'gender_female')" :value="tl('Common', 'gender_female')" />
-                                <el-option :label="tl('Common', 'gender_other')" :value="tl('Common', 'gender_other')" />
-                            </el-select>
+                        <vc-input-group prop="code" :label="tl('Customer', 'customer_code_text')">
+                            <vc-input v-model="customer.code" :placeholder="tl('Customer', 'customer_code_holder')"/>
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="customer_name" :label="tl('customer', 'customer_name_text')">
-                        <vc-input v-model="customer.customer_name" :placeholder="tl('customer', 'customer_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20" v-if="type == POPUP_TYPE.CREATE">
-                    <vc-col>
-                        <vc-input-group required prop="hashpass" :label="tl('customer', 'password_text')">
-                            <vc-input v-model="customer.hashpass" type="password" show-password minlength="6" :placeholder="tl('customer', 'password_holder')"/>
+                        <vc-input-group required prop="name" :label="tl('Customer', 'name_text')">
+                            <vc-input v-model="customer.name" :placeholder="tl('Customer', 'name_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="email" :label="tl('customer', 'email_text')">
-                        <vc-input v-model="customer.email" :placeholder="tl('customer', 'email_holder')" />
+                        <vc-input-group required prop="company_name" :label="tl('Customer', 'company_name_text')">
+                        <vc-input v-model="customer.company_name" :placeholder="tl('Customer', 'company_name_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group prop="phone" :label="tl('customer', 'phone_text')">
-                        <vc-input v-model="customer.phone" :placeholder="tl('customer', 'phone_holder')" />
+                        <vc-input-group required prop="company_type" :label="tl('Customer', 'company_type_text')">
+                        <vc-input v-model="customer.company_type" :placeholder="tl('Customer', 'company_type_holder')" />
+                        </vc-input-group>
+                    </vc-col>
+                </vc-row>
+                <vc-row :gutter="20">
+                    <vc-col>
+                        <vc-input-group prop="address" :label="tl('Customer', 'address_text')">
+                        <vc-input v-model="customer.address" :placeholder="tl('Customer', 'address_holder')" />
+                        </vc-input-group>
+                    </vc-col>
+                </vc-row>
+                <vc-row :gutter="20">
+                    <vc-col>
+                        <vc-input-group prop="tax" :label="tl('Customer', 'tax_text')">
+                        <vc-input v-model="customer.tax" :placeholder="tl('Customer', 'tax_holder')" />
+                        </vc-input-group>
+                    </vc-col>
+                </vc-row><vc-row :gutter="20">
+                    <vc-col>
+                        <vc-input-group prop="tel" :label="tl('Customer', 'tel_text')">
+                        <vc-input v-model="customer.tel" :placeholder="tl('Customer', 'tel_holder')" />
+                        </vc-input-group>
+                    </vc-col>
+                </vc-row><vc-row :gutter="20">
+                    <vc-col>
+                        <vc-input-group prop="email" :label="tl('Customer', 'email_text')">
+                        <vc-input v-model="customer.email" :placeholder="tl('Customer', 'email_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
@@ -114,31 +141,42 @@
     import { onBeforeMount, ref, reactive } from "vue";
     import validate from "@/utils/validate";
     import type { FormInstance } from "element-plus";
-    import customerService from "@app/services/core/customer.service";
+    import customerService from "@app/services/app/customer.service";
 
     const rules= reactive({
-        full_name: [
-            { label: tl("customer", "full_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('customer', 'full_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        code: [
+            { label: tl("Customer", "code_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Customer', 'code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
             ],
-        customer_name: [
-            { label: tl("customer", "customer_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('customer', 'customer_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        name: [
+            { label: tl("Customer", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Customer', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        hashpass: [
-            { label: tl("customer", "password_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('customer', 'password_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 250 },
-            { label: tl('customer', 'password_text'), validator: validate.validatePassword, trigger: ["change"] },
+        company_name: [
+            { label: tl("Customer", "company_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Customer', 'company_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        gender: [{ label: tl("customer", "gender_text"), required: true, validator: validate.required, trigger: ["change"] }],
+        company_type: [
+            { label: tl("Customer", "company_type_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Customer', 'company_type_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        ],
+        address: [
+            { label: tl("Customer", "address_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Customer', 'address_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        ],
+        tax: [
+            { label: tl("Customer", "tax_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Customer', 'tax_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        ],
+        tel: [
+            { label: tl("Customer", "tel_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Customer', 'tel_text'), validator: validate.phoneNumberRule, trigger: ["change"]},
+            { label: tl('Customer', 'tel_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        ],
         email: [
-            { label: tl("customer", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl("customer", "email_text"), validator: validate.emailRule, trigger: ["change"] },
-            { label: tl('customer', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
-        ],
-        phone: [
-            { label: tl("customer", "phone_text"), validator: validate.phoneNumberRule, trigger: ["change"] },
-            { label: tl('customer', 'phone_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+            { label: tl("Customer", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Customer', 'email_text'), validator: validate.emailNumberRule, trigger: ["change"]},
+            { label: tl('Customer', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
     });
     const props = defineProps<{
@@ -154,14 +192,15 @@
     let callback = (value: any) => { return value };
 
     const customer = reactive({
-    id: '',
-    customer_name: null,
-    hashpass: null,
-    full_name: null,
-    email: null,
-    phone: null,
-    gender: '',
-    code: '',
+        id: '',
+        code: '',
+        name: '',
+        company_name: '',
+        company_type: '',
+        address: '',
+        tax: null,
+        tel: null,
+        email: null,
     });
 
     onBeforeMount(async () => {
@@ -196,20 +235,21 @@
     const open = async (title: any, item: any, _callback: any) => {
         let customerInfo = {
             id: '',
-            customer_name: null,
-            hashpass: null,
-            full_name: null,
-            email: null,
-            phone: null,
             code: null,
-            gender: tl('Common', 'gender_male'),
+            name: null,
+            company_name: null,
+            company_type: null,
+            address: null,
+            tax: null,
+            tel: null,
+            email: null,
         };
         modalTitle.value = title;
         if (item)
             customerInfo = (await customerService.detail(item))
-        console.log(customerInfo)
         callback = _callback;
         Object.assign(customer, customerInfo)
+        console.log(customer)
         modal.value.open();
     };
 

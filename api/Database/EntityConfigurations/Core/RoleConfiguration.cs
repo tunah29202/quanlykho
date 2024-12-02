@@ -10,7 +10,7 @@ namespace Database.EntityConfigurations
         {
             builder.ToTable("a_role", "public");
 
-            builder.Property(t => t.code).HasMaxLength(15).IsRequired();
+            builder.Property(t => t.code).HasMaxLength(30).IsRequired();
             builder.Property(t => t.name).HasMaxLength(160).IsRequired();
             builder.Property(t => t.description).HasMaxLength(240);
         }

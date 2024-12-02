@@ -9,6 +9,7 @@ export const useInvoiceStore = defineStore('useInvoiceStore', {
         search: <any>[],
         status: true,
         pageConfig: <any>[],
+        warehouse_id: <any>[],
         loading: false,
     }),
     getters: {
@@ -38,6 +39,10 @@ export const useInvoiceStore = defineStore('useInvoiceStore', {
 
         async delete(data: any) {
             await invoiceService.delete(data.id)
+        },
+
+        setWarehouseId(item: any){
+            this.warehouse_id = item;
         },
 
         async getByKey(key: any) {

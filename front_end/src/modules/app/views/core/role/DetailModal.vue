@@ -1,11 +1,11 @@
 <template>
     <vc-modal ref="modal" :title="modalTitle" :type="props.type" @close="close">
         <template #content>
-            <el-descriptions style="padding: 12px 16px" :column="1" border v-if="type ==POPUP_TYPE.VIEW">
+            <el-descriptions style="padding: 12px 16px" :column="1" brole v-if="type ==POPUP_TYPE.VIEW">
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("role", "role_code_text") }}
+                            {{  tl("Role", "role_code_text") }}
                         </div>
                     </template>
                     {{ role.code ?? '-' }}
@@ -13,34 +13,34 @@
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("role", "full_name_text") }}
+                            {{  tl("Role", "name_text") }}
                         </div>
                     </template>
-                    {{ role.full_name ?? '-' }}
+                    {{ role.name ?? '-' }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("role", "gender_text") }}
+                    {{ tl("Role", "url_text") }}
                     </div>
                 </template>
-                {{ role.gender }}
+                {{ role.url }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("role", "email_text") }}
+                    {{ tl("Role", "method_text") }}
                     </div>
                 </template>
-                {{ role.email }}
+                {{ role.method }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("role", "phone_text") }}
+                    {{ tl("Role", "parent_cd_text") }}
                     </div>
                 </template>
-                {{ role.phone ?? '-' }}
+                {{ role.parent_cd ?? '-' }}
                 </el-descriptions-item>
             </el-descriptions>
 
@@ -48,52 +48,36 @@
             require-asterisk-position="right" v-else>
                 <vc-row :gutter=20>
                     <vc-col>
-                        <vc-input-group prop="code" :label="tl('role', 'role_code_text')">
-                            <vc-input v-model="role.code" :placeholder="tl('role', 'role_code_holder')"/>
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20">
-                    <vc-col :lg="12" :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="full_name" :label="tl('role', 'full_name_text')">
-                            <vc-input v-model="role.full_name" :placeholder="tl('role', 'full_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                    <vc-col :lg=12 :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="gender" :label="tl('role', 'gender_text')">
-                            <el-select v-model="role.gender" :placeholder="tl('role', 'gender_holder')">
-                                <el-option :label="tl('Common', 'gender_male')" :value="tl('Common', 'gender_male')" />
-                                <el-option :label="tl('Common', 'gender_female')" :value="tl('Common', 'gender_female')" />
-                                <el-option :label="tl('Common', 'gender_other')" :value="tl('Common', 'gender_other')" />
-                            </el-select>
+                        <vc-input-group prop="code" :label="tl('Role', 'role_code_text')">
+                            <vc-input v-model="role.code" :placeholder="tl('Role', 'role_code_holder')"/>
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="role_name" :label="tl('role', 'role_name_text')">
-                        <vc-input v-model="role.role_name" :placeholder="tl('role', 'role_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20" v-if="type == POPUP_TYPE.CREATE">
-                    <vc-col>
-                        <vc-input-group required prop="hashpass" :label="tl('role', 'password_text')">
-                            <vc-input v-model="role.hashpass" type="password" show-password minlength="6" :placeholder="tl('role', 'password_holder')"/>
+                        <vc-input-group required prop="name" :label="tl('Role', 'name_text')">
+                            <vc-input v-model="role.name" :placeholder="tl('Role', 'name_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="email" :label="tl('role', 'email_text')">
-                        <vc-input v-model="role.email" :placeholder="tl('role', 'email_holder')" />
+                        <vc-input-group required prop="url" :label="tl('Role', 'url_text')">
+                        <vc-input v-model="role.url" :placeholder="tl('Role', 'url_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group prop="phone" :label="tl('role', 'phone_text')">
-                        <vc-input v-model="role.phone" :placeholder="tl('role', 'phone_holder')" />
+                        <vc-input-group required prop="method" :label="tl('Role', 'method_text')">
+                        <vc-input v-model="role.method" :placeholder="tl('Role', 'method_holder')" />
+                        </vc-input-group>
+                    </vc-col>
+                </vc-row>
+                <vc-row :gutter="20">
+                    <vc-col>
+                        <vc-input-group prop="parent_cd" :label="tl('Role', 'parent_cd_text')">
+                        <vc-input v-model="role.parent_cd" :placeholder="tl('Role', 'parent_cd_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
@@ -117,28 +101,21 @@
     import roleService from "@app/services/core/role.service";
 
     const rules= reactive({
-        full_name: [
-            { label: tl("role", "full_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('role', 'full_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        code: [
+            { label: tl("Role", "code_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Role', 'code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
             ],
-        role_name: [
-            { label: tl("role", "role_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('role', 'role_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        name: [
+            { label: tl("Role", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Role', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        hashpass: [
-            { label: tl("role", "password_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('role', 'password_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 250 },
-            { label: tl('role', 'password_text'), validator: validate.validatePassword, trigger: ["change"] },
+        url: [{ label: tl("Role", "url_text"), required: true, validator: validate.required, trigger: ["blur"] }],
+        method: [
+            { label: tl("Role", "method_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Role', 'method_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        gender: [{ label: tl("role", "gender_text"), required: true, validator: validate.required, trigger: ["change"] }],
-        email: [
-            { label: tl("role", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl("role", "email_text"), validator: validate.emailRule, trigger: ["change"] },
-            { label: tl('role', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
-        ],
-        phone: [
-            { label: tl("role", "phone_text"), validator: validate.phoneNumberRule, trigger: ["change"] },
-            { label: tl('role', 'phone_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        parent_cd: [
+            { label: tl('Role', 'parent_cd_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
         ],
     });
     const props = defineProps<{
@@ -154,14 +131,12 @@
     let callback = (value: any) => { return value };
 
     const role = reactive({
-    id: '',
-    role_name: null,
-    hashpass: null,
-    full_name: null,
-    email: null,
-    phone: null,
-    gender: '',
-    code: '',
+        id: '',
+        code: '',
+        name: '',
+        url: '',
+        method: '',
+        parent_cd: '',
     });
 
     onBeforeMount(async () => {
@@ -196,20 +171,18 @@
     const open = async (title: any, item: any, _callback: any) => {
         let roleInfo = {
             id: '',
-            role_name: null,
-            hashpass: null,
-            full_name: null,
-            email: null,
-            phone: null,
             code: null,
-            gender: tl('Common', 'gender_male'),
+            name: null,
+            url: null,
+            method: null,
+            parent_cd: null,
         };
         modalTitle.value = title;
         if (item)
             roleInfo = (await roleService.detail(item))
-        console.log(roleInfo)
         callback = _callback;
         Object.assign(role, roleInfo)
+        console.log(role)
         modal.value.open();
     };
 

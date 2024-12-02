@@ -5,7 +5,7 @@ import type {
     AuthChangePassword,
 } from '@/interfaces/auth.interface'
 import type { APIResponse } from '@/interfaces/response.interface'
-import { API } from '@/commons/config/auth.config'
+import { API } from '@/commons/config/core/auth.config'
 import { COOKIE_KEY } from '@/commons/const'
 import { useToast } from '@/components/commons/alert/vc-toast.vue'
 

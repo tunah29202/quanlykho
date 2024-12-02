@@ -8,7 +8,7 @@ export const ROUTER_WAREHOUSE = [
   {
     path: '/warehouse',
     name: 'WarehouseList',
-    component: () => import('@app/views/warehouse/ListView.vue'),
+    component: () => import('@app/views/app/warehouse/ListView.vue'),
   },
 ]
 

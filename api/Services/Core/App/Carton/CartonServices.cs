@@ -37,6 +37,8 @@ namespace Services.Core.Services
                                     .ExcludeSoftDeleted()
                                     .Where(x => !string.IsNullOrEmpty(request.search) ? x.carton_no.ToLower().Contains(request.search.ToLower()) : true)
                                     .SortBy(request.sort ?? "updated_at.desc")
+                                    .Include(x => x.carton_details.Where(p => !p.del_flg))
+                                    .ThenInclude(x => x.product).ThenInclude(pr => pr.category)
                                     .ToPagedListAsync(request.page, request.size);
             }
             var dataMapping = _mapper.Map<PagedList<CartonResponse>>(Cartons);
@@ -49,7 +51,9 @@ namespace Services.Core.Services
                                     .GetQuery()
                                     .ExcludeSoftDeleted()
                                     .FilterById(id)
-                                    .Include(x => x.carton_details)
+                                    .Include(x => x.carton_details.Where(y => !y.del_flg))
+                                        .ThenInclude(cd => cd.product)
+                                            .ThenInclude(p => p.category)
                                     .FirstOrDefaultAsync();
             var data = _mapper.Map<CartonResponse>(Carton);
             return data;

@@ -12,7 +12,8 @@ const productService = {
     },
 
     async detail(id: string): Promise<APIResponse<any>> {
-        return await apiClient.get(API.DETAIL(id))
+        const res = await apiClient.get(API.DETAIL(id));
+        return res.data;    
     },
 
     async export(params?: unknown) {

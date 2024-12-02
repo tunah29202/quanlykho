@@ -1,11 +1,11 @@
 <template>
     <vc-modal ref="modal" :title="modalTitle" :type="props.type" @close="close">
         <template #content>
-            <el-descriptions style="padding: 12px 16px" :column="1" border v-if="type ==POPUP_TYPE.VIEW">
+            <el-descriptions style="padding: 12px 16px" :column="1" binvoice v-if="type ==POPUP_TYPE.VIEW">
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("invoice", "invoice_code_text") }}
+                            {{  tl("Invoice", "invoice_code_text") }}
                         </div>
                     </template>
                     {{ invoice.code ?? '-' }}
@@ -13,34 +13,34 @@
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("invoice", "full_name_text") }}
+                            {{  tl("Invoice", "name_text") }}
                         </div>
                     </template>
-                    {{ invoice.full_name ?? '-' }}
+                    {{ invoice.name ?? '-' }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("invoice", "gender_text") }}
+                    {{ tl("Invoice", "url_text") }}
                     </div>
                 </template>
-                {{ invoice.gender }}
+                {{ invoice.url }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("invoice", "email_text") }}
+                    {{ tl("Invoice", "method_text") }}
                     </div>
                 </template>
-                {{ invoice.email }}
+                {{ invoice.method }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("invoice", "phone_text") }}
+                    {{ tl("Invoice", "parent_cd_text") }}
                     </div>
                 </template>
-                {{ invoice.phone ?? '-' }}
+                {{ invoice.parent_cd ?? '-' }}
                 </el-descriptions-item>
             </el-descriptions>
 
@@ -48,52 +48,36 @@
             require-asterisk-position="right" v-else>
                 <vc-row :gutter=20>
                     <vc-col>
-                        <vc-input-group prop="code" :label="tl('invoice', 'invoice_code_text')">
-                            <vc-input v-model="invoice.code" :placeholder="tl('invoice', 'invoice_code_holder')"/>
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20">
-                    <vc-col :lg="12" :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="full_name" :label="tl('invoice', 'full_name_text')">
-                            <vc-input v-model="invoice.full_name" :placeholder="tl('invoice', 'full_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                    <vc-col :lg=12 :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="gender" :label="tl('invoice', 'gender_text')">
-                            <el-select v-model="invoice.gender" :placeholder="tl('invoice', 'gender_holder')">
-                                <el-option :label="tl('Common', 'gender_male')" :value="tl('Common', 'gender_male')" />
-                                <el-option :label="tl('Common', 'gender_female')" :value="tl('Common', 'gender_female')" />
-                                <el-option :label="tl('Common', 'gender_other')" :value="tl('Common', 'gender_other')" />
-                            </el-select>
+                        <vc-input-group prop="code" :label="tl('Invoice', 'invoice_code_text')">
+                            <vc-input v-model="invoice.code" :placeholder="tl('Invoice', 'invoice_code_holder')"/>
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="invoice_name" :label="tl('invoice', 'invoice_name_text')">
-                        <vc-input v-model="invoice.invoice_name" :placeholder="tl('invoice', 'invoice_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20" v-if="type == POPUP_TYPE.CREATE">
-                    <vc-col>
-                        <vc-input-group required prop="hashpass" :label="tl('invoice', 'password_text')">
-                            <vc-input v-model="invoice.hashpass" type="password" show-password minlength="6" :placeholder="tl('invoice', 'password_holder')"/>
+                        <vc-input-group required prop="name" :label="tl('Invoice', 'name_text')">
+                            <vc-input v-model="invoice.name" :placeholder="tl('Invoice', 'name_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="email" :label="tl('invoice', 'email_text')">
-                        <vc-input v-model="invoice.email" :placeholder="tl('invoice', 'email_holder')" />
+                        <vc-input-group required prop="url" :label="tl('Invoice', 'url_text')">
+                        <vc-input v-model="invoice.url" :placeholder="tl('Invoice', 'url_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group prop="phone" :label="tl('invoice', 'phone_text')">
-                        <vc-input v-model="invoice.phone" :placeholder="tl('invoice', 'phone_holder')" />
+                        <vc-input-group required prop="method" :label="tl('Invoice', 'method_text')">
+                        <vc-input v-model="invoice.method" :placeholder="tl('Invoice', 'method_holder')" />
+                        </vc-input-group>
+                    </vc-col>
+                </vc-row>
+                <vc-row :gutter="20">
+                    <vc-col>
+                        <vc-input-group prop="parent_cd" :label="tl('Invoice', 'parent_cd_text')">
+                        <vc-input v-model="invoice.parent_cd" :placeholder="tl('Invoice', 'parent_cd_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
@@ -114,31 +98,24 @@
     import { onBeforeMount, ref, reactive } from "vue";
     import validate from "@/utils/validate";
     import type { FormInstance } from "element-plus";
-    import invoiceService from "@app/services/core/invoice.service";
+    import invoiceService from "@app/services/app/invoice.service";
 
     const rules= reactive({
-        full_name: [
-            { label: tl("invoice", "full_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('invoice', 'full_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        code: [
+            { label: tl("Invoice", "code_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Invoice', 'code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
             ],
-        invoice_name: [
-            { label: tl("invoice", "invoice_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('invoice', 'invoice_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        name: [
+            { label: tl("Invoice", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Invoice', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        hashpass: [
-            { label: tl("invoice", "password_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('invoice', 'password_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 250 },
-            { label: tl('invoice', 'password_text'), validator: validate.validatePassword, trigger: ["change"] },
+        url: [{ label: tl("Invoice", "url_text"), required: true, validator: validate.required, trigger: ["blur"] }],
+        method: [
+            { label: tl("Invoice", "method_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Invoice', 'method_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        gender: [{ label: tl("invoice", "gender_text"), required: true, validator: validate.required, trigger: ["change"] }],
-        email: [
-            { label: tl("invoice", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl("invoice", "email_text"), validator: validate.emailRule, trigger: ["change"] },
-            { label: tl('invoice', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
-        ],
-        phone: [
-            { label: tl("invoice", "phone_text"), validator: validate.phoneNumberRule, trigger: ["change"] },
-            { label: tl('invoice', 'phone_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        parent_cd: [
+            { label: tl('Invoice', 'parent_cd_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
         ],
     });
     const props = defineProps<{
@@ -154,14 +131,12 @@
     let callback = (value: any) => { return value };
 
     const invoice = reactive({
-    id: '',
-    invoice_name: null,
-    hashpass: null,
-    full_name: null,
-    email: null,
-    phone: null,
-    gender: '',
-    code: '',
+        id: '',
+        code: '',
+        name: '',
+        url: '',
+        method: '',
+        parent_cd: '',
     });
 
     onBeforeMount(async () => {
@@ -196,20 +171,18 @@
     const open = async (title: any, item: any, _callback: any) => {
         let invoiceInfo = {
             id: '',
-            invoice_name: null,
-            hashpass: null,
-            full_name: null,
-            email: null,
-            phone: null,
             code: null,
-            gender: tl('Common', 'gender_male'),
+            name: null,
+            url: null,
+            method: null,
+            parent_cd: null,
         };
         modalTitle.value = title;
         if (item)
             invoiceInfo = (await invoiceService.detail(item))
-        console.log(invoiceInfo)
         callback = _callback;
         Object.assign(invoice, invoiceInfo)
+        console.log(invoice)
         modal.value.open();
     };
 

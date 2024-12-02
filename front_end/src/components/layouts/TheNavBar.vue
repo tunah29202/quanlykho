@@ -39,7 +39,7 @@
         UserFilled
     } from '@element-plus/icons-vue'
     import tl from '@/utils/locallize';
-    import { useAuthStore } from '@app/stores/auth.store';
+    import { useAuthStore } from '@app/stores/core/auth.store';
 
     const router = useRouter();
     const authStore = useAuthStore();

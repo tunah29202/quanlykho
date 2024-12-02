@@ -6,13 +6,16 @@ import fileService from '@/utils/file'
 
 const cartonService = {
     async getList(params?: unknown): Promise<APIResponse<any[]>> {
-        return await apiClient.get(API.LIST, {
+        const res = await apiClient.get(API.LIST, {
             params: params,
         })
+        console.log(res)
+        return res;
     },
 
     async detail(id: string): Promise<APIResponse<any>> {
-        return await apiClient.get(API.DETAIL(id))
+        const res = await apiClient.get(API.DETAIL(id));
+        return res.data;    
     },
 
     async export(params?: unknown) {

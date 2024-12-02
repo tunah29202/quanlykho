@@ -5,7 +5,7 @@
     {
         public partial class Customer : BaseEntity
         {
-            public string code { get; set; }
+            public string? code { get; set; }
             public string name { get; set; }
             public string company_name { get; set; }
             public string company_type { get; set; }
@@ -13,6 +13,9 @@
             public string? tax { get; set; }
             public string? tel { get; set; }
             public string? email { get; set; }
+            public Guid? user_id { get; set; }
+            public User? user { get; set; }
+            
             [JsonIgnore]
             public virtual ICollection<Carton>? cartons { get; set; }
             [JsonIgnore]            

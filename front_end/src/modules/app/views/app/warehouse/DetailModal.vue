@@ -1,11 +1,11 @@
 <template>
     <vc-modal ref="modal" :title="modalTitle" :type="props.type" @close="close">
         <template #content>
-            <el-descriptions style="padding: 12px 16px" :column="1" border v-if="type ==POPUP_TYPE.VIEW">
+            <el-descriptions style="padding: 12px 16px" :column="1" bwarehouse v-if="type ==POPUP_TYPE.VIEW">
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("warehouse", "warehouse_code_text") }}
+                            {{  tl("Warehouse", "warehouse_code_text") }}
                         </div>
                     </template>
                     {{ warehouse.code ?? '-' }}
@@ -13,34 +13,26 @@
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("warehouse", "full_name_text") }}
+                            {{  tl("Warehouse", "name_text") }}
                         </div>
                     </template>
-                    {{ warehouse.full_name ?? '-' }}
+                    {{ warehouse.name ?? '-' }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("warehouse", "gender_text") }}
+                    {{ tl("Warehouse", "address_text") }}
                     </div>
                 </template>
-                {{ warehouse.gender }}
+                {{ warehouse.address }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("warehouse", "email_text") }}
+                    {{ tl("Warehouse", "tel_text") }}
                     </div>
                 </template>
-                {{ warehouse.email }}
-                </el-descriptions-item>
-                <el-descriptions-item>
-                <template #label>
-                    <div class="cell-item">
-                    {{ tl("warehouse", "phone_text") }}
-                    </div>
-                </template>
-                {{ warehouse.phone ?? '-' }}
+                {{ warehouse.tel }}
                 </el-descriptions-item>
             </el-descriptions>
 
@@ -48,52 +40,29 @@
             require-asterisk-position="right" v-else>
                 <vc-row :gutter=20>
                     <vc-col>
-                        <vc-input-group prop="code" :label="tl('warehouse', 'warehouse_code_text')">
-                            <vc-input v-model="warehouse.code" :placeholder="tl('warehouse', 'warehouse_code_holder')"/>
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20">
-                    <vc-col :lg="12" :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="full_name" :label="tl('warehouse', 'full_name_text')">
-                            <vc-input v-model="warehouse.full_name" :placeholder="tl('warehouse', 'full_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                    <vc-col :lg=12 :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="gender" :label="tl('warehouse', 'gender_text')">
-                            <el-select v-model="warehouse.gender" :placeholder="tl('warehouse', 'gender_holder')">
-                                <el-option :label="tl('Common', 'gender_male')" :value="tl('Common', 'gender_male')" />
-                                <el-option :label="tl('Common', 'gender_female')" :value="tl('Common', 'gender_female')" />
-                                <el-option :label="tl('Common', 'gender_other')" :value="tl('Common', 'gender_other')" />
-                            </el-select>
+                        <vc-input-group prop="code" :label="tl('Warehouse', 'warehouse_code_text')">
+                            <vc-input v-model="warehouse.code" :placeholder="tl('Warehouse', 'warehouse_code_holder')"/>
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="warehouse_name" :label="tl('warehouse', 'warehouse_name_text')">
-                        <vc-input v-model="warehouse.warehouse_name" :placeholder="tl('warehouse', 'warehouse_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20" v-if="type == POPUP_TYPE.CREATE">
-                    <vc-col>
-                        <vc-input-group required prop="hashpass" :label="tl('warehouse', 'password_text')">
-                            <vc-input v-model="warehouse.hashpass" type="password" show-password minlength="6" :placeholder="tl('warehouse', 'password_holder')"/>
+                        <vc-input-group required prop="name" :label="tl('Warehouse', 'name_text')">
+                            <vc-input v-model="warehouse.name" :placeholder="tl('Warehouse', 'name_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="email" :label="tl('warehouse', 'email_text')">
-                        <vc-input v-model="warehouse.email" :placeholder="tl('warehouse', 'email_holder')" />
+                        <vc-input-group required prop="address" :label="tl('Warehouse', 'address_text')">
+                        <vc-input v-model="warehouse.address" :placeholder="tl('Warehouse', 'address_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group prop="phone" :label="tl('warehouse', 'phone_text')">
-                        <vc-input v-model="warehouse.phone" :placeholder="tl('warehouse', 'phone_holder')" />
+                        <vc-input-group required prop="tel" :label="tl('Warehouse', 'tel_text')">
+                        <vc-input v-model="warehouse.tel" :placeholder="tl('Warehouse', 'tel_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
@@ -114,31 +83,25 @@
     import { onBeforeMount, ref, reactive } from "vue";
     import validate from "@/utils/validate";
     import type { FormInstance } from "element-plus";
-    import warehouseService from "@app/services/core/warehouse.service";
+    import warehouseService from "@app/services/app/warehouse.service";
 
     const rules= reactive({
-        full_name: [
-            { label: tl("warehouse", "full_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('warehouse', 'full_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        code: [
+            { label: tl("Warehouse", "code_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Warehouse', 'code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
             ],
-        warehouse_name: [
-            { label: tl("warehouse", "warehouse_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('warehouse', 'warehouse_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        name: [
+            { label: tl("Warehouse", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Warehouse', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        hashpass: [
-            { label: tl("warehouse", "password_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('warehouse', 'password_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 250 },
-            { label: tl('warehouse', 'password_text'), validator: validate.validatePassword, trigger: ["change"] },
+        address: [
+            { label: tl("Warehouse", "address_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Warehouse', 'address_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        gender: [{ label: tl("warehouse", "gender_text"), required: true, validator: validate.required, trigger: ["change"] }],
-        email: [
-            { label: tl("warehouse", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl("warehouse", "email_text"), validator: validate.emailRule, trigger: ["change"] },
-            { label: tl('warehouse', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
-        ],
-        phone: [
-            { label: tl("warehouse", "phone_text"), validator: validate.phoneNumberRule, trigger: ["change"] },
-            { label: tl('warehouse', 'phone_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        tel: [
+            { label: tl("Warehouse", "tel_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Warehouse', 'tel_text'), validator: validate.phoneNumberRule, trigger: ["change"]},
+            { label: tl('Warehouse', 'tel_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
         ],
     });
     const props = defineProps<{
@@ -154,14 +117,11 @@
     let callback = (value: any) => { return value };
 
     const warehouse = reactive({
-    id: '',
-    warehouse_name: null,
-    hashpass: null,
-    full_name: null,
-    email: null,
-    phone: null,
-    gender: '',
-    code: '',
+        id: '',
+        code: '',
+        name: '',
+        address: '',
+        tel: '',
     });
 
     onBeforeMount(async () => {
@@ -196,20 +156,17 @@
     const open = async (title: any, item: any, _callback: any) => {
         let warehouseInfo = {
             id: '',
-            warehouse_name: null,
-            hashpass: null,
-            full_name: null,
-            email: null,
-            phone: null,
             code: null,
-            gender: tl('Common', 'gender_male'),
+            name: null,
+            address: null,
+            tel: null,
         };
         modalTitle.value = title;
         if (item)
             warehouseInfo = (await warehouseService.detail(item))
-        console.log(warehouseInfo)
         callback = _callback;
         Object.assign(warehouse, warehouseInfo)
+        console.log(warehouse)
         modal.value.open();
     };
 

@@ -8,7 +8,7 @@ export const ROUTER_CATEGORY = [
   {
     path: '/category',
     name: 'CategoryList',
-    component: () => import('@app/views/category/ListView.vue'),
+    component: () => import('@app/views/app/category/ListView.vue'),
   },
 ]
 

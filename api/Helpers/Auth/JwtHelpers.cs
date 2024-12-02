@@ -40,7 +40,6 @@ namespace Helpers.Auth
         {
             return new ClaimsIdentity(new[] {
                     new Claim(nameof(User.id), user.id.ToString()),
-                    new Claim(nameof(User.code), user.code.ToString()),
                     new Claim(nameof(User.full_name), user.full_name.ToString()),
                     new Claim(nameof(User.user_name), user.user_name.ToString()),
                 });

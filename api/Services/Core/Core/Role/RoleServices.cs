@@ -11,9 +11,11 @@ namespace Services.Core.Services
     public class RoleServices : BaseServices, IRoleServices
     {
         private readonly IRepository<Role> roleRepository;
+        private readonly IRepository<Permission> permissionRepository;
         public RoleServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper) 
         { 
             roleRepository = _unitOfWork.GetRepository<Role>();
+            permissionRepository = _unitOfWork.GetRepository<Permission>();
         }
 
         public async Task<PagedList<RoleResponse>> GetAll(PagedRequest request)
@@ -34,6 +36,10 @@ namespace Services.Core.Services
                                 .GetQuery()
                                 .ExcludeSoftDeleted()
                                 .FilterById(id)
+                                .Include(x => x.permissions.Where(y => y.del_flg == false))
+                                .ThenInclude(p => p.function)
+                                .ThenInclude(z => z.parent)
+                                .ThenInclude(z => z.children)
                                 .FirstOrDefaultAsync();
             var data = _mapper.Map<RoleResponse>(Role);
             return data;
@@ -43,6 +49,7 @@ namespace Services.Core.Services
         {
             var Role = _mapper.Map<Role>(request);
             await roleRepository.AddAsync(Role);
+            await ConfigPermissions(Role.code, request.permissions);
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
         }
@@ -61,6 +68,7 @@ namespace Services.Core.Services
             }
             _mapper.Map(request, Role);
             await roleRepository.UpdateAsync(Role);
+            await ConfigPermissions(Role.code, request.permissions);
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
         }
@@ -79,6 +87,39 @@ namespace Services.Core.Services
             await roleRepository.DeleteAsync(Role);
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
+        }
+        private async Task ConfigPermissions(string code, List<string> request)
+        {
+            var permissions = _unitOfWork.GetRepository<Function>()
+                                            .GetQuery()
+                                            .ExcludeSoftDeleted()
+                                            .Where(x => request.Contains(x.code))
+                                            .ToArray();
+            var permissions_codes = permissions.Select(y => y.code).ToArray();
+
+            var oldPermissions = permissionRepository.GetQuery().Where(p => p.role_cd == code).ToArray();
+            foreach(var item in oldPermissions)
+            {
+                if(permissions_codes.Contains(item.function_cd))
+                {
+                    item.del_flg = false;
+                    await permissionRepository.UpdateAsync(item);
+                }
+                else
+                {
+                    await permissionRepository.DeleteAsync(item);
+                }
+            } 
+            var newPermisssions = permissions.Where(x => !oldPermissions.Select(y => y.function_cd).ToArray().Contains(x.code)).ToArray();
+            foreach(var item in newPermisssions)
+            {
+                var newEntity = new Permission()
+                {
+                    role_cd = code,
+                    function_cd = item.code
+                };
+                await permissionRepository.AddAsync(newEntity);
+            }
         }
     }
 }

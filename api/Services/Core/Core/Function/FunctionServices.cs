@@ -5,15 +5,19 @@ using Services.Common.Repository;
 using Services.Core.Interfaces;
 using Database.Entities;
 using Common;
-using Helpers.Auth;
+using Helpers.Excel;
+using ValidationResult = FluentValidation.Results.ValidationResult;
 namespace Services.Core.Services
 {
     public class FunctionServices : BaseServices, IFunctionServices
     {
         private readonly IRepository<Function> functionRepository;
-        public FunctionServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper) 
+        private readonly IWebHostEnvironment _env;
+        private readonly string _imageStoragePath = "Images";
+        public FunctionServices(IUnitOfWork _unitOfWork, IMapper _mapper, IWebHostEnvironment env) : base(_unitOfWork, _mapper) 
         { 
             functionRepository = _unitOfWork.GetRepository<Function>();
+            _env = env;
         }
 
         public async Task<PagedList<FunctionResponse>> GetAll(PagedRequest request)
@@ -37,6 +41,45 @@ namespace Services.Core.Services
                                     .FirstOrDefaultAsync();
             var data = _mapper.Map<FunctionResponse>(Function);
             return data;
+        }
+        public async Task<(object?, MemoryStream?)> ImportExcel(IFormFile file)
+        {
+            var directory = Path.Combine(_env.WebRootPath, _imageStoragePath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            };
+            const int totalCol = 5;
+            (List<FunctionRequest> lstFunction, List<string> messages) = await ExcelImport.getDataFromExcel<FunctionRequest>(file, totalCol, directory);
+            Dictionary<int, List<string>> lstErrors = new Dictionary<int, List<string>>();
+            FunctionRequestValidator validator = new FunctionRequestValidator();
+            for (int i = 0; i < lstFunction.Count; i++)
+            {
+                ValidationResult results = validator.Validate(lstFunction[i]);
+                if (!results.IsValid)
+                {
+                    foreach (var error in results.Errors)
+                    {
+                        ExcelImport.addError(lstErrors, i, error.ErrorMessage);
+                    }
+                }
+            }
+            if (messages.Count > 0)
+            {
+                return (new BaseResponse(ResponseCode.Invalid, "Duplicate Errors"), null);
+            }
+            if (lstErrors.Count > 0)
+            {
+                var result = await ExcelImport.getFileError(file, lstErrors, ExcelImport.ColumnIndexToLetter(totalCol + 1));
+                if (result.Item1 != null)
+                    return (result.Item1, null);
+                return (null, result.Item2);
+            }
+            foreach (var item in lstFunction)
+            {
+                await Create(item);
+            };
+            return (new BaseResponse(ResponseCode.Success, "Import Success"), null);
         }
         public async Task<int> Create(FunctionRequest request)
         {
@@ -79,5 +122,31 @@ namespace Services.Core.Services
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
         }
+        public async Task<List<FunctionResponse>> GetAsTreeView()
+        {
+            List<FunctionResponse> response = new List<FunctionResponse>();
+            var listFunction = functionRepository.GetQuery().ExcludeSoftDeleted().ToList();
+            var listParent = listFunction.Where(x => x.parent_cd == null).Distinct().ToList();
+            response.AddRange(_mapper.Map<List<FunctionResponse>>(listParent));
+            foreach(var item in response)
+            {
+                var listChildren = listFunction.Where(x => x.parent_cd == item.code).ToArray();
+                if(listChildren!=null && listChildren.Length > 0)
+                {
+                    item.items = new List<FunctionResponse>();
+                    item.items.AddRange(_mapper.Map<List<FunctionResponse>>(listChildren));
+                    foreach(var children in item.items)
+                    {
+                        var listApi = listFunction.Where(x => x.parent_cd == children.code).ToArray();
+                        if(listApi != null && listApi.Length > 0)
+                        {
+                            children.items = new List<FunctionResponse>();
+                            children.items.AddRange(_mapper.Map<List<FunctionResponse>>(listApi));
+                        }
+                    }    
+                }
+            }
+            return response;
+        } 
     }
 }

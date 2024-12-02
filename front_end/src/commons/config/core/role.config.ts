@@ -8,7 +8,7 @@ export const ROUTER_ROLE = [
   {
     path: '/role',
     name: 'RoleList',
-    component: () => import('@app/views/role/ListView.vue'),
+    component: () => import('@app/views/core/role/ListView.vue'),
   },
 ]
 

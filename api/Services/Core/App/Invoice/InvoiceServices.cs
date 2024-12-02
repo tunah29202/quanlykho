@@ -51,6 +51,16 @@ namespace Services.Core.Services
                                     .GetQuery()
                                     .ExcludeSoftDeleted()
                                     .FilterById(id)
+                                    .Include(s => s.shipper)
+                                    .Include(w => w.warehouse)
+                                    .Include(c => c.carton)
+                                        .ThenInclude(cd => cd.carton_details)
+                                            .ThenInclude(p => p.product)
+                                                .ThenInclude(c => c.category)
+                                                    .ThenInclude(i => i.ingredients)
+                                    .Include(c => c.carton.customer)
+                                    .Include(o => o.order)
+                                    .Include(p => p.payment_method)
                                     .FirstOrDefaultAsync();
             var data = _mapper.Map<InvoiceResponse>(Invoice);
             return data;

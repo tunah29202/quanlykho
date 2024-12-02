@@ -1,6 +1,7 @@
 @import '../available';
 
 .side-bar {
+  width: 270px;
   transition: all ease-in-out 0.35s;
   background-color: $-surface-color;
   border-right: 1px solid $-input-border-color;
@@ -29,33 +30,6 @@
         }
       }
     }
-    .el-sub-menu{
-      &.is-active{
-        border-left: 2px solid #409eff;
-      }
-      .el-sub-menu__title {
-        color: #fff;
-        &:hover {
-          background-color: $-surface-color-light;
-        }
-      }
-    }
     
-    .el-menu-item-group {
-      .el-menu-item-group__title {
-        display: none;
-      }
-      ul {
-        color: #fff;
-        background-color: #337ecc;
-        .el-menu-item {
-          font-size: $-input-font-size !important;
-          color: #fff;
-          &:hover {
-            background-color: $-surface-color-light;
-          }
-        }
-      }
-    }
   }
 }

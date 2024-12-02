@@ -1,14 +1,14 @@
 import tl from '@/utils/locallize'
 
-export const FUNC_NAME = 'Package'
+export const FUNC_NAME = 'Order'
 
 // ========================== ROUTER =============================
 
-export const ROUTER_PACKAGE = [
+export const ROUTER_ORDER = [
   {
-    path: '/package',
-    name: 'PackageList',
-    component: () => import('@app/views/package/ListView.vue'),
+    path: '/order',
+    name: 'OrderList',
+    component: () => import('@app/views/app/order/ListView.vue'),
   },
 ]
 
@@ -36,20 +36,32 @@ export const tableConfig = {
 
 export const colConfig = [
   {
-    key: "name",
-    title: tl(FUNC_NAME, "name_text"),
+    key: "order_no",
+    title: tl(FUNC_NAME, "order_no_text"),
   },
   {
-    key: "origin",
-    title: tl(FUNC_NAME, "origin_text"),
+    key: "customer_company",
+    title: tl(FUNC_NAME, "customer_company_text"),
+  },
+  {
+    key: "product_name",
+    title: tl(FUNC_NAME, "product_name_text"),
   },
   {
     key: "quantity",
     title: tl(FUNC_NAME, "quantity_text"),
   },
   {
-    key: "weight",
-    title: tl(FUNC_NAME, "weight_text"),
+    key: "unit",
+    title: tl(FUNC_NAME, "unit_text"),
+  },
+  {
+    key: "total_amount",
+    title: tl(FUNC_NAME, "total_amount_text"),
+  },
+  {
+    key: "status",
+    title: tl(FUNC_NAME, "status_text"),
   },
 ]
 

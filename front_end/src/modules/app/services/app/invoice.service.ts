@@ -12,17 +12,17 @@ const invoiceService = {
     },
 
     async detail(id: string): Promise<APIResponse<any>> {
-        return await apiClient.get(API.DETAIL(id))
+        const res = await apiClient.get(API.DETAIL(id));
+        return res.data;    
     },
 
-    async export(params?: unknown) {
+    async export(id: string) {
         return await apiClient
-            .get(API.EXPORT, {
-                params: params,
+            .get(API.EXPORT(id), {
                 responseType: 'blob',
             })
             .then((response: any) => {
-                fileService.resolveAndDownloadBlob(response, `Danhsachguoidung.xlsx`);
+                fileService.resolveAndDownloadBlob(response, `ThongTinHoaDon.xlsx`);
             })
     },
 
