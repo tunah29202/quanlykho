@@ -1,6 +1,6 @@
 <template>
     <div vc-page page-invoice>
-        <vc-card>
+        <vc-card >
             <el-breadcrumb :separator-icon="ArrowRight" class="pb-4" style="border-bottom: 1px solid #cdcdcd;" >
                 <el-breadcrumb-item :to="{path: '/invoice'}">Quản lý hoá đơn</el-breadcrumb-item>
                 <el-breadcrumb-item>Chi tiết hoá đơn</el-breadcrumb-item>
@@ -14,9 +14,9 @@
                     </div>
                 </div>
                 <el-tab-pane label="Hoá đơn" name="first">
-                    <vc-row :gutter="20" class="mt-4">
-                        <vc-col :lg="12" :md="12" :sm="24" :xs="24">
-                            <el-descriptions border :column="1" class="" title="Shipper">
+                    <vc-row :gutter="20" class="mt-4" style="margin: 12px 16px">
+                        <vc-col :lg="12" :md="12" :sm="24" :xs="24" class="col-customer-shipper">
+                            <el-descriptions border :column="1"  title="Shipper" >
                                 <el-descriptions-item >
                                     <template #label>
                                         <div class="cell-item">
@@ -238,8 +238,18 @@
                     <vc-table :datas="dataGridInvoice" :tableConfig="tableConfig" :colConfigs="colTabCartonConfig" >
                     </vc-table>
                 </el-tab-pane>
+                
+                <div class="d-flex align-center" style="justify-content: center; padding: 16px">
+                    <div>
+                        <vc-button type="primary" @click="onEditInvoice">
+                            {{ tl('Common', 'btn_update') }}
+                        </vc-button>
+                        <vc-button type="info" @click="onClickBack">
+                            {{ tl('Common', 'btn_exit') }}
+                        </vc-button>
+                    </div>
+                </div>
             </el-tabs>
-
         </vc-card>
     </div>
 </template>
@@ -364,6 +374,16 @@
         invoiceService.export(_id);
     }
 
+    const onEditInvoice = () =>{
+        router.push({
+            name: 'EditView', params: {id: _id}
+        })
+    }
+
+    const onClickBack = () =>{
+        router.push({name: 'InvoiceList'})
+    }
+
 </script>
 <style>
     .col-custom-header{
@@ -378,6 +398,7 @@
         border: 1px solid #ebeef5;
         padding: 8px 11px;
     }
+
     .el-form-item {
     display: block;
     }

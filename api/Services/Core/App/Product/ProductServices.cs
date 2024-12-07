@@ -141,16 +141,13 @@ namespace Services.Core.Services
 
             if (request.image != null && request.image.Length != 0)
             {
-                if (string.IsNullOrEmpty(_imageStoragePath))
-                    return 0;
-
-                if (!Directory.Exists(_imageStoragePath))
+                var directory = Path.Combine(env.WebRootPath, _imageStoragePath);
+                if (!Directory.Exists(directory))
                 {
-                    Directory.CreateDirectory(_imageStoragePath);
-                }
-
+                    Directory.CreateDirectory(directory);
+                };
                 string fileName = $"{Guid.NewGuid()}{Path.GetExtension(request.image.FileName)}";
-                string filePath = Path.Combine(_imageStoragePath, fileName);
+                string filePath = Path.Combine(directory, fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {

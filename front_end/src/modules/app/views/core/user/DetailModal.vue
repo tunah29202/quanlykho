@@ -97,6 +97,25 @@
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
+                <vc-row :gutter="20">
+                    <vc-col>
+                        <vc-input-group prop="role_cd" :label="tl('User', 'role_text')" >
+                            <el-select v-model="user.role_cd" >
+                                <el-option v-for="item in dataGrid" :key="item.id" :label="item.name" :value="item.code" />
+                            </el-select>
+                        </vc-input-group>
+                    </vc-col>
+                </vc-row>
+                <vc-row :gutter="20">
+                    <vc-col>
+                        <vc-input-group :label="tl('User', 'warehouse_text')" >
+                            <template v-for="(item, index) in user.warehouse_names" :key="index" >
+                                <el-tag class="mr-2" type="info" disable-transitions >{{ item }}</el-tag>
+                            </template>
+                            <el-button size="small" :icon="Plus" @click="onAddWarehouse" >{{ tl('Common', 'btn_add_new') }}</el-button>
+                        </vc-input-group>
+                    </vc-col>
+                </vc-row>
             </el-form>
         </template>
         <template #acttion>
@@ -105,8 +124,11 @@
                 {{ tl("Common", props.type == POPUP_TYPE.CREATE ? "btn_add" : "btn_update") }}
             </vc-button>
         </template>
-        <vc-confirm ref="confirmDialog"></vc-confirm>
     </vc-modal>
+    <vc-confirm ref="confirmDialog"></vc-confirm>
+    <warehouse_modal ref="warehouseRef" @setWarehouse_ids="onSetWarehouse_ids"
+    @setWarehouse_names="onSetWarehouse_names" >
+    </warehouse_modal>
 </template>
 <script setup lang="ts">
     import { POPUP_TYPE } from '@/commons/const';
@@ -115,6 +137,13 @@
     import validate from "@/utils/validate";
     import type { FormInstance } from "element-plus";
     import userService from "@app/services/core/user.service";
+    import { useRoleStore } from '@app/stores/core/role.store';
+    import { storeToRefs } from 'pinia';
+    import WarehouseModal from './WarehouseModal.vue';
+    import { Plus } from '@element-plus/icons-vue';    
+
+    const storeRole = useRoleStore();
+    const {dataGrid} = storeToRefs(storeRole);
 
     const rules= reactive({
         full_name: [
@@ -150,27 +179,46 @@
     const confirmDialog = ref<any>(null);
     const modal = ref<any>(null);
     const modalTitle = ref<any>(null);
+    const warehouseRef = ref<any>(null);
 
     let callback = (value: any) => { return value };
 
     const user = reactive({
     id: '',
+    code: '',
     user_name: null,
     hashpass: null,
     full_name: null,
     email: null,
     phone: null,
     gender: '',
-    code: '',
+    role_cd: null,
+    role_name: null,
+    warehouse_ids: [],
+    warehouse_names: [],
     });
 
     onBeforeMount(async () => {
         if (user.id) await getUserDetail();
+        await storeRole.getList();
     });
     const getUserDetail = async () => {
         const response = await userService.detail(user.id);
         Object.assign(user, response);
     };
+    const onAddWarehouse = ()=>{
+        if (!warehouseRef.value) {
+        console.error('warehouseRef chưa được khởi tạo!');
+        return;
+        }
+        warehouseRef.value.open(user.id)
+    }
+    const onSetWarehouse_ids =(value: any)=>{
+        user.warehouse_ids = value
+    }
+    const onSetWarehouse_names =(value:any)=>{
+        user.warehouse_names = value
+    }
     const onSave = async (formEl: FormInstance | undefined) => {
         if (!formEl) return;
 
@@ -194,22 +242,28 @@
     };
 
     const open = async (title: any, item: any, _callback: any) => {
-        let userInfo = {
+        let userInfo = {      
             id: '',
             user_name: null,
             hashpass: null,
+            is_actived: false,
             full_name: null,
-            email: null,
+            mail: null,
             phone: null,
-            code: null,
+            code: '',
+            role_cd: '',
             gender: tl('Common', 'gender_male'),
+            role_name: '',
+            warehouse_ids: [],
+            warehouse_names: []
         };
         modalTitle.value = title;
         if (item)
             userInfo = (await userService.detail(item))
-        console.log(userInfo)
         callback = _callback;
         Object.assign(user, userInfo)
+        console.log(user)
+
         modal.value.open();
     };
 

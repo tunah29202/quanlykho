@@ -31,8 +31,6 @@
                               :loading="loading" @pageChanged="onPageChanged">
                         <template #action="{data}">
                             <div class="d-flex flex-center">
-                                <vc-button type="warning" size="small" class="btn-acttion" @click="onView(data)" :icon="'View'">
-                                </vc-button>
                                 <vc-button type="primary" size="small" class="btn-acttion" @click="onEdit(data)" :icon="'Edit'">
                                 </vc-button>
                                 <vc-button type="danger" code="F00015" size="small" class="btn-acttion" @click="onDeleteItem(data)" :icon="'Delete'">
@@ -44,7 +42,6 @@
             </vc-row>
         </vc-card>
         <vc-confirm ref="confirmDialog"></vc-confirm>
-        <detail-modal ref="detailRef" :type="popupType"></detail-modal>
     </div>
 </template>
 <script setup lang="ts">
@@ -55,8 +52,9 @@
     import { useRoleStore } from '@app/stores/core/role.store'
     import { POPUP_TYPE } from '@/commons/const'
     import { Search } from '@element-plus/icons-vue'
-    import DetailModal from './DetailModal.vue'
-
+    import { useRouter } from 'vue-router'
+    
+    const router = useRouter();
     const store = useRoleStore();
     const { dataGrid, pageConfig, search, loading } = storeToRefs(store);
     const popupType = ref<POPUP_TYPE>(POPUP_TYPE.CREATE);
@@ -76,16 +74,15 @@
         onSearch()
     };
     const onAddNew = () => {
-        popupType.value = POPUP_TYPE.CREATE
-        detailRef.value.open(tl("Common", "title_modal_add", [tl("Role", "role_text")]), null, async (res: any) => {
-            if (res) await onSearch()
+        router.push({
+            name: 'CreateRoleView'
         })
     };
 
     const onEdit = (item: any) => {
-        popupType.value = POPUP_TYPE.EDIT;
-        detailRef.value.open(tl("Common", "title_modal_edit", [tl("Role", "role_text")]), item.id, async (res: any) => {
-            if (res) await onSearch()
+        router.push({
+            name: 'EditRoleView',
+            params:{id: item.id}
         })
     };
 

@@ -1,13 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\api",
     "\\api\\Controllers",
     "\\api\\Controllers\\Common",
     "\\api\\Controllers\\Core",
     "\\api\\Controllers\\Core\\App",
     "\\api\\Controllers\\Core\\App\\PaymentMethod",
-    "\\front_end"
+    "\\front_end\\src"
   ],
   "PreviewInSolutionExplorer": false
 }

@@ -40,8 +40,19 @@ namespace Services.Core.Services
                                 .GetQuery()
                                 .ExcludeSoftDeleted()
                                 .FilterById(id)
+                                .Include(x => x.user_role)
+                                    .ThenInclude(y=> y.role)
+                                .Include(u => u.user_warehouses!.Where(uw => uw.warehouse != null))
+                                    .ThenInclude(uw => uw.warehouse)
                                 .FirstOrDefaultAsync();
             var data = _mapper.Map<UserResponse>(user);
+            data.role_cd = user.user_role.role_cd;
+            data.role_name = user.user_role.role.name;
+            if(user.user_warehouses != null)
+            {
+                data.warehouse_ids = user.user_warehouses?.Select(w => w.warehouse_id).ToList();
+                data.warehouse_names = user.user_warehouses?.Select(w => w.warehouse.name).ToList();
+            }
             return data;
         }
         public async Task<UserResponse> GetInfoLoginById(Guid id)
@@ -86,10 +97,8 @@ namespace Services.Core.Services
             user.hash_password = CryptographyProcessor.GenerateHash(request.password, user.salt);
             var customer = new Customer()
             {
-                code = "CUSTOMER",
                 name = request.full_name,
                 company_name = request.company_name,
-                company_type = request.company_type,
                 address = request.address,
                 tax = request.tax,
                 tel = request.phone,
@@ -121,6 +130,52 @@ namespace Services.Core.Services
             }
             _mapper.Map(request, user);
             await userRepository.UpdateAsync(user);
+
+            var oldRole = await userRoleRepository.GetQuery().FirstOrDefaultAsync(ur => ur.user_id == id);
+            if(oldRole != null)
+            {
+                oldRole.role_cd = request.role_cd;
+            }
+            else
+            {
+                await userRoleRepository.AddAsync(new UserRole()
+                {
+                    user_id = id,
+                    role_cd = request.role_cd
+                });
+            }
+            var oldWarehouses = userWarehouseRepository
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .Where(x => x.user_id == id)
+                                .ToList();
+            //delete old warehouse
+            foreach(var oldWarehouse in oldWarehouses)
+            {
+                await userWarehouseRepository.DeleteAsync(oldWarehouse);
+            }
+            if(request.warehouse_ids!=null && request.warehouse_ids.Count > 0)
+            {
+                foreach(var userWarehouse in request.warehouse_ids)
+                {
+                    var oldWarehouse = await userWarehouseRepository
+                                                .GetQuery()
+                                                .FirstOrDefaultAsync(uw => uw.warehouse_id == userWarehouse && uw.del_flg);
+                    if(oldWarehouse != null )
+                    {
+                        oldWarehouse.user_id = id;
+                        oldWarehouse.del_flg = false;
+                    }
+                    else
+                    {
+                        await userWarehouseRepository.AddAsync(new UserWarehouse()
+                        {
+                            user_id = id,
+                            warehouse_id = userWarehouse
+                        });
+                    }
+                }
+            }
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
         }
@@ -137,6 +192,11 @@ namespace Services.Core.Services
                 return -1;
             }
             await userRepository.DeleteAsync(user);
+            var userWarehouses = await userWarehouseRepository.GetQuery().Where(uw => uw.user_id == id).ToListAsync();
+            foreach(var userWarehouse in userWarehouses)
+            {
+                await userWarehouseRepository.DeleteAsync(userWarehouse);
+            }
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
         }

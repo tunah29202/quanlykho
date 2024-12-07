@@ -18,6 +18,7 @@ export const API = {
   LIST: `/${FUNC_NAME}`,
   CREATE: `/${FUNC_NAME}/create`,
   DETAIL: (id: string) => `${FUNC_NAME}/${id}`,
+  MENU: `${FUNC_NAME}/menu`,
   UPDATE: (id: string) => `${FUNC_NAME}/update/${id}`,
   DELETE: (id: string | string[]) => `${FUNC_NAME}/delete/${id}`,
   DELETE_MULTI: `${FUNC_NAME}/delete-multi`,

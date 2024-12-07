@@ -12,7 +12,6 @@ namespace Database.EntityConfigurations
 
             builder.Property(t => t.order_id).IsRequired();
             builder.Property(t => t.quantity).IsRequired();
-            builder.Property(t => t.unit).IsRequired().HasMaxLength(20);
 
             builder
             .HasOne(x => x.order)

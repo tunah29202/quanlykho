@@ -4,9 +4,14 @@
                   @selection-change="onRowSelected" @row-dblclick="onRowDbClick">
             <!-- EXPAND -->
             <el-table-column type="expand" v-if="tableConfig.expand">
-                <template #default="scope">
+              <template #default="scope">
+                <template v-if="scope.row.carton_details && scope.row.carton_details.length > 0">
                   <slot name="detail" :data="scope.row.carton_details" :scope="scope"></slot>
                 </template>
+                <template v-else>
+                  <slot name="detail" :data="scope.row.order_details" :scope="scope"></slot>
+                </template>
+              </template>
             </el-table-column>
                   
             <!-- INDEX -->

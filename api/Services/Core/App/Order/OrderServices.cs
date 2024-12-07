@@ -29,6 +29,11 @@ namespace Services.Core.Services
                             .GetQuery()
                             .ExcludeSoftDeleted()
                             .SortBy(request.sort ?? "updated_at.desc")
+                            .Include(x => x.customer)
+                                    .Include(x => x.order_details.Where(y => !y.del_flg))
+                                        .ThenInclude(od => od.product)
+                                            .ThenInclude(p => p.category)
+                            .Include(x => x.payment_method)
                             .ToAllPageList();
             }
             else
@@ -37,6 +42,11 @@ namespace Services.Core.Services
                                     .ExcludeSoftDeleted()
                                     .Where(x => !string.IsNullOrEmpty(request.search) ? x.order_no.ToLower().Contains(request.search.ToLower()) : true)
                                     .SortBy(request.sort ?? "updated_at.desc")
+                                    .Include(x => x.customer)
+                                    .Include(x => x.order_details.Where(y => !y.del_flg))
+                                        .ThenInclude(od => od.product)
+                                            .ThenInclude(p => p.category)
+                                    .Include(x => x.payment_method)
                                     .ToPagedListAsync(request.page, request.size);
             }
             var dataMapping = _mapper.Map<PagedList<OrderResponse>>(Orders);
@@ -49,7 +59,11 @@ namespace Services.Core.Services
                                     .GetQuery()
                                     .ExcludeSoftDeleted()
                                     .FilterById(id)
-                                    .Include(x => x.order_details)
+                                    .Include(x => x.customer)
+                                    .Include(x => x.order_details.Where(y => !y.del_flg))
+                                        .ThenInclude(od => od.product)
+                                            .ThenInclude(p => p.category)
+                                    .Include(x => x.payment_method)
                                     .FirstOrDefaultAsync();
             var data = _mapper.Map<OrderResponse>(Order);
             return data;

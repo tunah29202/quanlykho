@@ -10,7 +10,16 @@ export const ROUTER_INVOICE = [
     name: 'InvoiceList',
     component: () => import('@app/views/app/invoice/ListView.vue'),
   },
-
+  {
+    path: '/invoice/create',
+    name: 'CreateView',
+    component: () => import('@app/views/app/invoice/CreateView.vue'),
+  },
+  {
+    path: '/invoice/:id/edit',
+    name: 'EditView',
+    component: () => import('@app/views/app/invoice/CreateView.vue'),
+  },
   {
     path: '/invoice/:id/view',
     name: 'ViewInvoice',

@@ -3,9 +3,9 @@ using AutoMapper;
 using Services.Core.Contracts;
 using Services.Common.Repository;
 using Services.Core.Interfaces;
-using Database.Entities;
 using Common;
 using Helpers.Auth;
+using Database.Entities;
 namespace Services.Core.Services
 {
     public class PaymentMethodServices : BaseServices, IPaymentMethodServices

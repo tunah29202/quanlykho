@@ -44,7 +44,6 @@
             </vc-row>
         </vc-card>
         <vc-confirm ref="confirmDialog"></vc-confirm>
-        <detail-modal ref="detailRef" :type="popupType"></detail-modal>
     </div>
 </template>
 <script setup lang="ts">
@@ -55,7 +54,6 @@
     import { useInvoiceStore } from '@app/stores/app/invoice.store'
     import { POPUP_TYPE } from '@/commons/const'
     import { Search } from '@element-plus/icons-vue'
-    import DetailModal from './DetailModal.vue'
     import { useRouter } from 'vue-router'
     
     const router = useRouter();
@@ -72,7 +70,6 @@
 
     const onSearch = async () => {
         await store.getList()
-        console.log(dataGrid)
     }
 
     const onPageChanged = async (page: any) => {
@@ -80,21 +77,19 @@
         onSearch()
     };
     const onAddNew = () => {
-        popupType.value = POPUP_TYPE.CREATE
-        detailRef.value.open(tl("Common", "title_modal_add", [tl("Invoice", "invoice_text")]), null, async (res: any) => {
-            if (res) await onSearch()
+        router.push({
+            name: 'CreateView',
         })
     };
 
     const onEdit = (item: any) => {
-        popupType.value = POPUP_TYPE.EDIT;
-        detailRef.value.open(tl("Common", "title_modal_edit", [tl("Invoice", "invoice_text")]), item.id, async (res: any) => {
-            if (res) await onSearch()
+        router.push({
+            name: 'EditView',
+            params:{id: item.id}
         })
     };
 
     const onExport = (item: any) => {
-        console.log(item)
         router.push({
             name: 'ViewInvoice', params:{id: item.id}
         })

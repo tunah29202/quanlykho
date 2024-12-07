@@ -5,10 +5,8 @@
     {
         public partial class Customer : BaseEntity
         {
-            public string? code { get; set; }
             public string name { get; set; }
             public string company_name { get; set; }
-            public string company_type { get; set; }
             public string? address { get; set; }
             public string? tax { get; set; }
             public string? tel { get; set; }

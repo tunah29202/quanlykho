@@ -1,15 +1,7 @@
 <template>
     <vc-modal ref="modal" :title="modalTitle" :type="props.type" @close="close">
         <template #content>
-            <el-descriptions style="padding: 12px 16px" :column="1" bcustomer v-if="type ==POPUP_TYPE.VIEW">
-                <el-descriptions-item>
-                    <template #label>
-                        <div class="cell-item">
-                            {{  tl("Customer", "customer_code_text") }}
-                        </div>
-                    </template>
-                    {{ customer.code ?? '-' }}
-                </el-descriptions-item>
+            <el-descriptions style="padding: 12px 16px" :column="1" bcustomer v-if="type ==POPUP_TYPE.VIEW" border >
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
@@ -25,14 +17,6 @@
                     </div>
                 </template>
                 {{ customer.company_name }}
-                </el-descriptions-item>
-                <el-descriptions-item>
-                <template #label>
-                    <div class="cell-item">
-                    {{ tl("Customer", "company_type_text") }}
-                    </div>
-                </template>
-                {{ customer.company_type }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
@@ -70,13 +54,6 @@
 
             <el-form  ref="customerForm" :model="customer" :rules="rules" label-position="right" style="padding: 12px 16px"
             require-asterisk-position="right" v-else>
-                <vc-row :gutter=20>
-                    <vc-col>
-                        <vc-input-group prop="code" :label="tl('Customer', 'customer_code_text')">
-                            <vc-input v-model="customer.code" :placeholder="tl('Customer', 'customer_code_holder')"/>
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
                         <vc-input-group required prop="name" :label="tl('Customer', 'name_text')">
@@ -88,13 +65,6 @@
                     <vc-col>
                         <vc-input-group required prop="company_name" :label="tl('Customer', 'company_name_text')">
                         <vc-input v-model="customer.company_name" :placeholder="tl('Customer', 'company_name_holder')" />
-                        </vc-input-group>
-                    </vc-col>
-                </vc-row>
-                <vc-row :gutter="20">
-                    <vc-col>
-                        <vc-input-group required prop="company_type" :label="tl('Customer', 'company_type_text')">
-                        <vc-input v-model="customer.company_type" :placeholder="tl('Customer', 'company_type_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
@@ -144,10 +114,6 @@
     import customerService from "@app/services/app/customer.service";
 
     const rules= reactive({
-        code: [
-            { label: tl("Customer", "code_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Customer', 'code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
-            ],
         name: [
             { label: tl("Customer", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
             { label: tl('Customer', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
@@ -156,13 +122,9 @@
             { label: tl("Customer", "company_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
             { label: tl('Customer', 'company_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        company_type: [
-            { label: tl("Customer", "company_type_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Customer', 'company_type_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
-        ],
         address: [
             { label: tl("Customer", "address_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Customer', 'address_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+            { label: tl('Customer', 'address_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
         tax: [
             { label: tl("Customer", "tax_text"), required: true, validator: validate.required, trigger: ["blur"] },
@@ -193,7 +155,6 @@
 
     const customer = reactive({
         id: '',
-        code: '',
         name: '',
         company_name: '',
         company_type: '',
@@ -235,7 +196,6 @@
     const open = async (title: any, item: any, _callback: any) => {
         let customerInfo = {
             id: '',
-            code: null,
             name: null,
             company_name: null,
             company_type: null,

@@ -40,6 +40,7 @@ namespace Database.EntityConfigurations
             .HasOne(x => x.order)
             .WithOne(y => y.invoice)
             .HasForeignKey<Invoice>(z => z.order_id)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Restrict);
 
             builder
@@ -54,13 +55,6 @@ namespace Database.EntityConfigurations
             .WithMany(y => y.invoices)
             .HasPrincipalKey(w => w.id)
             .HasForeignKey(z => z.payment_method_id)
-            .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-            .HasOne(x => x.bank_account)
-            .WithMany(y => y.invoices)
-            .HasPrincipalKey(w => w.id)
-            .HasForeignKey(z => z.bank_account_id)
             .OnDelete(DeleteBehavior.Restrict);
         }
     }

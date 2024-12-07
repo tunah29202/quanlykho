@@ -1,4 +1,6 @@
 using Database.Common;
+using Database.Entities;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Database.Entities
@@ -9,7 +11,7 @@ namespace Database.Entities
         [JsonIgnore]
         public virtual ICollection<Invoice>? invoices { get; set; }
         [JsonIgnore]
-        public virtual ICollection<BankAccount>? bank_accounts { get; set; }
+        public virtual ICollection<Order>? orders { get; set; }
 
         public PaymentMethod()
         {

@@ -4,12 +4,20 @@
             <el-form  ref="cartonForm" :model="carton" :rules="rules" label-position="right" style="padding: 12px 16px"
             require-asterisk-position="right">
                 <vc-row :gutter="20">
-                    <vc-col :lg="8" :md="8" :sm="24" :xs="24">
+                    <vc-col :lg="6" :md="12" :sm="24" :xs="24">
                         <vc-input-group prop="carton_no" :label="tl('Carton', 'carton_no_text')">
                             <vc-input v-model="carton.carton_no" :placeholder="tl('Carton', 'carton_no_holder')"/>
                         </vc-input-group>
                     </vc-col>
-                    <vc-col :lg="8" :md="8" :sm="24" :xs="24">
+                    <vc-col :lg="6" :md="12" :sm="24" :xs="24">
+                        <vc-input-group required prop="customer_id" :label="tl('Carton', 'customer_info_text')" >
+                            <el-select v-model="carton.customer_id" :placeholder="tl('Carton', 'customer_holder')" >
+                                <el-option v-for="customer in dataGridCustomer" :key="customer.id" :value="customer.id" 
+                                :label="customer.company_name" />
+                            </el-select>
+                        </vc-input-group>
+                    </vc-col>
+                    <vc-col :lg="6" :md="12" :sm="24" :xs="24">
                         <vc-row :gutter="20">
                             <vc-col :lg="12" :md="12" :sm="24" :xs="24">
                                 <vc-input-group prop="width" :label="tl('Carton', 'width_text')">
@@ -23,7 +31,7 @@
                             </vc-col>
                         </vc-row>
                     </vc-col>
-                    <vc-col :lg="8" :md="8" :sm="24" :xs="24">
+                    <vc-col :lg="6" :md="12" :sm="24" :xs="24">
                         <vc-row :gutter="20">
                             <vc-col :lg="12" :md="12" :sm="24" :xs="24">
                                 <vc-input-group prop="length" :label="tl('Carton', 'length_text')">
@@ -124,13 +132,17 @@
     import productService from "@app/services/app/product.service";
     import { Back, Search } from '@element-plus/icons-vue';
     import { useProductStore } from '@app/stores/app/product.store';
+    import { useCustomerStore } from '@app/stores/app/customer.store';
+    
     import { useToast } from '@/components/commons/alert/vc-toast.vue';
     import { storeToRefs } from 'pinia';
     import { colConfigLeft, tableModalConfig } from '@/commons/config/app/carton.config';
     import number from '@/utils/number';
     
     const store = useProductStore();
-    const {dataGrid, pageConfig, search, loading, category_name} = storeToRefs(store);
+    const {dataGrid, pageConfig, search, loading, category_name, warehouse_id} = storeToRefs(store);
+    const storeCustomer = useCustomerStore();
+    const {dataGrid: dataGridCustomer} = storeToRefs(storeCustomer);
     const rules= reactive({
         carton_no: [
             { label: tl("carton", "carton_no_text"), required: true, validator: validate.required, trigger: ["blur"] },
@@ -174,7 +186,8 @@
         volume: 0,
         total_amount: 0,
         warehouse_id: '',
-        customer_company: '',
+        customer_id: '',
+        customer: null,
         carton_details: []
     });
 
@@ -188,6 +201,7 @@
     };
     const onSearch = async () =>{
         await store.getList();
+        await storeCustomer.getList();
     }
     interface Item {
         id: string;
@@ -229,8 +243,8 @@
             isLoading.value = true;
 
             carton.net_weight = Number((carton.gross_weight*0.96).toFixed(2));
-            carton.total_amount = Number(((carton.height*carton.width*carton.length)/1000000).toFixed(2));
-            carton.warehouse_id = '';
+            carton.volume = Number(((carton.height*carton.width*carton.length)/1000000).toFixed(2));
+            carton.warehouse_id = warehouse_id.value;
 
             var flagCartonDetails = [];
             var flagTotalAmount = 0;
@@ -249,7 +263,7 @@
             }
             carton.total_amount = flagTotalAmount;
             carton.carton_details = [...flagCartonDetails];
-
+            console.log(carton)
             if (carton.id) {
                 await cartonService.update(carton).finally(() => {
                     isLoading.value = false;

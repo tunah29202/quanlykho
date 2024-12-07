@@ -2,8 +2,8 @@
     <el-scrollbar height="100vh" class="side-bar">
         <div class="sidebar-header">
             <vc-row :gutter="20">
-                <vc-col :span="6">
-                    <img src="@/assets/images/logo.jpg" style="cursor: pointer;" width="40" height="40" />
+                <vc-col :span="6" >
+                    <img src="@/assets/images/logo.jpg" style="cursor: pointer;" width="50" height="50" />
                 </vc-col>
                 <vc-col :span="18" style="display: grid;">
                     <el-dropdown @command="handleDropdown">

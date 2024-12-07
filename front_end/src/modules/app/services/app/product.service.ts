@@ -36,9 +36,9 @@ const productService = {
             })
     },
 
-    async update(data: any) {
+    async update(product_id: any, data: any) {
         return await apiClient
-            .put(API.UPDATE(data.id || ''), data)
+            .put(API.UPDATE(product_id || ''), data)
             .then((response: any) => {
                 useToast.handleApiResponse(response);
                 return response

@@ -66,10 +66,9 @@ public class MappingProfile : Profile
         CreateMap<PagedList<Ingredient>, PagedList<IngredientResponse>>();
         CreateMap<Ingredient, IngredientResponse>();
 
-        CreateMap<BankAccountRequest, BankAccount>();
-        CreateMap<PagedList<BankAccount>, PagedList<BankAccountResponse>>();
-        CreateMap<BankAccount, BankAccountResponse>();
-        
+        CreateMap<PaymentMethodRequest, PaymentMethod>();
+        CreateMap<PagedList<PaymentMethod>, PagedList<PaymentMethodResponse>>();
+        CreateMap<PaymentMethod, PaymentMethodResponse>();
 
     }
 }

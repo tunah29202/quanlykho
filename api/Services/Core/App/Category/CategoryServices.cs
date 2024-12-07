@@ -59,11 +59,11 @@ namespace Services.Core.Services
             var category = _mapper.Map<Category>(request);
             await categoryRepository.AddAsync(category);
 
-            if(request.ingredients.Count > 0)
+            if(request.ingredient_names.Count > 0)
             {
                 await _unitOfWork.SaveChangeAsync();
                 var category_id = category.id;
-                foreach(var ingredient in request.ingredients)
+                foreach(var ingredient in request.ingredient_names)
                 {
                     if(ingredient == null || string.IsNullOrEmpty(ingredient.name))
                     {
@@ -106,10 +106,10 @@ namespace Services.Core.Services
                     await ingredientRepository.DeleteAsync(oldIngredient);
                 }
             }
-            if (request.ingredients?.Count > 0)
+            if (request.ingredient_names?.Count > 0)
             {
                 // update new ingredient
-                foreach (var ingredient in request.ingredients)
+                foreach (var ingredient in request.ingredient_names)
                 {
                     if (ingredient == null || string.IsNullOrEmpty(ingredient.name))
                     {

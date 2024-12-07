@@ -1,6 +1,6 @@
 ﻿<template>
     <el-menu>
-        <template v-for="(item, indexItem) in menu" :key="index">
+        <template v-for="(item, indexItem) in menu" :key="indexItem">
             <el-menu-item :index="`${indexItem}`" @click="goTo(item)" >
                 <el-icon>
                     <component :is="item.icon"></component>

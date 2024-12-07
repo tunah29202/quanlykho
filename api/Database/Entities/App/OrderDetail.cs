@@ -12,8 +12,6 @@ namespace Database.Entities
         public Product product { get; set; }
         public Guid product_id { get; set; }
         public int quantity { get; set; }
-        public string unit { get; set; }
-
         public OrderDetail()
         {
             id = Guid.NewGuid();

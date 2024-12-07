@@ -62,7 +62,7 @@ namespace Controllers.Core
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> Create([FromBody] ProductRequest request)
+        public async Task<IActionResult> Create([FromForm] ProductRequest request)
         {
             int count = await productServices.Create(request);
             if (count >= 1)
@@ -77,7 +77,7 @@ namespace Controllers.Core
 
         [HttpPut]
         [Route("update/{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] ProductRequest request)
+        public async Task<IActionResult> Update(Guid id, [FromForm] ProductRequest request)
         {
             int count = await productServices.Update(id, request);
             if (count >= 1)

@@ -232,7 +232,7 @@ namespace Services.Core.Services
             //carton_no
             ExcelExport.WriteCellValue(currrentRowIndex, 1, sheetData, carton.carton_no);  
             //customer code
-            ExcelExport.WriteCellValue(currrentRowIndex, 2, sheetData, carton.customer.code);            
+            ExcelExport.WriteCellValue(currrentRowIndex, 2, sheetData, carton.customer.company_name);            
             //net_weight
             ExcelExport.WriteCellValue(currrentRowIndex, 3, sheetData, carton.net_weight.ToString());
             //gross_weight

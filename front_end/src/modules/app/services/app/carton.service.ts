@@ -9,7 +9,6 @@ const cartonService = {
         const res = await apiClient.get(API.LIST, {
             params: params,
         })
-        console.log(res)
         return res;
     },
 

@@ -16,6 +16,11 @@ const functionService = {
         return res.data;
     },
 
+    async getTreeView(): Promise<APIResponse<any>>{
+        const res = await apiClient.get(API.MENU);
+        return res;
+    },
+
     async export(params?: unknown) {
         return await apiClient
             .get(API.EXPORT, {

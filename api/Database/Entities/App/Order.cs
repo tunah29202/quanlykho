@@ -8,8 +8,10 @@ namespace Database.Entities
     {
         public string? order_no { get; set; }
         public DateTime order_date { get; set; }
-        public string status { get; set; }
+        public int status { get; set; }
         public double total_amount { get; set; }
+        public Guid? payment_method_id { get; set; }
+        public PaymentMethod payment_method { get; set; }
         public Guid? customer_id { get; set; }
         public Customer? customer { get; set; }
         public Guid? invoice_id { get; set; }

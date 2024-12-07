@@ -194,6 +194,7 @@
     import { useToast } from '@/components/commons/alert/vc-toast.vue';
     import {Plus, Picture as IconPicture} from '@element-plus/icons-vue';
     import DetailModal from '../category/DetailModal.vue';
+
     
     const storeCategory = useCategoryStore();
     const {dataGrid} = storeToRefs(storeCategory);
@@ -229,6 +230,8 @@
     const upload = ref<UploadInstance>();
     const showUpload = ref(true);
     const image_selected = ref<any>(null);
+    const warehouse_selected = ref<any>(null);
+
 
     let callback = (value: any) => { return value };
 
@@ -303,9 +306,13 @@
         if (!formEl) return;
 
         await formEl.validate(async (valid) => {
-            if (!valid) return;
+            if (!valid) return; 
             isLoading.value = true;
-
+            const warehouseSelectedJSON = localStorage.getItem('warehouse_selected')
+            if(warehouseSelectedJSON != null){
+                warehouse_selected.value = JSON.parse(warehouseSelectedJSON);
+                product.warehouse_id = warehouse_selected.value.id;
+            }
             const formData = new FormData();
             if(image_selected.value !== null){
                 formData.append('image', image_selected.value);
@@ -338,11 +345,11 @@
                 formData.append('price_unit', product.price_unit);
             }
             if (product.id) {
-                await productService.update(product).finally(() => {
+                await productService.update(product.id, formData).finally(() => {
                     isLoading.value = false;
             });
             } else {
-                await productService.create(product).finally(() => {
+                await productService.create(formData).finally(() => {
                     isLoading.value = false;
             });
             }

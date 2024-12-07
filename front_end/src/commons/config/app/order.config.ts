@@ -32,6 +32,16 @@ export const tableConfig = {
   showPaging: true,
   dbClick: false,
   index: true,
+  expand: true
+}
+
+export const tableModalConfig = {
+  checkbox: false,
+  action: true,
+  showPaging: true,
+  dbClick: false,
+  index: false,
+  expand: true
 }
 
 export const colConfig = [
@@ -44,20 +54,12 @@ export const colConfig = [
     title: tl(FUNC_NAME, "customer_company_text"),
   },
   {
-    key: "product_name",
-    title: tl(FUNC_NAME, "product_name_text"),
-  },
-  {
-    key: "quantity",
-    title: tl(FUNC_NAME, "quantity_text"),
-  },
-  {
-    key: "unit",
-    title: tl(FUNC_NAME, "unit_text"),
-  },
-  {
     key: "total_amount",
     title: tl(FUNC_NAME, "total_amount_text"),
+  },
+  {
+    key: "order_date",
+    title: tl(FUNC_NAME, "order_date_text"),
   },
   {
     key: "status",
@@ -65,4 +67,24 @@ export const colConfig = [
   },
 ]
 
-export default { tableConfig, colConfig }
+export const colConfigLeft = [
+  {
+    key: "code",
+    title: tl("Product", "code_text"),
+  },
+  {
+    key: "name",
+    title: tl("Product", "name_text"),
+  },
+  {
+    key: "quantity",
+    title: tl("Product", "quantity_text"),
+  },
+  {
+    key: "price_unit",
+    title: tl("Product", "price_unit_text"),
+  },
+]
+
+
+export default { tableConfig, colConfig, colConfigLeft, tableModalConfig}

@@ -5,11 +5,12 @@ namespace Services.Core.Contracts
     public class OrderRequest
     {
         public string order_no { get; set; }
-        public DateTime order_date { get; set; }
-        public string? status { get; set; }
+        public string? order_date { get; set; }
+        public int? status { get; set; }
         public double total_amount { get; set; }
         public Guid? customer_id { get; set; }
         public Guid? invoice_id { get; set; }
+        public Guid? payment_method_id { get; set; }
         public List<OrderDetailRequest> order_details { get; set; }
     }
     public class OrderRequestValidator : AbstractValidator<OrderRequest>

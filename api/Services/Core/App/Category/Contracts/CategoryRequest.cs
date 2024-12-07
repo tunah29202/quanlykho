@@ -4,7 +4,7 @@ namespace Services.Core.Contracts
     public class CategoryRequest
     {
         public string? name { get; set; }
-        public List<IngredientNameRequest>? ingredients { get; set; }
+        public List<IngredientNameRequest>? ingredient_names { get; set; }
     }
     public class CategoryRequestValidator : AbstractValidator<CategoryRequest>
     {

@@ -16,7 +16,6 @@ namespace Services.Core
                 services.AddScoped<ICurrentUserService, ApiServiceContext>();
                 services.AddScoped<IUserServices, UserServices>();
                 services.AddScoped<IRoleServices, RoleServices>();
-                services.AddScoped<IBankAccountServices, BankAccountServices>();
                 services.AddScoped<IPaymentMethodServices, PaymentMethodServices>();
                 services.AddScoped<IFunctionServices, FunctionServices>();
                 services.AddScoped<ICartonServices, CartonServices>();

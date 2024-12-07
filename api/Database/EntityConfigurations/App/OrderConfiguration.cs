@@ -22,6 +22,13 @@ namespace Database.EntityConfigurations
             .HasPrincipalKey(w => w.id)
             .HasForeignKey(z => z.customer_id)
             .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+            .HasOne(x => x.payment_method)
+            .WithMany(y => y.orders)
+            .HasPrincipalKey(w => w.id)
+            .HasForeignKey(z => z.payment_method_id)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

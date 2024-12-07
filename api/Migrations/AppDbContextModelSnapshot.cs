@@ -22,155 +22,6 @@ namespace api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Database.Entities.BankAccount", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("bank_branch_id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("bank_name_id")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("card_name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("card_number")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<Guid>("card_type_id")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("created_by")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("del_flg")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("payment_method_id")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("updated_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid?>("updated_by")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("bank_branch_id");
-
-                    b.HasIndex("bank_name_id");
-
-                    b.HasIndex("card_type_id");
-
-                    b.HasIndex("payment_method_id");
-
-                    b.ToTable("a_bank_account", "public");
-                });
-
-            modelBuilder.Entity("Database.Entities.BankBranch", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("created_by")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("del_flg")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<DateTime?>("updated_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid?>("updated_by")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("id");
-
-                    b.ToTable("a_bank_branch", "public");
-                });
-
-            modelBuilder.Entity("Database.Entities.BankName", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("created_by")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("del_flg")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<DateTime?>("updated_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid?>("updated_by")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("id");
-
-                    b.ToTable("a_bank_name", "public");
-                });
-
-            modelBuilder.Entity("Database.Entities.CardType", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("created_by")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("del_flg")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<DateTime?>("updated_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid?>("updated_by")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("id");
-
-                    b.ToTable("a_card_type", "public");
-                });
-
             modelBuilder.Entity("Database.Entities.Carton", b =>
                 {
                     b.Property<Guid>("id")
@@ -318,16 +169,7 @@ namespace api.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
-                    b.Property<string>("code")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)");
-
                     b.Property<string>("company_name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("company_type")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -461,9 +303,6 @@ namespace api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("bank_account_id")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid>("carton_id")
                         .HasColumnType("uuid");
 
@@ -530,8 +369,6 @@ namespace api.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("id");
-
-                    b.HasIndex("bank_account_id");
 
                     b.HasIndex("carton_id");
 
@@ -657,9 +494,11 @@ namespace api.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
-                    b.Property<string>("status")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid?>("payment_method_id")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("status")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("total_amount")
                         .HasColumnType("numeric(38,17)");
@@ -673,6 +512,8 @@ namespace api.Migrations
                     b.HasKey("id");
 
                     b.HasIndex("customer_id");
+
+                    b.HasIndex("payment_method_id");
 
                     b.ToTable("a_order", "public");
                 });
@@ -700,11 +541,6 @@ namespace api.Migrations
 
                     b.Property<int>("quantity")
                         .HasColumnType("integer");
-
-                    b.Property<string>("unit")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
 
                     b.Property<DateTime?>("updated_at")
                         .HasColumnType("timestamp without time zone");
@@ -1187,41 +1023,6 @@ namespace api.Migrations
                     b.ToTable("a_warehouse", "public");
                 });
 
-            modelBuilder.Entity("Database.Entities.BankAccount", b =>
-                {
-                    b.HasOne("Database.Entities.BankBranch", "bank_branch")
-                        .WithMany("bank_accounts")
-                        .HasForeignKey("bank_branch_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Database.Entities.BankName", "bank_name")
-                        .WithMany("bank_accounts")
-                        .HasForeignKey("bank_name_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Database.Entities.CardType", "card_type")
-                        .WithMany("bank_accounts")
-                        .HasForeignKey("card_type_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Database.Entities.PaymentMethod", "payment_method")
-                        .WithMany("bank_accounts")
-                        .HasForeignKey("payment_method_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("bank_branch");
-
-                    b.Navigation("bank_name");
-
-                    b.Navigation("card_type");
-
-                    b.Navigation("payment_method");
-                });
-
             modelBuilder.Entity("Database.Entities.Carton", b =>
                 {
                     b.HasOne("Database.Entities.Customer", "customer")
@@ -1283,11 +1084,6 @@ namespace api.Migrations
 
             modelBuilder.Entity("Database.Entities.Invoice", b =>
                 {
-                    b.HasOne("Database.Entities.BankAccount", "bank_account")
-                        .WithMany("invoices")
-                        .HasForeignKey("bank_account_id")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("Database.Entities.Carton", "carton")
                         .WithMany("invoices")
                         .HasForeignKey("carton_id")
@@ -1297,8 +1093,7 @@ namespace api.Migrations
                     b.HasOne("Database.Entities.Order", "order")
                         .WithOne("invoice")
                         .HasForeignKey("Database.Entities.Invoice", "order_id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Database.Entities.PaymentMethod", "payment_method")
                         .WithMany("invoices")
@@ -1317,8 +1112,6 @@ namespace api.Migrations
                         .HasForeignKey("warehouse_id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("bank_account");
 
                     b.Navigation("carton");
 
@@ -1349,7 +1142,14 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Database.Entities.PaymentMethod", "payment_method")
+                        .WithMany("orders")
+                        .HasForeignKey("payment_method_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("customer");
+
+                    b.Navigation("payment_method");
                 });
 
             modelBuilder.Entity("Database.Entities.OrderDetail", b =>
@@ -1459,26 +1259,6 @@ namespace api.Migrations
                     b.Navigation("warehouse");
                 });
 
-            modelBuilder.Entity("Database.Entities.BankAccount", b =>
-                {
-                    b.Navigation("invoices");
-                });
-
-            modelBuilder.Entity("Database.Entities.BankBranch", b =>
-                {
-                    b.Navigation("bank_accounts");
-                });
-
-            modelBuilder.Entity("Database.Entities.BankName", b =>
-                {
-                    b.Navigation("bank_accounts");
-                });
-
-            modelBuilder.Entity("Database.Entities.CardType", b =>
-                {
-                    b.Navigation("bank_accounts");
-                });
-
             modelBuilder.Entity("Database.Entities.Carton", b =>
                 {
                     b.Navigation("carton_details");
@@ -1518,9 +1298,9 @@ namespace api.Migrations
 
             modelBuilder.Entity("Database.Entities.PaymentMethod", b =>
                 {
-                    b.Navigation("bank_accounts");
-
                     b.Navigation("invoices");
+
+                    b.Navigation("orders");
                 });
 
             modelBuilder.Entity("Database.Entities.Product", b =>

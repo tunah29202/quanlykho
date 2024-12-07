@@ -29,10 +29,18 @@
                 <vc-col :span="24">
                     <vc-table :datas="dataGrid" :tableConfig="tableConfig" :colConfigs="colConfig" :page="pageConfig"
                               :loading="loading" @pageChanged="onPageChanged">
+                        <template #detail="scope">
+                            <el-table :data="scope.data" border>
+                                <el-table-column label="#" width="50" type="index" align="center" header-align="center"/>
+                                <el-table-column :label='tl("Product", "code_text")' prop="product.code"/>
+                                <el-table-column :label='tl("Category", "name_text")' prop="product.category.name"/>
+                                <el-table-column :label='tl("Product", "name_text")' prop="product.name"/>
+                                <el-table-column :label='tl("Product", "quantity_text")' prop="quantity"/>
+                                <el-table-column :label='tl("Product", "price_unit_text")' prop="product.price_unit"/>
+                            </el-table>
+                        </template>      
                         <template #action="{data}">
                             <div class="d-flex flex-center">
-                                <vc-button type="warning" size="small" class="btn-acttion" @click="onView(data)" :icon="'View'">
-                                </vc-button>
                                 <vc-button type="primary" size="small" class="btn-acttion" @click="onEdit(data)" :icon="'Edit'">
                                 </vc-button>
                                 <vc-button type="danger" code="F00015" size="small" class="btn-acttion" @click="onDeleteItem(data)" :icon="'Delete'">
@@ -69,6 +77,7 @@
 
     const onSearch = async () => {
         await store.getList()
+        console.log(dataGrid);
     }
 
     const onPageChanged = async (page: any) => {

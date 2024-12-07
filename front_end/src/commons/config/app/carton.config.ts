@@ -99,4 +99,4 @@ export const colConfigLeft = [
 
 
 
-export default { tableConfig, colConfig }
+export default { tableConfig, colConfig, colConfigLeft, tableModalConfig}

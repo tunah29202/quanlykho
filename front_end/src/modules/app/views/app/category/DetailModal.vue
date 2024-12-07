@@ -102,6 +102,7 @@
         Object.assign(category, response);
     };
     const onSave = async (formEl: FormInstance | undefined) => {
+
         if (!formEl) return;
 
         await formEl.validate(async (valid) => {
@@ -110,6 +111,8 @@
             isLoading.value = true;
 
             if (category.id) {
+                console.log(category)
+
                 await categoryService.update(category).finally(() => {
                     isLoading.value = false;
             });

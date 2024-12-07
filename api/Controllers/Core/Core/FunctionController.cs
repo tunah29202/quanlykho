@@ -104,8 +104,8 @@ namespace Controllers.Core
         [Route("menu")]
         public async Task<IActionResult> GetMenu()
         {
-            var data =  functionServices.GetAsTreeView().ToResponse();
-            return Ok(data);
+            var data =  functionServices.GetAsTreeView();
+            return Ok(data.ToResponse());
         }
     }
 }

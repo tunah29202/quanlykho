@@ -7,7 +7,6 @@ namespace Database.Entities
 {
     public partial class Product : BaseEntity
     {
-
         public string? code { get; set; }
         public string? name { get; set; }
         public string? image { get; set; }

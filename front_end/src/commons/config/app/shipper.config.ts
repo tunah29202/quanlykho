@@ -45,11 +45,11 @@ export const colConfig = [
   },
   {
     key: "tel",
-    title: tl(FUNC_NAME, "tel_holder"),
+    title: tl(FUNC_NAME, "tel_text"),
   },
   {
     key: "fax",
-    title: tl(FUNC_NAME, "fax_holder"),
+    title: tl(FUNC_NAME, "fax_text"),
   },
   {
     key: "email",

@@ -5,42 +5,42 @@
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("Shipper", "shipper_code_text") }}
-                        </div>
-                    </template>
-                    {{ shipper.code ?? '-' }}
-                </el-descriptions-item>
-                <el-descriptions-item>
-                    <template #label>
-                        <div class="cell-item">
-                            {{  tl("Shipper", "name_text") }}
+                            {{  tl("Shipper", "shipper_name_text") }}
                         </div>
                     </template>
                     {{ shipper.name ?? '-' }}
                 </el-descriptions-item>
                 <el-descriptions-item>
-                <template #label>
-                    <div class="cell-item">
-                    {{ tl("Shipper", "url_text") }}
-                    </div>
-                </template>
-                {{ shipper.url }}
+                    <template #label>
+                        <div class="cell-item">
+                            {{  tl("Shipper", "address_text") }}
+                        </div>
+                    </template>
+                    {{ shipper.address ?? '-' }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("Shipper", "method_text") }}
+                    {{ tl("Shipper", "fax_text") }}
                     </div>
                 </template>
-                {{ shipper.method }}
+                {{ shipper.fax }}
                 </el-descriptions-item>
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("Shipper", "parent_cd_text") }}
+                    {{ tl("Shipper", "email_text") }}
                     </div>
                 </template>
-                {{ shipper.parent_cd ?? '-' }}
+                {{ shipper.email }}
+                </el-descriptions-item>
+                <el-descriptions-item>
+                <template #label>
+                    <div class="cell-item">
+                    {{ tl("Shipper", "tel_text") }}
+                    </div>
+                </template>
+                {{ shipper.tel ?? '-' }}
                 </el-descriptions-item>
             </el-descriptions>
 
@@ -48,43 +48,43 @@
             require-asterisk-position="right" v-else>
                 <vc-row :gutter=20>
                     <vc-col>
-                        <vc-input-group prop="code" :label="tl('Shipper', 'shipper_code_text')">
-                            <vc-input v-model="shipper.code" :placeholder="tl('Shipper', 'shipper_code_holder')"/>
+                        <vc-input-group prop="name" :label="tl('Shipper', 'shipper_name_text')">
+                            <vc-input v-model="shipper.name" :placeholder="tl('Shipper', 'shipper_name_holder')"/>
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="name" :label="tl('Shipper', 'name_text')">
-                            <vc-input v-model="shipper.name" :placeholder="tl('Shipper', 'name_holder')" />
+                        <vc-input-group required prop="address" :label="tl('Shipper', 'address_text')">
+                            <vc-input v-model="shipper.address" :placeholder="tl('Shipper', 'address_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="url" :label="tl('Shipper', 'url_text')">
-                        <vc-input v-model="shipper.url" :placeholder="tl('Shipper', 'url_holder')" />
+                        <vc-input-group required prop="fax" :label="tl('Shipper', 'fax_text')">
+                        <vc-input v-model="shipper.fax" :placeholder="tl('Shipper', 'fax_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="method" :label="tl('Shipper', 'method_text')">
-                        <vc-input v-model="shipper.method" :placeholder="tl('Shipper', 'method_holder')" />
+                        <vc-input-group required prop="email" :label="tl('Shipper', 'email_text')">
+                        <vc-input v-model="shipper.email" :placeholder="tl('Shipper', 'email_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group prop="parent_cd" :label="tl('Shipper', 'parent_cd_text')">
-                        <vc-input v-model="shipper.parent_cd" :placeholder="tl('Shipper', 'parent_cd_holder')" />
+                        <vc-input-group prop="tel" :label="tl('Shipper', 'tel_text')">
+                        <vc-input v-model="shipper.tel" :placeholder="tl('Shipper', 'tel_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
             </el-form>
         </template>
         <template #acttion>
-            <vc-button v-if="props.type != POPUP_TYPE.VIEW" type="primary" class="ml-2" code="F00004"
+            <vc-button v-if="props.type != POPUP_TYPE.VIEW" type="primary" class="ml-2" name="F00004"
                 @click="onSave(shipperForm)" :loading="isLoading" :icon="'FolderChecked'">
                 {{ tl("Common", props.type == POPUP_TYPE.CREATE ? "btn_add" : "btn_update") }}
             </vc-button>
@@ -101,21 +101,21 @@
     import shipperService from "@app/services/app/shipper.service";
 
     const rules= reactive({
-        code: [
-            { label: tl("Shipper", "code_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Shipper', 'code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
-            ],
         name: [
             { label: tl("Shipper", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Shipper', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+            { label: tl('Shipper', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
+            ],
+        address: [
+            { label: tl("Shipper", "address_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Shipper', 'address_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        url: [{ label: tl("Shipper", "url_text"), required: true, validator: validate.required, trigger: ["blur"] }],
-        method: [
-            { label: tl("Shipper", "method_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Shipper', 'method_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        fax: [{ label: tl("Shipper", "fax_text"), required: true, validator: validate.required, trigger: ["blur"] }],
+        email: [
+            { label: tl("Shipper", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Shipper', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        parent_cd: [
-            { label: tl('Shipper', 'parent_cd_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        tel: [
+            { label: tl('Shipper', 'tel_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
         ],
     });
     const props = defineProps<{
@@ -132,11 +132,11 @@
 
     const shipper = reactive({
         id: '',
-        code: '',
         name: '',
-        url: '',
-        method: '',
-        parent_cd: '',
+        address: '',
+        fax: '',
+        email: '',
+        tel: '',
     });
 
     onBeforeMount(async () => {
@@ -171,11 +171,11 @@
     const open = async (title: any, item: any, _callback: any) => {
         let shipperInfo = {
             id: '',
-            code: null,
             name: null,
-            url: null,
-            method: null,
-            parent_cd: null,
+            address: null,
+            fax: null,
+            email: null,
+            tel: null,
         };
         modalTitle.value = title;
         if (item)

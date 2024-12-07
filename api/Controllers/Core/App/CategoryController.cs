@@ -32,7 +32,7 @@ namespace Controllers.Core
             var data = await categoryServices.GetById(id);
             if (data != null)
             {
-                return Ok(data);
+                return Ok(data.ToResponse());
             }
             else
             {

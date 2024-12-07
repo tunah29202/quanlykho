@@ -337,42 +337,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": ".prettierrc",
-              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\.prettierrc",
-              "RelativeDocumentMoniker": "front_end\\.prettierrc",
-              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\.prettierrc",
-              "RelativeToolTip": "front_end\\.prettierrc",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-09-26T04:08:13.609Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "main.ts",
-              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\main.ts",
-              "RelativeDocumentMoniker": "front_end\\src\\main.ts",
-              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\main.ts",
-              "RelativeToolTip": "front_end\\src\\main.ts",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2024-09-26T04:05:28.489Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "eslint.config.js",
-              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\eslint.config.js",
-              "RelativeDocumentMoniker": "front_end\\eslint.config.js",
-              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\eslint.config.js",
-              "RelativeToolTip": "front_end\\eslint.config.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-09-26T04:01:45.342Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 9,
               "Title": "vite.config.ts",
               "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\vite.config.ts",
@@ -444,10 +408,6 @@
               "WhenOpened": "2024-09-26T03:22:18.714Z"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "HelloWorld.vue",
@@ -470,6 +430,50 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
               "WhenOpened": "2024-09-26T04:24:03.554Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "eslint.config.js",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\eslint.config.js",
+              "RelativeDocumentMoniker": "front_end\\eslint.config.js",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\eslint.config.js",
+              "RelativeToolTip": "front_end\\eslint.config.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-26T04:01:45.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.ts",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\main.ts",
+              "RelativeDocumentMoniker": "front_end\\src\\main.ts",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\src\\main.ts",
+              "RelativeToolTip": "front_end\\src\\main.ts",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-09-26T04:05:28.489Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": ".prettierrc",
+              "DocumentMoniker": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\.prettierrc",
+              "RelativeDocumentMoniker": "front_end\\.prettierrc",
+              "ToolTip": "C:\\Users\\BXT\\Desktop\\quanlykho\\front_end\\.prettierrc",
+              "RelativeToolTip": "front_end\\.prettierrc",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-09-26T04:08:13.609Z"
             },
             {
               "$type": "Document",
@@ -1106,10 +1110,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-17T04:37:00.569Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             }
           ]
         }

@@ -10,6 +10,16 @@ export const ROUTER_ROLE = [
     name: 'RoleList',
     component: () => import('@app/views/core/role/ListView.vue'),
   },
+  {
+    path:'/role/create',
+    name: 'CreateRoleView',
+    component: () => import('@app/views/core/role/CreateView.vue') 
+  },
+  {
+    path: '/role/:id/edit',
+    name: 'EditRoleView',
+    component: () => import('@app/views/core/role/CreateView.vue'),
+  },
 ]
 
 // ========================== PATH API =============================
