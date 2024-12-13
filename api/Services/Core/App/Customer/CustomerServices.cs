@@ -81,10 +81,16 @@ namespace Services.Core.Services
                                     .GetQuery()
                                     .ExcludeSoftDeleted()
                                     .FilterById(id)
+                                    .Include(x => x.cartons.Where(x => x.del_flg == false))
+                                    .Include(x => x.orders.Where(x => x.del_flg == false))
                                     .FirstOrDefaultAsync();
             if (Customer == null)
             {
                 return -1;
+            }
+            if(Customer.cartons !=null && Customer.cartons.Count() > 0 || Customer.orders != null && Customer.orders.Count() > 0)
+            {
+                return -2;
             }
             await customerRepository.DeleteAsync(Customer);
             var count = await _unitOfWork.SaveChangeAsync();

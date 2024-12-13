@@ -10,7 +10,7 @@ namespace Database.EntityConfigurations
         {
             builder.ToTable("a_invoice", "public");
 
-            builder.Property(t => t.invoice_no).HasMaxLength(20).IsRequired();
+            builder.Property(t => t.invoice_no).HasMaxLength(100).IsRequired();
             builder.Property(t => t.invoice_date).HasMaxLength(20);
             builder.Property(t => t.shipped_per).HasMaxLength(250);
             builder.Property(t => t.shipped_date).HasMaxLength(20);
@@ -38,9 +38,9 @@ namespace Database.EntityConfigurations
 
             builder
             .HasOne(x => x.order)
-            .WithOne(y => y.invoice)
-            .HasForeignKey<Invoice>(z => z.order_id)
-            .IsRequired(false)
+            .WithMany(y => y.invoices)
+            .HasPrincipalKey(w => w.id)
+            .HasForeignKey(z => z.order_id)
             .OnDelete(DeleteBehavior.Restrict);
 
             builder

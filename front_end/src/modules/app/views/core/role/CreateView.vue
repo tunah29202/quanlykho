@@ -2,8 +2,8 @@
     <div vc-page page-role>
         <vc-card >
             <el-breadcrumb :separator-icon="ArrowRight" class="pb-4" style="border-bottom: 1px solid #cdcdcd;" >
-                <el-breadcrumb-item :to="{path: '/role'}">Quản lý vai trò</el-breadcrumb-item>
-                <el-breadcrumb-item>Chi tiết vai trò</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{path: '/role'}">{{ tl('SideBar', 'role_management') }}</el-breadcrumb-item>
+                <el-breadcrumb-item>{{ _id ? tl('Role', 'edit_text') :tl('Role', 'add_new_text')  }}</el-breadcrumb-item>
             </el-breadcrumb>
             <el-form  ref="roleForm" :model="role" :rules="rules" label-position="right" style="padding: 12px 16px"
             require-asterisk-position="right">
@@ -30,7 +30,7 @@
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="function" :label="tl('Role', 'function_text')" >
+                        <vc-input-group required prop="function" :label="tl('User', 'role_text')" >
                             <el-table :data="funtions" border style="width: 100%" stripe
                             :header-cell-style="{ fontSize: '16px', backgroundColor: '#f5f7fa', color: '#606266' }">
                                 <el-table-column prop="name" label="Chức năng" width="300" >
@@ -38,13 +38,13 @@
                                         {{ row.name }}
                                     </template>
                                 </el-table-column>
-                                <el-table-column label="Chọn tất cả" align="center" header-align="center" >
+                                <el-table-column :label="tl('Function', 'check_all_text')" align="center" header-align="center" >
                                     <template #default="{ row }">
                                         <el-checkbox  v-model="row.selectAll" :indeterminate="row.isIndeterminate" @change="selectAllChanged(row)">
                                         </el-checkbox>
                                     </template>
                                 </el-table-column>
-                                <el-table-column label="Xem danh sách" align="center" header-align="center" >
+                                <el-table-column :label="tl('Function', 'view_list_text')" align="center" header-align="center" >
                                     <template #default="{ row }">
                                         <div v-for="item in row.items" :key="item.id">
                                             <el-checkbox
@@ -55,7 +55,7 @@
                                         </div>
                                     </template>
                                 </el-table-column>
-                                <el-table-column label="Truy cập" align="center" header-align="center" >
+                                <el-table-column :label="tl('Function', 'view_detail_text')" align="center" header-align="center" >
                                     <template #default="{ row }">
                                         <div v-for="item in row.items" :key="item.id">
                                             <el-checkbox
@@ -67,7 +67,7 @@
                                     </template>
                                 </el-table-column>
     
-                                <el-table-column label="Thêm mới" align="center" header-align="center" >
+                                <el-table-column :label="tl('Function', 'add_new_text')" align="center" header-align="center" >
                                     <template #default="{ row }">
                                         <div v-for="item in row.items" :key="item.id">
                                             <el-checkbox
@@ -79,7 +79,7 @@
                                     </template>
                                 </el-table-column>
     
-                                <el-table-column label="Chỉnh sửa" align="center" header-align="center" >
+                                <el-table-column :label="tl('Function', 'edit_text')" align="center" header-align="center" >
                                     <template #default="{ row }">
                                         <div v-for="item in row.items" :key="item.id">
                                             <el-checkbox
@@ -91,7 +91,7 @@
                                     </template>
                                 </el-table-column>
     
-                                <el-table-column label="Xoá" align="center" header-align="center" >
+                                <el-table-column :label="tl('Function', 'delete_text')" align="center" header-align="center" >
                                     <template #default="{ row }">
                                         <div v-for="item in row.items" :key="item.id">
                                             <el-checkbox
@@ -102,7 +102,7 @@
                                         </div>
                                     </template>
                                 </el-table-column>
-                                <el-table-column label="Xuất Excel" align="center" header-align="center" >
+                                <el-table-column :label="tl('Function', 'export_text')" align="center" header-align="center" >
                                     <template #default="{ row }">
                                         <div v-for="item in row.items" :key="item.id">
                                             <el-checkbox
@@ -113,7 +113,7 @@
                                         </div>
                                     </template>
                                 </el-table-column>
-                                <el-table-column label="Nhập Excel" align="center" header-align="center" >
+                                <el-table-column :label="tl('Function', 'import_text')"align="center" header-align="center" >
                                     <template #default="{ row }">
                                         <div v-for="item in row.items" :key="item.id">
                                             <el-checkbox
@@ -158,14 +158,14 @@
     const router = useRouter()
     const rules= reactive({
         code: [
-            { label: tl("Role", "code_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Role', 'code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
+            { label: tl("Role", "role_code_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Role', 'role_code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
             ],
         name: [
             { label: tl("Role", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
             { label: tl('Role', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        description: [{ label: tl("Role", "url_text"), required: true, validator: validate.required, trigger: ["blur"] }],
+        description: [{ label: tl("Role", "description_text"), required: true, validator: validate.required, trigger: ["blur"] }],
     });
     const props = defineProps<{
         type: POPUP_TYPE;

@@ -1,6 +1,7 @@
 import tl from '@/utils/locallize'
 
 export const FUNC_NAME = 'Carton'
+export const PERMISION_NAME = 'CARTON'
 
 // ========================== ROUTER =============================
 
@@ -16,12 +17,21 @@ export const ROUTER_CARTON = [
 
 export const API = {
   LIST: `/${FUNC_NAME}`,
+  GET_NOT_IN_INVOICE: `${FUNC_NAME}/get-not-in-invoice`,
   CREATE: `/${FUNC_NAME}/create`,
   DETAIL: (id: string) => `${FUNC_NAME}/${id}`,
   UPDATE: (id: string) => `${FUNC_NAME}/update/${id}`,
   DELETE: (id: string | string[]) => `${FUNC_NAME}/delete/${id}`,
   DELETE_MULTI: `${FUNC_NAME}/delete-multi`,
   EXPORT: `${FUNC_NAME}/export-excel`,
+}
+
+export const PERMISSION = {
+  LIST: `${PERMISION_NAME}_LIST`,
+  CREATE: `${PERMISION_NAME}_CREATE`,
+  UPDATE: `${PERMISION_NAME}_UPDATE`,
+  DETAIL: `${PERMISION_NAME}_DETAIL`,
+  DELETE: `${PERMISION_NAME}_DELETE`,
 }
 
 // ========================== CONFIG TABLE ==========================

@@ -25,13 +25,66 @@
             <template v-for="(col, index) in colConfigs" :key="index">
                 <el-table-column :prop="col.key" :width="col.width" :label="col.title">
                     <template #default="scope">
-                        <template v-if="col.key === 'imageUrls'">
-                            <div class="flex space-x-2">
-                                <img v-for="(url, imgIndex) in scope.row[col.key]" :key="imgIndex" :src="getImageUrl(url)" alt="" class="w-6 h-6" />
+                        <template v-if="col.key === 'image'">
+                            <div class="flex space-x-2 flex-center">
+                              <el-image style="width: 50px; height: 50px;" fit="cover" :src="getUrlImage(scope.row[col.key])"/>
                             </div>
                         </template>
                         <template v-else>
-                            {{ scope.row[col.key] }}
+                          <template v-if="col.key === 'ingredients' ">
+                            <div>
+                              <template v-for="(item, index) in scope.row.ingredients" :key="index" >
+                                {{ item.name }}
+                                <span v-if="index !== scope.row.ingredients.length - 1">, </span>
+                              </template>
+                            </div>
+                          </template>
+                          <template v-else >
+                            <template v-if="col.key === 'warehouses' ">
+                              <div>
+                                <template v-for="(item, index) in scope.row.warehouse_names" :key="index" >
+                                  {{ item }}
+                                  <span v-if="index !== scope.row.warehouse_names.length - 1">, </span>
+                                </template>
+                              </div>
+                            </template>
+                            <template v-else>
+                              <template v-if="col.key === 'payment_method' ">
+                                  {{ scope.row[col.key]?.name }}
+                              </template>
+                              <template v-else>
+                                <template v-if="col.key === 'customer_company' ">
+                                  {{ scope.row.order?.customer?.company_name }}
+                                </template>
+                                <template v-else>
+                                  <template v-if="col.key === 'customer'">
+                                    {{ scope.row?.[col.key]?.company_name }}
+                                  </template>
+                                  <template v-else >
+                                    <template v-if="col.key === 'status' && tableConfig.invoice">
+                                      <el-tag :type="scope.row.status == 0 ? 'info' : 'success'" disable-transitions>
+                                        {{scope.row.status == 0
+                                        ? tl("Invoice", "not_exported_text") : tl("Invoice", "exported_text") }}</el-tag>
+                                    </template>
+                                    <template v-else>
+                                      <template v-if="col.key === 'status' && tableConfig.order" >
+                                        <el-tag :type="getTagTypeStatus(scope.row.status)" disable-transitions>
+                                        {{ getLabelStatus(scope.row.status) }}</el-tag>
+                                      </template>
+                                      <template v-else>
+                                          <template v-if="col.type==='datetime'">
+                                              <span>{{ datetime.formatDateTime(scope.row[col.key]) }}</span>
+                                          </template>
+                                          <template v-else>
+                                              {{ scope.row[col.key] }}
+                                          </template>
+                                      </template>
+                                    </template>
+                                  </template>
+                                </template>
+                              </template>
+                            </template>
+                          </template>
                         </template>
                     </template>
                 </el-table-column>
@@ -56,6 +109,9 @@
     import type { MetaResponse } from '@/interfaces/response.interface'
     import type { ColConfig, TableConfig } from '@/interfaces/table.interface'
     import VcPagination from './vc-pagination.vue'
+    import tl from '@/utils/locallize';
+    import datetime from '@/utils/datetime';
+    
 
     const props = defineProps<{
       datas?: any[]
@@ -75,6 +131,7 @@
       loading,
     } = toRefs(props)
 
+
     const emit = defineEmits([
       'dbClick',
       'onDelete',
@@ -90,9 +147,59 @@
     })
 
 
-    const getImageUrl = (url) => {
-       return `http://localhost:7070/Images/${url}`;
-    };
+    const getUrlImage = (url : any) =>{
+        var url_img = `${process.env.VITE_URL}/${url}`
+        return url_img
+    }
+    const getTagTypeStatus = (status: any) => {
+      let tagType
+      switch (status) {
+        case 0: 
+          tagType = 'warning'
+          break
+        case 1: 
+          tagType = 'info'
+          break
+        case 2:
+          tagType = 'success'
+          break
+        case 3:
+          tagType = 'danger'
+          break
+        case 4:
+          tagType = 'success'
+          break
+        default:
+          tagType = 'default'
+          break
+      }
+      return tagType
+    }
+
+    const getLabelStatus = (status: any) => {
+      let label
+      switch (status) {
+        case 0:
+          label = 'Chờ xử lý'
+          break
+        case 1:
+          label = 'Đang xử lý'
+          break
+        case 2:
+          label = 'Đã giao hàng'
+          break
+        case 3:
+          label = 'Đã hủy'
+          break
+        case 4:
+          label = 'Hoàn thành'
+          break
+        default:
+          label = 'Không xác định'
+          break
+      }
+      return label
+    }
     
     const onPageChanged = (page: any) => {
       emit('pageChanged', page)

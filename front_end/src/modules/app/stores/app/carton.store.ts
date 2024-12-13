@@ -7,7 +7,7 @@ export const useCartonStore = defineStore('useCartonStore', {
         formData: <any>{},
         goSort: <any>[],
         search: <any>[],
-        status: true,
+        category_name: <any>[],
         pageConfig: <any>[],
         warehouse_id: <any>[],
         loading: false,
@@ -23,9 +23,27 @@ export const useCartonStore = defineStore('useCartonStore', {
             await cartonService
                 .getList({
                     sort: this.goSort,
-                    is_actived: true,
                     search: this.search,
-                    status: this.status,
+                    warehouse_id : this.warehouse_id,
+                    category_name: this.category_name,
+                    ...this.pageConfig,
+                })
+                .then((data) => {
+                    this.dataGrid = data.data ?? []
+                    this.pageConfig.total = data.total
+                })
+                .finally(() => {
+                    this.loading = false
+                })
+        },
+        async getNotInInvoice() {
+            this.loading = true
+            await cartonService
+                .getNotInInvoice({
+                    sort: this.goSort,
+                    search: this.search,
+                    warehouse_id : this.warehouse_id,
+                    category_name: this.category_name,
                     ...this.pageConfig,
                 })
                 .then((data) => {

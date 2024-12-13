@@ -16,10 +16,11 @@ namespace Database.Entities
         public Customer? customer { get; set; }
         public Guid? invoice_id { get; set; }
         [JsonIgnore]
-        public Invoice? invoice { get; set; }
+        public virtual ICollection<Invoice> invoices { get; set; }
         [JsonIgnore]
         public virtual ICollection<OrderDetail>? order_details { get; set; }
-
+        [JsonIgnore]
+        public virtual ICollection<OrderWarehouse>? order_warehouses { get; set; }
         public Order()
         {
             id = Guid.NewGuid();

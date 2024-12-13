@@ -126,9 +126,8 @@
         </template>
     </vc-modal>
     <vc-confirm ref="confirmDialog"></vc-confirm>
-    <warehouse_modal ref="warehouseRef" @setWarehouse_ids="onSetWarehouse_ids"
-    @setWarehouse_names="onSetWarehouse_names" >
-    </warehouse_modal>
+    <warehouse-modal ref="warehouseRef" @setWarehouse_ids="onSetWarehouse_ids"
+    @setWarehouse_names="onSetWarehouse_names" ></warehouse-modal>
 </template>
 <script setup lang="ts">
     import { POPUP_TYPE } from '@/commons/const';
@@ -166,8 +165,12 @@
             { label: tl('User', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
         phone: [
+            { label: tl("User", "phone_text"), required: true, validator: validate.required, trigger: ["blur"] },
             { label: tl("User", "phone_text"), validator: validate.phoneNumberRule, trigger: ["change"] },
             { label: tl('User', 'phone_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        ],
+        role_cd: [
+            { label: tl("User", "role_cd_text"), required: true, validator: validate.required, trigger: ["blur"] },
         ],
     });
     const props = defineProps<{
@@ -226,7 +229,6 @@
             if (!valid) return;
 
             isLoading.value = true;
-
             if (user.id) {
                 await userService.update(user).finally(() => {
                     isLoading.value = false;

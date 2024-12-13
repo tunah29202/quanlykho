@@ -11,5 +11,8 @@ namespace Services.Core.Interfaces
         Task<int> Register(CustomerRegisterRequest request);
         Task<int> Update(Guid id, UserRequest request);
         Task<int> Delete(Guid id);
+        Task<UserResponse> GetByUserNameEmail(string user_name, string email);
+        Task<int> SaveCode(Guid id, string code);
+        Task<bool> CheckCode(AuthCheckCodeRequest request);
     }
 }

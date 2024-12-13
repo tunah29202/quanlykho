@@ -4,6 +4,8 @@ import App from './App.vue'
 import router from './modules/route'
 import { registerLayouts } from './layouts/_register'
 import VcRegister from '@/components/commons/vc-register'
+import resourceService from '@app/services/core/resource.service'
+
 
 // ===================== ELEMENT PLUS =========================
 import ElementPlus from 'element-plus'
@@ -13,16 +15,22 @@ import vi from 'element-plus/dist/locale/vi.mjs'
 
 const app = createApp(App)
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import { json } from 'stream/consumers'
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 VcRegister.register(app)
 registerLayouts(app)
-
 const pinia = createPinia()
 app.use(pinia)
-app.use(router)
-app.use(ElementPlus, {
-    locale: vi,
+resourceService.getList({ page: 1, size: 10000, sort: 'screen.asc' })
+.then((response: any)=>{
+    localStorage.setItem(
+        'i18n.ja',
+        response.data ? JSON.stringify(response.data) : '[]')    
+    app.use(router)
+    app.use(ElementPlus, {
+        locale: vi,
+    })
+    app.mount('#app')
 })
-app.mount('#app')

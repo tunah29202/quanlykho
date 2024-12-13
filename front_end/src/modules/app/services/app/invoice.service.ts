@@ -61,7 +61,16 @@ const invoiceService = {
                 return response
             })
     },
-
+    async getInvoiceNo(params?: unknown){
+        return await apiClient.get(API.GET_INVOICE_NO,{
+            params: params
+        })
+    },
+    async getStatistical(params?: unknown): Promise<APIResponse<any[]>>{
+        return await apiClient.get(API.STATISTICAL, {
+            params: params,
+        })
+    }
 }
 
 export default invoiceService

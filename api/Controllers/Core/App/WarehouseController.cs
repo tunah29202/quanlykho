@@ -46,13 +46,11 @@ namespace Controllers.Core
         {
             int count = await warehouseServices.Create(request);
             if (count >= 1)
-            {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_CREATE) });
-            }
+            else if (count == -2)
+                return Ok(new { code = ResponseCode.Invalid, message = ls.Get(Modules.Core, Screen.Warehouse, MessageKey.I_DUPLICATE_004) });
             else
-            {
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.E_CREATE) });
-            }
         }
 
         [HttpPut]
@@ -79,6 +77,8 @@ namespace Controllers.Core
             {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_DELETE) });
             }
+            else if (count == -2)
+                return Ok(new { code = ResponseCode.Invalid, message = ls.Get(Modules.Core, Screen.Warehouse, MessageKey.W_DELETE) });
             else
             {
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });

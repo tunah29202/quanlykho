@@ -47,7 +47,7 @@ export const tableConfig = {
 export const colConfig = [
   {
     key: "code",
-    title: tl(FUNC_NAME, "code_text"),
+    title: tl(FUNC_NAME, "role_code_text"),
   },
   {
     key: "name",

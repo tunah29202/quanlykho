@@ -79,10 +79,15 @@ namespace Services.Core.Services
                                 .GetQuery()
                                 .ExcludeSoftDeleted()
                                 .FilterById(id)
+                                .Include(x => x.user_roles.Where(x => x.del_flg == false))
                                 .FirstOrDefaultAsync();
             if(Role == null)
             {
                 return -1;
+            }
+            if (Role.user_roles != null&& Role.user_roles.Count()>0)
+            {
+                return -2;
             }
             await roleRepository.DeleteAsync(Role);
             var count = await _unitOfWork.SaveChangeAsync();

@@ -7,7 +7,6 @@ export const usePaymentMethodStore = defineStore('usePaymentMethodStore', {
         formData: <any>{},
         goSort: <any>[],
         search: <any>[],
-        status: true,
         pageConfig: <any>[],
         loading: false,
     }),
@@ -22,9 +21,7 @@ export const usePaymentMethodStore = defineStore('usePaymentMethodStore', {
             await paymentMethodService
                 .getList({
                     sort: this.goSort,
-                    is_actived: true,
                     search: this.search,
-                    status: this.status,
                     ...this.pageConfig,
                 })
                 .then((data) => {

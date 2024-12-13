@@ -52,7 +52,7 @@
     };
 
     const onSearch = async () => {
-        await storeOrder.getList()
+        await storeOrder.getNotInInvoice()
     }
     
     const tableConfig = {
@@ -61,13 +61,14 @@
         showPaging: true,
         dbClick: false,
         index: true,
+        order:true,
     }
     const onSelect = async (item: any) =>{
         emit('setOrder', item)
         close()
     }
     const open = async () => {
-        await storeOrder.getList();
+        await storeOrder.getNotInInvoice();
         modal.value.open();
     };
     const close = () => {

@@ -372,8 +372,7 @@ namespace api.Migrations
 
                     b.HasIndex("carton_id");
 
-                    b.HasIndex("order_id")
-                        .IsUnique();
+                    b.HasIndex("order_id");
 
                     b.HasIndex("payment_method_id");
 
@@ -491,8 +490,8 @@ namespace api.Migrations
 
                     b.Property<string>("order_no")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<Guid?>("payment_method_id")
                         .HasColumnType("uuid");
@@ -555,6 +554,42 @@ namespace api.Migrations
                     b.HasIndex("product_id");
 
                     b.ToTable("a_order_detail", "public");
+                });
+
+            modelBuilder.Entity("Database.Entities.OrderWarehouse", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("created_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("created_by")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("del_flg")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("order_id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("updated_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid?>("updated_by")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("warehouse_id")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("order_id");
+
+                    b.HasIndex("warehouse_id");
+
+                    b.ToTable("a_order_warehouse", "public");
                 });
 
             modelBuilder.Entity("Database.Entities.PaymentMethod", b =>
@@ -1091,9 +1126,10 @@ namespace api.Migrations
                         .IsRequired();
 
                     b.HasOne("Database.Entities.Order", "order")
-                        .WithOne("invoice")
-                        .HasForeignKey("Database.Entities.Invoice", "order_id")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithMany("invoices")
+                        .HasForeignKey("order_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Database.Entities.PaymentMethod", "payment_method")
                         .WithMany("invoices")
@@ -1169,6 +1205,25 @@ namespace api.Migrations
                     b.Navigation("order");
 
                     b.Navigation("product");
+                });
+
+            modelBuilder.Entity("Database.Entities.OrderWarehouse", b =>
+                {
+                    b.HasOne("Database.Entities.Order", "order")
+                        .WithMany("order_warehouses")
+                        .HasForeignKey("order_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Database.Entities.Warehouse", "warehouse")
+                        .WithMany("order_warehouses")
+                        .HasForeignKey("warehouse_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("order");
+
+                    b.Navigation("warehouse");
                 });
 
             modelBuilder.Entity("Database.Entities.Permission", b =>
@@ -1291,9 +1346,11 @@ namespace api.Migrations
 
             modelBuilder.Entity("Database.Entities.Order", b =>
                 {
-                    b.Navigation("invoice");
+                    b.Navigation("invoices");
 
                     b.Navigation("order_details");
+
+                    b.Navigation("order_warehouses");
                 });
 
             modelBuilder.Entity("Database.Entities.PaymentMethod", b =>
@@ -1337,6 +1394,8 @@ namespace api.Migrations
                     b.Navigation("cartons");
 
                     b.Navigation("invoices");
+
+                    b.Navigation("order_warehouses");
 
                     b.Navigation("products");
 

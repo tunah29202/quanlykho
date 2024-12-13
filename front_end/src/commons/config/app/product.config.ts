@@ -16,6 +16,7 @@ export const ROUTER_PRODUCT = [
 
 export const API = {
   LIST: `/${FUNC_NAME}`,
+  GET_PRODUCT_INVENTORY: `/${FUNC_NAME}/getProductInventory`,
   CREATE: `/${FUNC_NAME}/create`,
   DETAIL: (id: string) => `${FUNC_NAME}/${id}`,
   UPDATE: (id: string) => `${FUNC_NAME}/update/${id}`,

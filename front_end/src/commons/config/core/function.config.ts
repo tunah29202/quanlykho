@@ -38,7 +38,7 @@ export const tableConfig = {
 export const colConfig = [
   {
     key: "code",
-    title: tl(FUNC_NAME, "ode_text"),
+    title: tl(FUNC_NAME, "function_code_text"),
   },
   {
     key: "name",

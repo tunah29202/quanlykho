@@ -19,7 +19,7 @@ namespace Services.Core.Contracts
     {
         public UserRequestValidator()
         {
-            RuleFor(x=>x.code).NotNull().NotEmpty().MaximumLength(20);
+            RuleFor(x=>x.code).MaximumLength(20);
             RuleFor(x=>x.user_name).NotNull().NotEmpty().MaximumLength(250);
             RuleFor(x=>x.full_name).NotNull().NotEmpty().MaximumLength(250);
             RuleFor(x=>x.gender).NotNull().NotEmpty();

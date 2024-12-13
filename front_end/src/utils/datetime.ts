@@ -10,7 +10,7 @@ export default {
 
     formatDateTime(input: string) {
         return input
-            ? new Date(input).toISOString().replace(/T/, ' ').replace(/\..+/, '')
+            ? input.replace(/T/, ' ').replace(/\..+/, '')
             : null
     },
 

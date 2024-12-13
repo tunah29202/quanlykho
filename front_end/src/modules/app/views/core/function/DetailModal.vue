@@ -5,7 +5,7 @@
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("function", "function_code_text") }}
+                            {{  tl("Function", "function_code_text") }}
                         </div>
                     </template>
                     {{ funct.code ?? '-' }}
@@ -13,7 +13,7 @@
                 <el-descriptions-item>
                     <template #label>
                         <div class="cell-item">
-                            {{  tl("function", "name_text") }}
+                            {{  tl("Function", "name_text") }}
                         </div>
                     </template>
                     {{ funct.name ?? '-' }}
@@ -21,7 +21,7 @@
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("function", "url_text") }}
+                    {{ tl("Function", "url_text") }}
                     </div>
                 </template>
                 {{ funct.url }}
@@ -29,7 +29,7 @@
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("function", "method_text") }}
+                    {{ tl("Function", "method_text") }}
                     </div>
                 </template>
                 {{ funct.method }}
@@ -37,7 +37,7 @@
                 <el-descriptions-item>
                 <template #label>
                     <div class="cell-item">
-                    {{ tl("function", "parent_cd_text") }}
+                    {{ tl("Function", "parent_cd_text") }}
                     </div>
                 </template>
                 {{ funct.parent_cd ?? '-' }}
@@ -48,36 +48,36 @@
             require-asterisk-position="right" v-else>
                 <vc-row :gutter=20>
                     <vc-col>
-                        <vc-input-group prop="code" :label="tl('function', 'function_code_text')">
-                            <vc-input v-model="funct.code" :placeholder="tl('function', 'function_code_holder')"/>
+                        <vc-input-group prop="code" :label="tl('Function', 'function_code_text')">
+                            <vc-input v-model="funct.code" :placeholder="tl('Function', 'function_code_holder')"/>
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="name" :label="tl('function', 'name_text')">
-                            <vc-input v-model="funct.name" :placeholder="tl('function', 'name_holder')" />
+                        <vc-input-group required prop="name" :label="tl('Function', 'name_text')">
+                            <vc-input v-model="funct.name" :placeholder="tl('Function', 'name_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="url" :label="tl('function', 'url_text')">
-                        <vc-input v-model="funct.url" :placeholder="tl('function', 'url_holder')" />
+                        <vc-input-group required prop="url" :label="tl('Function', 'url_text')">
+                        <vc-input v-model="funct.url" :placeholder="tl('Function', 'url_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group required prop="method" :label="tl('function', 'method_text')">
-                        <vc-input v-model="funct.method" :placeholder="tl('function', 'method_holder')" />
+                        <vc-input-group required prop="method" :label="tl('Function', 'method_text')">
+                        <vc-input v-model="funct.method" :placeholder="tl('Function', 'method_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
                 <vc-row :gutter="20">
                     <vc-col>
-                        <vc-input-group prop="parent_cd" :label="tl('function', 'parent_cd_text')">
-                        <vc-input v-model="funct.parent_cd" :placeholder="tl('function', 'parent_cd_holder')" />
+                        <vc-input-group prop="parent_cd" :label="tl('Function', 'parent_cd_text')">
+                        <vc-input v-model="funct.parent_cd" :placeholder="tl('Function', 'parent_cd_holder')" />
                         </vc-input-group>
                     </vc-col>
                 </vc-row>
@@ -102,20 +102,20 @@
 
     const rules= reactive({
         code: [
-            { label: tl("funct", "code_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('funct', 'code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
+            { label: tl("Function", "function_code_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Function', 'function_code_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
             ],
         name: [
-            { label: tl("funct", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('funct', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+            { label: tl("Function", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Function', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        url: [{ label: tl("function", "url_text"), required: true, validator: validate.required, trigger: ["blur"] }],
+        url: [{ label: tl("Function", "url_text"), required: true, validator: validate.required, trigger: ["blur"] }],
         method: [
-            { label: tl("function", "method_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('function', 'method_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+            { label: tl("Function", "method_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Function', 'method_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
         parent_cd: [
-            { label: tl('function', 'parent_cd_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+            { label: tl('Function', 'parent_cd_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
         ],
     });
     const props = defineProps<{

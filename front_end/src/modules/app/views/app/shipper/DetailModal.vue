@@ -102,21 +102,23 @@
 
     const rules= reactive({
         name: [
-            { label: tl("Shipper", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Shipper', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
+            { label: tl("Shipper", "shipper_name_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Shipper', 'shipper_name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
             ],
         address: [
             { label: tl("Shipper", "address_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Shipper', 'address_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+            { label: tl('Shipper', 'address_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 300 },
         ],
         fax: [{ label: tl("Shipper", "fax_text"), required: true, validator: validate.required, trigger: ["blur"] }],
         email: [
             { label: tl("Shipper", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl("Shipper", "email_text"), validator: validate.emailRule, trigger: ["change"] },
             { label: tl('Shipper', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
         tel: [
-            { label: tl('Shipper', 'tel_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
-        ],
+            { label: tl("Shipper", "tel_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Shipper', 'tel_text'), validator: validate.phoneNumberRule, trigger: ["change"]},
+            { label: tl('Shipper', 'tel_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },        ],
     });
     const props = defineProps<{
         type: POPUP_TYPE;

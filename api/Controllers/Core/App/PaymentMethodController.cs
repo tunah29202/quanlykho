@@ -6,7 +6,6 @@ using Services.Core.Interfaces;
 namespace Controllers.Core
 {
     [Route("api/paymentMethod")]
-    [ApiAuthorize]
     [ApiController]
     public class PaymentMethodController : ControllerBase
     {

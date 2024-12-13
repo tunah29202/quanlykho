@@ -16,12 +16,24 @@ export default {
       value?.length >= min || tl("Common", "ValidateMinLength", [name, min])
     );
   },
+  
   maxLengthRule: (rule: any, value: any, callback: any) => {
     if (value !== null && value.length > rule.max) {
       callback(new Error(tl('Common', 'ValidateMaxLength', [rule.label ? rule.label : rule.field, `${rule.max}`])))
     } else {
       callback()
     }
+  },
+  validatePositiveNumber: (rule: any, value: any, callback: any) => {
+    if (value) {
+      const numericValue = parseFloat(value)
+      if (!isNaN(numericValue) && numericValue >= 0) {
+        callback()
+      } else {
+        callback(new Error(tl('Common', 'ValidatePositiveNumber', [rule.label ? rule.label : rule.field])))
+      }
+    }
+    callback()
   },
   lengthRule: (value: any, name: string, length: number) => {
     return (

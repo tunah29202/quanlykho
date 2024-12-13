@@ -10,6 +10,12 @@ const productService = {
             params: params,
         })
     },
+    async getProductInventory(data?: any) {
+        return await apiClient.post(API.GET_PRODUCT_INVENTORY, data)
+        .then((response: any) => {
+            return response
+        })
+    },
 
     async detail(id: string): Promise<APIResponse<any>> {
         const res = await apiClient.get(API.DETAIL(id));

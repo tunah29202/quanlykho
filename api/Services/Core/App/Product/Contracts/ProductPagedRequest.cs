@@ -14,8 +14,6 @@ namespace Services.Core.Contracts
 
         public bool get_all { get; set; }
 
-        public bool is_exists_in_warehouse { get; set; } = false;
-
         public string? product_ids_in_carton { get; set; }
 
         public string? created_at { get; set; }

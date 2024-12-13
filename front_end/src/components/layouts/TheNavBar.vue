@@ -4,7 +4,7 @@
             <el-row :gutter="20">
                 <el-col :span="2" style="padding: 0">
                     <el-header class="vertical-center">
-                        <h1>Toggle</h1>
+                        <el-button @click="handleToggleSideBar" :icon="isCollapse ? Expand : Fold"/>
                     </el-header>
                 </el-col>
                 <el-col :span="20" class="col-right vertical-center">
@@ -15,7 +15,7 @@
                         </span>
                         <template #dropdown>
                             <el-dropdown-menu>
-                                <el-dropdown-item class="clearfix" >
+                                <el-dropdown-item class="clearfix" @click="onChangePass">
                                     {{ tl("NavBar", "change_pass_text") }}
                                 </el-dropdown-item>
                                 <el-dropdown-item class="clearfix" @click="onLogout">
@@ -41,9 +41,19 @@
     import tl from '@/utils/locallize';
     import { useAuthStore } from '@app/stores/core/auth.store';
 
+    const emit = defineEmits(['toggleSidebar'])
+    const isCollapse = ref(false);
+    const handleToggleSideBar = ()=>{
+        isCollapse.value = !isCollapse.value;
+        emit('toggleSidebar', isCollapse.value)
+    }
     const router = useRouter();
     const authStore = useAuthStore();
     const {account} = storeToRefs(authStore)
+
+    const onChangePass = async () => {
+            router.push({ name: 'ChangePassWord' });
+    }
 
     const onLogout = async () => {
         try {

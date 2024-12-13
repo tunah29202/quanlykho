@@ -26,7 +26,7 @@ using System.Reflection;
                         rowIndex++;
                         if (row != null)
                         {
-                            if (rowIndex >= 2)
+                            if (rowIndex > 2)
                             {
                                 bool add = true;
                                 if (previousRow != null)

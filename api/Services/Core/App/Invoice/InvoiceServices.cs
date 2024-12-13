@@ -22,12 +22,12 @@ namespace Services.Core.Services
 
         }
 
-        public async Task<PagedList<InvoiceResponse>> GetAll(PagedRequest request)
+        public async Task<PagedList<InvoiceResponse>> GetAll(InvoicePagedRequest request)
         {
-            PagedList<Invoice> Invoices;
+            PagedList<Invoice> invoices;
             if (request.get_all)
             {
-                Invoices = invoiceRepository
+              invoices = invoiceRepository
                             .GetQuery()
                             .ExcludeSoftDeleted()
                             .SortBy(request.sort ?? "updated_at.desc")
@@ -35,13 +35,17 @@ namespace Services.Core.Services
             }
             else
             {
-                Invoices = await invoiceRepository.GetQuery()
+              invoices = await invoiceRepository.GetQuery()
                                     .ExcludeSoftDeleted()
+                                    .Where(x => x.warehouse_id == request.warehouse_id)
                                     .Where(x => !string.IsNullOrEmpty(request.search) ? x.invoice_no.ToLower().Contains(request.search.ToLower()) : true)
+                                    .Include(o => o.order)
+                                    .ThenInclude(y => y.customer)
+                                    .Include(p => p.payment_method)
                                     .SortBy(request.sort ?? "updated_at.desc")
                                     .ToPagedListAsync(request.page, request.size);
             }
-            var dataMapping = _mapper.Map<PagedList<InvoiceResponse>>(Invoices);
+            var dataMapping = _mapper.Map<PagedList<InvoiceResponse>>(invoices);
             return dataMapping;
         }
 
@@ -343,6 +347,61 @@ namespace Services.Core.Services
             await invoiceRepository.DeleteAsync(Invoice);
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
+        }
+        public async Task<string> GetInvoiceNo(string code)
+        {
+            var invoice = await invoiceRepository
+                            .GetQuery()
+                            .ExcludeSoftDeleted()
+                            .Where(x => x.invoice_no.Contains(code))
+                            .OrderBy(x => x.invoice_no)
+                            .LastOrDefaultAsync();
+            var invoice_no = code;
+            if(invoice != null)
+            {
+                var nChar = invoice.invoice_no[invoice.invoice_no.Length-1];
+                int nInt = int.Parse(nChar.ToString()) + 1;
+                invoice_no += nInt;
+            }
+            else
+            {
+                invoice_no += 1;
+            }
+            return invoice_no;
+        }
+        public async Task<StatisticalResponse> GetStatistical(DateTime startDate, DateTime endDate, Guid warehouse_id)
+        {
+            var startDateOnly = startDate.Date;
+            var endDateOnly = endDate.Date;
+
+            var invoices = await invoiceRepository
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .Where(i => i.created_at.Date >= startDateOnly && i.created_at.Date <= endDateOnly && i.warehouse_id == warehouse_id)
+                                .ToListAsync();
+            Dictionary<DateTime, int> invoiceCountByDate = new Dictionary<DateTime, int>();
+            foreach( var invoice in invoices)
+            {
+                DateTime dateOnly = invoice.created_at.Date;
+                if (invoiceCountByDate.ContainsKey(dateOnly))
+                {
+                    invoiceCountByDate[dateOnly]++;
+                }
+                else
+                {
+                    invoiceCountByDate[dateOnly] = 1;
+                }
+            }
+            var sortedInvoiceCountByDate = invoiceCountByDate.OrderBy(x => x.Key);
+            var labels = sortedInvoiceCountByDate.Select(x => x.Key.ToString("dd-MM")).ToArray();
+            var dataSets = sortedInvoiceCountByDate.Select(x => x.Value).ToArray();
+
+            var statisticalData = new StatisticalResponse
+            {
+                labels = labels,
+                datasets = dataSets
+            };
+            return statisticalData;
         }
     }
 }

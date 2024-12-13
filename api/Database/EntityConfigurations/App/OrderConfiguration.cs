@@ -10,7 +10,7 @@ namespace Database.EntityConfigurations
         {
             builder.ToTable("a_order", "public");
 
-            builder.Property(t => t.order_no).HasMaxLength(20).IsRequired();
+            builder.Property(t => t.order_no).HasMaxLength(100).IsRequired();
             builder.Property(t => t.order_date).IsRequired();
             builder.Property(t => t.status).IsRequired();
             builder.Property(t => t.total_amount).HasColumnType("numeric").IsRequired();
@@ -18,7 +18,7 @@ namespace Database.EntityConfigurations
 
             builder
             .HasOne(x => x.customer)
-            .WithMany(y => y.Orders)
+            .WithMany(y => y.orders)
             .HasPrincipalKey(w => w.id)
             .HasForeignKey(z => z.customer_id)
             .OnDelete(DeleteBehavior.Restrict);

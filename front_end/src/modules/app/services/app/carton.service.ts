@@ -11,7 +11,12 @@ const cartonService = {
         })
         return res;
     },
-
+    async getNotInInvoice(params?: unknown): Promise<APIResponse<any[]>> {
+        const res = await apiClient.get(API.GET_NOT_IN_INVOICE, {
+            params: params,
+        })
+        return res;
+    },
     async detail(id: string): Promise<APIResponse<any>> {
         const res = await apiClient.get(API.DETAIL(id));
         return res.data;    

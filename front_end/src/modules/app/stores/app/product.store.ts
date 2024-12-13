@@ -8,7 +8,6 @@ export const useProductStore = defineStore('useProductStore', {
         formData: <any>{},
         goSort: <any>[],
         search: <any>[],
-        status: true,
         catogory_name: <any>[],
         warehouse_id: <any>[],
         pageConfig: <any>[],
@@ -25,46 +24,13 @@ export const useProductStore = defineStore('useProductStore', {
             await productService
                 .getList({
                     sort: this.goSort,
-                    is_actived: true,
                     search: this.search,
-                    status: this.status,
                     warehouse_id : this.warehouse_id,
                     is_exists_in_warehouse: false,
                     ...this.pageConfig,
                 })
                 .then((data) => {
                     this.dataGrid = data.data ?? []
-                    this.pageConfig.total = data.total
-                })
-                .finally(() => {
-                    this.loading = false
-                })
-        },
-
-        async getProductInventory() {
-            this.loading = true
-            await productService
-                .getProductInventory({
-                    sort: this.goSort,
-                    is_actived: true,
-                    search: this.search && this.search.toString(),
-                    status: this.status,
-                    category_name: this.catogory_name && this.catogory_name.toString(),
-                    warehouse_id : this.warehouse_id,
-                    is_exists_in_warehouse: false,
-                    product_ids_in_carton: null,
-                    ...this.pageConfig,
-                })
-                .then((data) => {
-                    this.dataGrid = data.data ?? []
-                    this.dataGrid = this.dataGrid.map((item: any) => {
-                        if(item.price_unit)
-                        {
-                            const formated = number.formatCurrency(item.price_unit)
-                            item.price_unit = formated;
-                        };
-                        return;
-                    })
                     this.pageConfig.total = data.total
                 })
                 .finally(() => {
@@ -78,6 +44,31 @@ export const useProductStore = defineStore('useProductStore', {
         
         setWarehouseId(item: any){
             this.warehouse_id = item;
+        },
+
+        async getProductInventory(array: any){
+            this.loading = true;
+            await productService.getProductInventory({
+                search: this.search && this.search.toString(),
+                warehouse_id: this.warehouse_id,
+                product_ids_in_carton: array,
+                ...this.pageConfig
+            })
+            .then((data)=>{
+                this.dataGrid = data.data ??[]
+                this.dataGrid = this.dataGrid.map((item: any) => {
+                    if(item.price_unit)
+                    {
+                        const formated = number.formatCurrency(item.price_unit)
+                        item.price_unit = formated;
+                    };
+                    return item;
+                })
+                this.pageConfig.total = data.total
+            })
+            .finally(()=>{
+                this.loading = false
+            })
         },
 
         async getByKey(key: any) {
@@ -97,7 +88,6 @@ export const useProductStore = defineStore('useProductStore', {
             await productService
                 .export({
                     sort: this.goSort,
-                    is_actived: true,
                     search: this.search,
                     ...this.pageConfig,
                     size: 1000000,

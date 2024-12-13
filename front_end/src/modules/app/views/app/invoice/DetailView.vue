@@ -2,8 +2,8 @@
     <div vc-page page-invoice>
         <vc-card >
             <el-breadcrumb :separator-icon="ArrowRight" class="pb-4" style="border-bottom: 1px solid #cdcdcd;" >
-                <el-breadcrumb-item :to="{path: '/invoice'}">Quản lý hoá đơn</el-breadcrumb-item>
-                <el-breadcrumb-item>Chi tiết hoá đơn</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{path: '/invoice'}">{{ tl('SideBar', 'invoice_management') }}</el-breadcrumb-item>
+                <el-breadcrumb-item>{{tl('Invoice', 'detail_text')}}</el-breadcrumb-item>
             </el-breadcrumb>
             <el-tabs v-model="activeName" @tab-click="handleClick">
                 <div class="d-flex flex-center" style="justify-content: end;">
@@ -55,7 +55,7 @@
                                 <el-descriptions-item >
                                     <template #label>
                                         <div class="cell-item">
-                                            {{ tl('Invoice', 'customer_text') }}
+                                            {{ tl('Customer', 'name_text') }}
                                         </div>
                                     </template>
                                     {{ invoice?.carton?.customer.name || '-' }}
@@ -128,7 +128,7 @@
                                             {{ tl('Invoice', 'invoice_date_text') }}
                                         </div>
                                     </template>
-                                    {{ invoice.invoice_date}}
+                                    {{ datetime.formatDateTime(invoice.invoice_date)}}
                                 </el-descriptions-item>
                                 <el-descriptions-item >
                                     <template #label>
@@ -144,7 +144,7 @@
                                             {{ tl('Invoice', 'shipped_date_text') }}
                                         </div>
                                     </template>
-                                    {{ invoice.shipped_date}}
+                                    {{ datetime.formatDateTime(invoice.shipped_date)}}
                                 </el-descriptions-item>
                                 <el-descriptions-item >
                                     <template #label>
@@ -157,7 +157,7 @@
                                 <el-descriptions-item >
                                     <template #label>
                                         <div class="cell-item">
-                                            {{ tl('Invoice', 'total_volume_text') }}
+                                            {{ tl('Invoice', 'total_volumn_text') }}
                                         </div>
                                     </template>
                                     {{ invoice.total_volumn}}
@@ -173,7 +173,7 @@
                                 <el-descriptions-item >
                                     <template #label>
                                         <div class="cell-item">
-                                            {{ tl('Invoice', 'tax_amount_text') }}
+                                            {{ tl('Customer', 'tax_text') }}
                                         </div>
                                     </template>
                                     {{ invoice.invoice_tax}}
@@ -197,7 +197,7 @@
                                 <el-descriptions-item >
                                     <template #label>
                                         <div class="cell-item">
-                                            {{ tl('Invoice', 'note_text') }}
+                                            {{ tl('Invoice', 'notes_text') }}
                                         </div>
                                     </template>
                                     <div class="cell">
@@ -212,15 +212,15 @@
                     <el-descriptions title="Chi tiết thùng"></el-descriptions>
                     <vc-col>
                         <vc-row>
-                            <vc-col :span="3" class="col-custom-header ">Carton No</vc-col>
-                            <vc-col :span="3" class="col-custom-header ">Order No</vc-col>
-                            <vc-col :span="3" class="col-custom-header ">Net Weight</vc-col>
-                            <vc-col :span="3" class="col-custom-header ">Gross Weight</vc-col>
-                            <vc-col :span="2" class="col-custom-header ">Height</vc-col>
-                            <vc-col :span="2" class="col-custom-header ">Width</vc-col>
-                            <vc-col :span="2" class="col-custom-header ">Length</vc-col>
-                            <vc-col :span="3" class="col-custom-header ">Volume</vc-col>
-                            <vc-col :span="3" class="col-custom-header ">Total Amount</vc-col>
+                            <vc-col :span="3" class="col-custom-header ">{{ tl('Invoice', 'carton_no_text') }}</vc-col>
+                            <vc-col :span="3" class="col-custom-header ">{{ tl('Invoice', 'order_no_text') }}</vc-col>
+                            <vc-col :span="3" class="col-custom-header ">{{ tl('Carton', 'net_weight_text') }}</vc-col>
+                            <vc-col :span="3" class="col-custom-header ">{{ tl('Carton', 'gross_weight_text') }}</vc-col>
+                            <vc-col :span="2" class="col-custom-header ">{{ tl('Carton', 'height_text') }}</vc-col>
+                            <vc-col :span="2" class="col-custom-header ">{{ tl('Carton', 'width_text') }}</vc-col>
+                            <vc-col :span="2" class="col-custom-header ">{{ tl('Carton', 'length_text') }}</vc-col>
+                            <vc-col :span="3" class="col-custom-header ">{{ tl('Invoice', 'total_volumn_text') }}</vc-col>
+                            <vc-col :span="3" class="col-custom-header ">{{ tl('Carton', 'total_amount_text') }}</vc-col>
                         </vc-row>
                         <vc-row>
                             <vc-col :span="3" class="col-custom-content ">{{ invoice?.carton?.carton_no || '-' }}</vc-col>

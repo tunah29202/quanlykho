@@ -12,14 +12,14 @@ namespace Common
         public static string LogAction = "LogAction";
         public static string User = "User";
         public static string Carton = "Carton";
-        public static string GroupProduct = "GroupProduct";
+        public static string Category = "Category";
         public static string Ingredient = "Ingredient";
         public static string Invoice = "Invoice";
         public static string Order = "Order";
         public static string Product = "Product";
         public static string Shipper = "Shipper";
         public static string Warehouse = "Warehouse";
-        public static string Package = "Package";
+        public static string Role = "Role";
         public static string Auth = "Auth";
         public static string Resource = "Resource";
         public static string ChangePassword = "ChangePassword";
@@ -86,8 +86,6 @@ namespace Common
         public const string LOGIN_NOT_FOUND = "LoginNotFound";
 
         //Invalid
-        public const string I_DUPLICATE_001 = "DuplicateTrackingNumber";
-        public const string I_DUPLICATE_002 = "DuplicateJancode";
         public const string I_DUPLICATE_003 = "DoublicateRow";
         public const string I_DUPLICATE_004 = "DoublicateCode";
 
@@ -112,18 +110,6 @@ namespace Common
         UnAuthorized = 4
     }
 
-    public class CompanyType
-    {
-        public const string PLACE = "place";
-        public const string BRANCH = "branch";
-        public const string CUSTOMER = "customer";
-        public const string SUPPLIER = "supplier";
-        public const string OUTSOURCER = "outsourcer";
-        public const string DESTINATION = "destination";
-        public const string TRANSPOST = "transpost";
-        public const string MAKER = "maker";
-    }
-
     public class InvoiceExcel
     {
         public const string FILE_NAME = "INVOICE_TEMPLATE.xlsx";
@@ -134,9 +120,4 @@ namespace Common
 
     }
 
-    public class PackingExcel
-    {
-        public const string FILE_NAME = "PACKING_TEMPLATE.xlsx";
-        public const int COLUMN_START_INDEX = 3;
-    }
 }

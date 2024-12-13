@@ -6,11 +6,13 @@ namespace Services.Core.Contracts
         public string invoice_no { get; set; }
 
         public string? invoice_date { get; set; }
+
         public string? shipped_per { get; set; }
 
         public string? shipped_date { get; set; }
 
         public string? total_weight { get; set; }
+
         public double? total_volumn { get; set; }
 
         public Guid shipper_id { get; set; }
@@ -33,7 +35,7 @@ namespace Services.Core.Contracts
     {
         public InvoiceRequestValidator()
         {
-            RuleFor(_ => _.invoice_no).NotEmpty().NotNull().MaximumLength(20);
+            RuleFor(_ => _.invoice_no).NotEmpty().NotNull().MaximumLength(100);
             RuleFor(_ => _.invoice_date).NotEmpty().NotNull();
             RuleFor(_ => _.shipped_per).NotEmpty().NotNull().MaximumLength(250);
             RuleFor(_ => _.shipped_date).NotEmpty().NotNull().MaximumLength(250);

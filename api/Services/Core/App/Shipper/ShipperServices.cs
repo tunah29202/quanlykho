@@ -81,11 +81,14 @@ namespace Services.Core.Services
                                     .GetQuery()
                                     .ExcludeSoftDeleted()
                                     .FilterById(id)
+                                    .Include(x => x.invoices.Where(x => x.del_flg == false))
                                     .FirstOrDefaultAsync();
             if (Shipper == null)
             {
                 return -1;
             }
+            if (Shipper.invoices != null && Shipper.invoices.Count > 0)
+                return -2;
             await shipperRepository.DeleteAsync(Shipper);
             var count = await _unitOfWork.SaveChangeAsync();
             return count;

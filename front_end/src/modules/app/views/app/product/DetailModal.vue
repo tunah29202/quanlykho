@@ -208,13 +208,26 @@
             { label: tl("Product", "name_text"), required: true, validator: validate.required, trigger: ["blur"] },
             { label: tl('Product', 'name_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        url: [{ label: tl("Product", "url_text"), required: true, validator: validate.required, trigger: ["blur"] }],
-        method: [
-            { label: tl("Product", "method_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Product', 'method_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        origin: [
+            { label: tl("Product", "origin_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Product', 'origin_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
-        parent_cd: [
-            { label: tl('Product', 'parent_cd_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        status: [
+            { label: tl("Product", "status_text"), required: true, validator: validate.required, trigger: ["blur"] },
+        ],
+        price_unit: [
+            { label: tl("Product", "price_unit_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Product', 'price_unit_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        ],
+        quantity: [
+            { label: tl("Product", "quantity_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Product', 'quantity_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        ],
+        category_id: [
+            { label: tl("Product", "category_id_text"), required: true, validator: validate.required, trigger: ["blur"] },
+        ],
+        ingredient: [
+            { label: tl("Product", "ingredient_text"), required: true, validator: validate.required, trigger: ["blur"] },
         ],
     });
     const props = defineProps<{

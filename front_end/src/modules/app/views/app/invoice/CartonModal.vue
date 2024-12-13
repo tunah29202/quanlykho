@@ -61,14 +61,14 @@
     };
 
     const onSearch = async () => {
-        await storeCarton.getList()
+        await storeCarton.getNotInInvoice()
     }
     const onSelect = async (item: any) =>{
         emit('setCarton', item)
         close()
     }
     const open = async () => {
-        await storeCarton.getList();
+        await storeCarton.getNotInInvoice();
         modal.value.open();
     };
     const close = () => {

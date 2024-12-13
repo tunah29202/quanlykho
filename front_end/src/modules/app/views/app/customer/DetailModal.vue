@@ -137,7 +137,7 @@
         ],
         email: [
             { label: tl("Customer", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('Customer', 'email_text'), validator: validate.emailNumberRule, trigger: ["change"]},
+            { label: tl("Customer", "email_text"), validator: validate.emailRule, trigger: ["change"] },
             { label: tl('Customer', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
         ],
     });

@@ -54,8 +54,13 @@ export const colConfig = [
     title: tl(FUNC_NAME, "phone_text"),
   },
   {
-    key: "role",
-    title: tl(FUNC_NAME, "phone_text"),
+    key: "role_name",
+    title: tl(FUNC_NAME, "role_text"),
+  },
+  
+  {
+    key: "warehouses",
+    title: tl(FUNC_NAME, "warehouse_text"),
   },
 ]
 

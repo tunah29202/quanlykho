@@ -13,5 +13,7 @@ namespace Services.Core.Contracts
         public Guid? customer_id { get; set; }
         public Customer? customer { get; set; }
         public List<OrderDetail>? order_details { get; set; }
+        public List<Guid>? warehouse_ids { get; set; }
+        public List<string> warehouse_names { get; set; }
     }
 }

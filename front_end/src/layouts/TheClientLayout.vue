@@ -10,6 +10,4 @@
 </script>
 
 <style lang="scss">
-    @import '@/assets/styles/main.scss';
-    @import '@/assets/styles/page/client/_footerClient.scss';
 </style>

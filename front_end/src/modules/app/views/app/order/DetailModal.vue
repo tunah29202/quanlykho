@@ -4,44 +4,54 @@
             <el-form  ref="orderForm" :model="order" :rules="rules" label-position="right" style="padding: 12px 16px"
             require-asterisk-position="right">
                 <vc-row :gutter="20">
-                    <vc-col :lg="6" :md="12" :sm="24" :xs="24">
-                        <vc-input-group prop="order_no" :label="tl('order', 'order_no_text')">
-                            <vc-input v-model="order.order_no" :placeholder="tl('order', 'order_no_holder')"/>
+                    <vc-col :lg="4" :md="8" :sm="24" :xs="24">
+                        <vc-input-group :label="tl('Order', 'order_no_text')">
+                            <vc-input v-model="order_no" disabled />
                         </vc-input-group>
                     </vc-col>
-                    <vc-col :lg="6" :md="12" :sm="24" :xs="24">
-                        <vc-input-group required prop="customer_id" :label="tl('order', 'customer_info_text')" >
-                            <el-select v-model="order.customer_id" :placeholder="tl('order', 'customer_holder')" >
+                    <vc-col :lg="4" :md="8" :sm="24" :xs="24">
+                        <vc-input-group required prop="customer_id" :label="tl('Order', 'customer_info_text')" >
+                            <el-select v-model="order.customer_id" :placeholder="tl('Order', 'customer_info_holder')" >
                                 <el-option v-for="customer in dataGridCustomer" :key="customer.id" :value="customer.id" 
                                 :label="customer.company_name" />
                             </el-select>
                         </vc-input-group>
                     </vc-col>
-                    <vc-col :lg="6" :md="12" :sm="24" :xs="24">
+                    <vc-col :lg="4" :md="8" :sm="24" :xs="24">
                         <vc-input-group required prop="payment_method_id" :label="tl('Order', 'payment_method_text')">
                             <el-select v-model="order.payment_method_id"  :placeholder="tl('Order', 'payment_method_holder')">
                                 <el-option v-for="payment_method in dataPaymentMethod" :key="payment_method.id" :value="payment_method.id" :label="payment_method.name" />
                             </el-select>
                         </vc-input-group>
                     </vc-col>
-                    <vc-col :lg="6" :md="12" :sm="24" :xs="24">
+                    <vc-col :lg="4" :md="12" :sm="24" :xs="24">
                         <vc-input-group required prop="status" :label="tl('Invoice', 'status_text')">
                             <el-select v-model="order.status" :placeholder="tl('Invoice', 'customer_holder')">
-                                <el-option :label="tl('Invoice', 'not_exported_text')" :value="0"/>
-                                <el-option :label="tl('Invoice', 'exported_text')" :value="1"/>
+                                <el-option label="Chờ xử lý" :value="0"/>
+                                <el-option label="Đang xử lý" :value="1"/>
+                                <el-option label="Đã giao hàng" :value="2"/>
+                                <el-option label="Đã hủy" :value="3"/>
+                                <el-option label="Hoàn thành" :value="4"/>
                             </el-select>
                         </vc-input-group>
                     </vc-col>
+                    <vc-col :lg="8" :md="12" :sm="24" :xs="24">
+                        <vc-input-group prop="warehouse_names" :label="tl('Order', 'warehouse_text')" >
+                            <template v-for="(item, index) in order.warehouse_names" :key="index" >
+                                <el-tag class="mr-2" type="info" disable-transitions >{{ item }}</el-tag>
+                            </template>
+                            <el-button size="small" :icon="Plus" @click="onAddWarehouse" >{{ tl('Common', 'btn_add_new') }}</el-button>
+                        </vc-input-group>
+                    </vc-col>
                 </vc-row>
+                    
                 <vc-row :gutter="20">
                     <vc-col :lg="12" :md="12" :sm="24" :xs="24">
                         <vc-card style="background-color: #ececec; box-shadow: none;">
                             <div style="display: flex; margin-bottom: 20px;">
                                 <el-input v-model="search" :placeholder="tl('Product', 'input_search_holder')" :prefix-icon="Search"
                                 @on:keyup.enter="onSearch"/>
-                                <el-input v-model="category_name" :placeholder="tl('Product', 'category_search_holder')" :prefix-icon="Search"
-                                @on:keyup.enter="onSearch"/>
-                                <el-button type="primary" @click="onSearch" class="ml-2">{{ tl('Common', 'btn-search') }}</el-button>
+                                <el-button type="primary" @click="onSearch" class="ml-2">{{ tl('Common', 'btn_search') }}</el-button>
                             </div>
                             <vc-table :datas="dataGrid" :tableConfig="tableModalConfig" :colConfigs="colConfigLeft" :page="pageConfig"
                             :loading="loading" @pageChanged="onPageChanged">
@@ -58,7 +68,7 @@
                         <vc-card style="background-color: #ececec; box-shadow: none;">
                             <div class="vc-table" style="margin-top: 52px">
                                 <el-table :data="dataGridRight" style="height: 436px; width: 100%;" border>
-                                    <el-table-column width="50" :label="tl('order', 'btn_remove')">
+                                    <el-table-column width="50" :label="tl('Order', 'btn_remove')">
                                         <template v-slot="{row}">
                                             <div class="d-flex flex-center btn-group-action">
                                                 <div class="d-flex flex-center">
@@ -96,13 +106,15 @@
             </el-form>
         </template>
         <template #acttion>
-            <vc-button v-if="props.type != POPUP_TYPE.VIEW" type="primary" class="ml-2" order_no="F00004"
+            <vc-button v-if="props.type != POPUP_TYPE.VIEW" type="primary" class="ml-2"
                 @click="onSave(orderForm)" :loading="isLoading" :icon="'FolderChecked'">
                 {{ tl("Common", props.type == POPUP_TYPE.CREATE ? "btn_add" : "btn_update") }}
             </vc-button>
         </template>
-        <vc-confirm ref="confirmDialog"></vc-confirm>
     </vc-modal>
+    <vc-confirm ref="confirmDialog"></vc-confirm>
+        <warehouse-modal ref="warehouseRef" @setWarehouse_ids="onSetWarehouse_ids"
+        @setWarehouse_names="onSetWarehouse_names" ></warehouse-modal>
 </template>
 <script setup lang="ts">
     import { POPUP_TYPE } from '@/commons/const';
@@ -111,8 +123,7 @@
     import validate from "@/utils/validate";
     import type { FormInstance } from "element-plus";
     import orderService from "@app/services/app/order.service";
-    import productService from "@app/services/app/product.service";
-    import { Back, Search } from '@element-plus/icons-vue';
+    import { Back, Plus, Search } from '@element-plus/icons-vue';
     import { useProductStore } from '@app/stores/app/product.store';
     import { useCustomerStore } from '@app/stores/app/customer.store';
     import { usePaymentMethodStore } from '@app/stores/app/paymentMethod.store';
@@ -120,9 +131,13 @@
     import { storeToRefs } from 'pinia';
     import { colConfigLeft, tableModalConfig } from '@/commons/config/app/order.config';
     import number from '@/utils/number';
+    import WarehouseModal from './WarehouseModal.vue';
+    import { useOrderStore } from '@app/stores/app/order.store';
     
-    const store = useProductStore();
-    const {dataGrid, pageConfig, search, loading, category_name} = storeToRefs(store);
+    const storeProduct = useProductStore();
+    const {dataGrid, pageConfig, search, loading} = storeToRefs(storeProduct);
+    const storeOrder = useOrderStore();
+    const {order_no} = storeToRefs(storeOrder);
     const storeCustomer = useCustomerStore();
     const {dataGrid: dataGridCustomer} = storeToRefs(storeCustomer);
     const storePaymentMethod = usePaymentMethodStore();
@@ -130,20 +145,17 @@
 
     const rules= reactive({
         order_no: [
-            { label: tl("order", "order_no_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('order', 'order_no_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
+            { label: tl("Order", "order_no_text"), required: true, validator: validate.required, trigger: ["blur"] },
+            { label: tl('Order', 'order_no_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
             ],
-        net_weight: [
-            { label: tl("order", "net_weight_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('order', 'net_weight_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        customer_id: [
+            { label: tl("Order", "customer_info_text"), required: true, validator: validate.required, trigger: ["blur"] },
         ],
-        gross_weight: [{ label: tl("order", "gross_weight_text"), required: true, validator: validate.required, trigger: ["blur"] }],
-        length: [
-            { label: tl("order", "length_text"), required: true, validator: validate.required, trigger: ["blur"] },
-            { label: tl('order', 'length_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+        payment_method_id: [
+            { label: tl("Order", "payment_method_text"), required: true, validator: validate.required, trigger: ["blur"] },
         ],
-        width: [
-            { label: tl('order', 'width_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+        warehouse_names: [
+            { label: tl("Order", "warehouse_text"), required: true, validator: validate.required, trigger: ["blur"] },
         ],
     });
     const props = defineProps<{
@@ -157,6 +169,8 @@
     const modalTitle = ref<any>(null);
     const dataGridRight = ref<any>([]);
     const dataGridRightInit = ref<any>([]);
+    const warehouseRef = ref<any>(null);
+
 
     let callback = (value: any) => { return value };
 
@@ -170,7 +184,9 @@
         payment_method: {},
         customer_id: '',
         customer: {},
-        order_details: []
+        order_details: [],
+        warehouse_ids: [],
+        warehouse_names: [],
     });
 
     onBeforeMount(async () => {
@@ -182,10 +198,16 @@
         Object.assign(order, response);
     };
     const onSearch = async () =>{
-        await store.getList();
         await storePaymentMethod.getList();
         await storeCustomer.getList();
-        console.log(dataGrid)
+        let isArray : string[] = [];
+        dataGridRight.value.forEach((item: any) => {
+            if(item.id){
+                isArray.push(item.id);
+            }
+        });
+        await storeProduct.getProductInventory(JSON.stringify(isArray));
+        await storeOrder.getOrderNo();
     }
     interface Item {
         id: string;
@@ -199,9 +221,6 @@
             dataGridRight.value = [...dataGridRight.value, data];
             await onSearch();
         }
-        else {
-            useToast.push({ message: "Product đã tồn tại trong order!", type: 'error' })
-        }
     }
     const onDelete = async(data: Item) =>{
         dataGridRight.value = dataGridRight.value.filter((item: Item) => item.id !== data.id);
@@ -210,6 +229,15 @@
     const onPageChanged = async (page: any)=>{
         pageConfig.value = {...page};
         await onSearch();
+    }
+    const onAddWarehouse = ()=>{
+        warehouseRef.value.open(order.id)
+    }
+    const onSetWarehouse_ids =(value: any)=>{
+        order.warehouse_ids = value
+    }
+    const onSetWarehouse_names =(value:any)=>{
+        order.warehouse_names = value
     }
     const onSave = async (formEl: FormInstance | undefined) => {
         if (!formEl) return;
@@ -223,7 +251,7 @@
             }
             
             isLoading.value = true;
-
+            order.order_no = order_no.value;
             var flagorderDetails = [];
             var flagTotalAmount = 0;
             for(var i = 0; i < dataGridRight.value.length; i++){
@@ -241,12 +269,12 @@
             order.total_amount = flagTotalAmount;
             order.order_details = [...flagorderDetails];
             if (order.id) {
-                order.order_date = new Date(order.order_date).toLocaleDateString('en-EN');
+                order.order_date = new Date(order.order_date).toLocaleString('en-EN');
                 await orderService.update(order).finally(() => {
                     isLoading.value = false;
             });
             } else {
-                order.order_date = new Date().toLocaleDateString('en-EN');
+                order.order_date = new Date().toLocaleString('en-EN');
                 await orderService.create(order).finally(() => {
                     isLoading.value = false;
             });
@@ -267,7 +295,9 @@
             payment_method: {},
             customer_id: '',
             customer: {},
-            order_details: []
+            order_details: [],
+            warehouse_ids: [],
+            warehouse_names: [],
         };
         modalTitle.value = title;
         if (item){

@@ -77,7 +77,6 @@
 
     const onSearch = async () => {
         await store.getList()
-        console.log(dataGrid);
     }
 
     const onPageChanged = async (page: any) => {

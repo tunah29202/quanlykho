@@ -4,7 +4,8 @@ namespace Services.Core.Interfaces
 {
     public interface ICartonServices
     {
-        Task<PagedList<CartonResponse>> GetAll(PagedRequest request);
+        Task<PagedList<CartonResponse>> GetAll(CartonPagedRequest request);
+        Task<PagedList<CartonResponse>> GetNotInInvoice(CartonPagedRequest request);
         Task<CartonResponse> GetById(Guid id);
         Task<int> Create(CartonRequest request);
         Task<int> Update(Guid id, CartonRequest request);

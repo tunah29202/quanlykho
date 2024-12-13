@@ -13,6 +13,7 @@ namespace Services.Core.Contracts
         public string? phone { get; set; }
         public string? role_cd {  get; set; }
         public string? role_name { get; set;}
+        public List<string>? permissions { get; set; } 
         public List<Guid>? warehouse_ids { get; set; }
         public List<string> warehouse_names { get; set; }
     }

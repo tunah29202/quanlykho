@@ -17,7 +17,7 @@
             [JsonIgnore]
             public virtual ICollection<Carton>? cartons { get; set; }
             [JsonIgnore]            
-            public virtual ICollection<Order>? Orders { get; set; }
+            public virtual ICollection<Order>? orders { get; set; }
             
             public Customer()
             {

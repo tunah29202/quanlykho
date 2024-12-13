@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using FluentValidation;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 namespace Services.Core.Services
 {
     public class ProductServices : BaseServices, IProductServices
@@ -33,7 +34,7 @@ namespace Services.Core.Services
         {
             if(request.get_all)
             {
-                PagedList<Product>  Products = productRepository
+                PagedList<Product> Products = productRepository
                             .GetQuery()
                             .ExcludeSoftDeleted()
                             .Include(x => x.category)
@@ -67,6 +68,14 @@ namespace Services.Core.Services
                 {
                     query = query.Where(x => (x.category_id != null && categoryIds.Contains((Guid)x.category_id)));
                 }
+                if(request.product_ids_in_carton != null)
+                {
+                    Guid[]? productsInCarton = JArray.Parse(request.product_ids_in_carton)?.ToObject<Guid[]>();
+                    if(productsInCarton != null && productsInCarton.Length > 0)
+                    {
+                        query = query.Where(x => !productsInCarton.Contains(x.id));
+                    }
+                }
                 var products = await query
                                     .Include(x => x.category)
                                     .SortBy(request.sort ?? "updated_at.desc")
@@ -93,7 +102,7 @@ namespace Services.Core.Services
         {
             if (await CheckDuplicateProductCode(request.code))
             {
-                return -2;
+                return -1;
             }
             var Product = _mapper.Map<Product>(request);
             if(request.image != null && request.image.Length != 0)
@@ -111,7 +120,7 @@ namespace Services.Core.Services
                 }
                 if(!File.Exists(filePath))
                 {
-                    return -3;
+                    return -2;
                 }
                 Product.image = fileName;
             }
@@ -124,7 +133,7 @@ namespace Services.Core.Services
         {
             if (await CheckDuplicateProductCode(request.code, id))
             {
-                return -2;
+                return -1;
             }
             var Product = await _unitOfWork
                                     .GetRepository<Product>()
@@ -134,7 +143,7 @@ namespace Services.Core.Services
                                     .FirstOrDefaultAsync();
             if(Product == null)
             {
-                return -1;
+                return -3;
             }
             string image = Product.image?? "";
             _mapper.Map(request, Product);
@@ -155,7 +164,7 @@ namespace Services.Core.Services
                 }
                 if (!File.Exists(filePath))
                 {
-                    return -4;
+                    return -2;
                 }
                 Product.image = fileName;
             }

@@ -2,9 +2,9 @@
     <vc-modal ref="modalWarehouse" :title="tl('User', 'title_modal_warehouse_add')" @close="close" >
         <template #content >
             <vc-row style="padding: 12px 16px 0;" >
-                <vc-col :span=14 class="d-flex">
-                    <el-input v-model="search" :placeholder="tl('Warehouse', 'input_search_holder')" />
-                    <el-butoon type="primary" @click="onSearch" class="ml-2" > {{ tl('Common', 'btn_search') }} </el-butoon>
+                <vc-col :span="14" style="display: flex;" >
+                    <el-input v-model="search" :placeholder="tl('Warehouse', 'input_search_holder')" :prefix-icon="Search" />
+                    <el-button type="primary" @click="onSearch" class="ml-2">{{ tl("Common", "btn_search") }}</el-button>
                 </vc-col>
             </vc-row>
             <el-form ref="warehouseForm" :model="warehouse" label-position="right" style="padding: 12px 16px"
@@ -21,25 +21,26 @@
                 </vc-row>
             </el-form>
         </template>
-        <template #action>
-            <vc-button type="primary" class="ml-2" code="f00004" @click="onSave(warehouseForm)" :loading="loading" >
-                {{ tl('Common', 'btn_add') }}
+        <template #acttion>
+            <vc-button type="primary" class="ml-2" code="F00004" @click="onSave(warehouseForm)" :loading="isLoading"
+            :icon="'FolderChecked'">
+            {{ tl("Common", "btn_add") }}
             </vc-button>
         </template>
         <vc-confirm ref="confirmDialog" ></vc-confirm>
     </vc-modal>
 </template>
 <script setup lang="ts" >
-    import { POPUP_TYPE } from '@/commons/const';
     import tl from '@/utils/locallize';
     import { onBeforeMount, ref, reactive } from "vue";
     import validate from "@/utils/validate";
     import userService from "@app/services/core/user.service";
     import { useRoleStore } from '@app/stores/core/role.store';
     import { storeToRefs } from 'pinia';
-    import { Search } from '@element-plus/icons-vue';
+    import { FolderChecked, Search } from '@element-plus/icons-vue';
     import { useWarehouseStore } from '@app/stores/app/warehouse.store';
     import type { FormInstance } from 'element-plus';
+    import VcPagination from '@/components/commons/table/vc-pagination.vue';
     
     const storeWarehouse = useWarehouseStore();
     const {dataGrid, search, pageConfig, loading} = storeToRefs(storeWarehouse);
@@ -68,9 +69,11 @@
     });
     onBeforeMount(async ()=>{
         await init()
+        
     });
     const onSearch = async ()=>{
         await storeWarehouse.getList()
+        console.log(dataGrid);
     }
     const getWarehouse = async ()=>{
         const res = await userService.detail(warehouse.id);
@@ -85,7 +88,7 @@
             if(!valid) return;
             isLoading.value = true;
             warehouse.warehouse_ids = warehouse.warehouse_ids ?? [];
-            warehouse.warehouse_names = dataGrid.value.filters((data: any)=>warehouse.warehouse_ids.includes((data.id))).map((data: any)=>data.name);
+            warehouse.warehouse_names = dataGrid.value.filter((data: any)=>warehouse.warehouse_ids.includes((data.id))).map((data: any)=>data.name);
             emit('setWarehouse_ids', warehouse.warehouse_ids);
             emit('setWarehouse_names', warehouse.warehouse_names)
             isLoading.value=false;

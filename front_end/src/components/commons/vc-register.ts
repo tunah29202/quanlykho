@@ -1,7 +1,5 @@
 import type { App } from 'vue'
 
-import VcToast from './alert/vc-toast.vue'
-
 import VcMenu from './layout/vc-menu.vue'
 import VcRow from './layout/vc-row.vue'
 import VcCol from './layout/vc-col.vue'
@@ -23,7 +21,6 @@ import VcTable from './table/vc-table.vue'
 import VcImport from './import/vc-import.vue'
 
 const requireComponent = {
-    VcToast,
     VcButton,
     VcConfirm,
     VcCheckbox,

@@ -6,7 +6,6 @@ using Services.Core.Interfaces;
 namespace Controllers.Core
 {
     [Route("api/function")]
-    [ApiAuthorize]
     [ApiController]
     public class FunctionController : ControllerBase
     {

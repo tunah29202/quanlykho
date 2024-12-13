@@ -1,6 +1,6 @@
 ﻿<template>
     <el-scrollbar height="100vh" class="side-bar">
-        <div class="sidebar-header">
+        <div v-if="!isCollapse" class="sidebar-header">
             <vc-row :gutter="20">
                 <vc-col :span="6" >
                     <img src="@/assets/images/logo.jpg" style="cursor: pointer;" width="50" height="50" />
@@ -16,7 +16,7 @@
                         <template #dropdown>
                             <el-scrollbar max-height="400px">
                                 <el-dropdown-menu>
-                                    <el-dropdown-item v-for="item in dataGrid" :key="item.code" :command="item">
+                                    <el-dropdown-item v-for="item in dataGridAll" :key="item.code" :command="item">
                                         {{item.name}}
                                     </el-dropdown-item>
                                 </el-dropdown-menu>
@@ -28,7 +28,7 @@
             </vc-row>
             <hr />
         </div>
-        <vc-menu ></vc-menu>
+        <vc-menu :collapse="isCollapse"></vc-menu>
     </el-scrollbar>
 </template>
 <script setup lang="ts">
@@ -48,16 +48,20 @@
     storeToRefs(storeInvoice);
     
     const storeWarehouse = useWarehouseStore();
-    const {dataGrid} = storeToRefs(storeWarehouse);
+    const {dataGridAll} = storeToRefs(storeWarehouse);
+    const props= defineProps<{
+        isCollapse?: boolean;
+    }>();
+    const isCollapse = toRef<any, string>(props, "isCollapse")
 
     const selectedDropdownValue = ref<any>(null);
     onMounted(async()=>{
-        await storeWarehouse.getList();
+        await storeWarehouse.getAll();
         const warehouseSelected = localStorage.getItem('warehouse_selected');
         if(warehouseSelected === null){
-            if(dataGrid.value.length > 0){
-                localStorage.setItem('warehouse_selected', dataGrid.value[0])
-                handleDropdown(dataGrid.value[0])
+            if(dataGridAll.value.length > 0){
+                localStorage.setItem('warehouse_selected', dataGridAll.value[0])
+                handleDropdown(dataGridAll.value[0])
             }
         }
         else{

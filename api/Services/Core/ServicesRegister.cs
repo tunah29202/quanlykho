@@ -5,6 +5,7 @@ using Services.Core.Services;
 using Services.Common.Repository;
 using Common;
 using Helpers.Cache;
+using Helpers.Email;
 
 namespace Services.Core
 {
@@ -32,6 +33,7 @@ namespace Services.Core
                 services.AddScoped<ICacheServices, CacheServices>();
                 services.AddScoped<ILocalizeServices, LocalizeServices>();
                 services.AddScoped<ILogServices, LogServices>();
+                services.AddScoped<IEmailHelpers, EmailHelpers>();
 
             return services;
             }

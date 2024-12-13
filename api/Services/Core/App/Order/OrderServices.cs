@@ -6,6 +6,7 @@ using Services.Core.Interfaces;
 using Database.Entities;
 using Common;
 using Helpers.Auth;
+using System.Threading.Tasks;
 namespace Services.Core.Services
 {
     public class OrderServices : BaseServices, IOrderServices
@@ -13,11 +14,15 @@ namespace Services.Core.Services
         private readonly IRepository<Order> orderRepository;
         private readonly IRepository<Product> productRepository;
         private readonly IRepository<OrderDetail> orderDetailRepository;
+        private readonly IRepository<OrderWarehouse> orderWarehouseRepository;
+        private readonly IRepository<Invoice> invoiceRepository;
         public OrderServices(IUnitOfWork _unitOfWork, IMapper _mapper) : base(_unitOfWork, _mapper) 
         { 
             orderRepository = _unitOfWork.GetRepository<Order>();
             orderDetailRepository = _unitOfWork.GetRepository<OrderDetail>();
+            orderWarehouseRepository = _unitOfWork.GetRepository<OrderWarehouse>();
             productRepository = _unitOfWork.GetRepository<Product>();
+            invoiceRepository = _unitOfWork.GetRepository<Invoice>();
         }
 
         public async Task<PagedList<OrderResponse>> GetAll(PagedRequest request)
@@ -52,6 +57,26 @@ namespace Services.Core.Services
             var dataMapping = _mapper.Map<PagedList<OrderResponse>>(Orders);
             return dataMapping;
         }
+        public async Task<PagedList<OrderResponse>> GetNotInInvoice(PagedRequest request)
+        {
+            PagedList<Order> Orders;
+            Orders = await orderRepository
+                            .GetQuery()
+                            .ExcludeSoftDeleted()
+                            .Where(x => !string.IsNullOrEmpty(request.search) ? x.order_no.ToLower().Contains(request.search.ToLower()) : true)
+                            .SortBy(request.sort ?? "updated_at.desc")
+                            .Include(x => x.invoices)
+                            .Where(x => x.invoices == null || x.invoices.All(inv => inv.del_flg == true))
+                            .Include(x => x.customer)
+                            .Include(x => x.order_details.Where(y => !y.del_flg))
+                                 .ThenInclude(od => od.product)
+                                 .ThenInclude(p => p.category)
+                            .Include(x => x.payment_method)
+                            .ToPagedListAsync(request.page, request.size);
+            var dataMapping = _mapper.Map<PagedList<OrderResponse>>(Orders);
+            return dataMapping;
+        }
+
 
         public async Task<OrderResponse> GetById(Guid id)
         {
@@ -64,7 +89,8 @@ namespace Services.Core.Services
                                         .ThenInclude(od => od.product)
                                             .ThenInclude(p => p.category)
                                     .Include(x => x.payment_method)
-                                    .FirstOrDefaultAsync();
+                                    .Include(x => x.order_warehouses!.Where(ow => ow.warehouse != null && !ow.del_flg))
+                                        .ThenInclude(ow => ow.warehouse).FirstOrDefaultAsync();
             var data = _mapper.Map<OrderResponse>(Order);
             return data;
         }
@@ -73,6 +99,17 @@ namespace Services.Core.Services
         {
             var order = _mapper.Map<Order>(request);
             await orderRepository.AddAsync(order);
+            if (request.warehouse_ids != null)
+            {
+                foreach (var warehouse_id in request.warehouse_ids)
+                {
+                    await orderWarehouseRepository.AddAsync(new OrderWarehouse()
+                    {
+                        order_id = order.id,
+                        warehouse_id = warehouse_id,
+                    });
+                }
+            }
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
         }   
@@ -137,6 +174,38 @@ namespace Services.Core.Services
             _mapper.Map(request, order);
             order.id = id;
             await orderRepository.UpdateAsync(order);
+            var oldWarehouses = orderWarehouseRepository
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .Where(x => x.order_id == id)
+                                .ToList();
+            //delete old warehouse
+            foreach (var oldWarehouse in oldWarehouses)
+            {
+                await orderWarehouseRepository.DeleteAsync(oldWarehouse);
+            }
+            if (request.warehouse_ids != null && request.warehouse_ids.Count > 0)
+            {
+                foreach (var orderWarehouse in request.warehouse_ids)
+                {
+                    var oldWarehouse = await orderWarehouseRepository
+                                                .GetQuery()
+                                                .FirstOrDefaultAsync(ow => ow.warehouse_id == orderWarehouse && ow.del_flg);
+                    if (oldWarehouse != null)
+                    {
+                        oldWarehouse.order_id = id;
+                        oldWarehouse.del_flg = false;
+                    }
+                    else
+                    {
+                        await orderWarehouseRepository.AddAsync(new OrderWarehouse()
+                        {
+                            order_id = id,
+                            warehouse_id = orderWarehouse
+                        });
+                    }
+                }
+            }
             int count = await _unitOfWork.SaveChangeAsync();
             return count;
         }
@@ -147,14 +216,74 @@ namespace Services.Core.Services
                                     .GetQuery()
                                     .ExcludeSoftDeleted()
                                     .FilterById(id)
+                                    .Include(x=>x.invoices.Where(i => i.del_flg == false))
                                     .FirstOrDefaultAsync();
             if(Order == null)
             {
                 return -1;
             }
+            if (Order.invoices != null && Order.invoices.Count() > 0)
+            {
+                return -2;
+            }
             await orderRepository.DeleteAsync(Order);
             var count = await _unitOfWork.SaveChangeAsync();
             return count;
+        }
+        public async Task<string> GetOrderNo(string code)
+        {
+            var order = await orderRepository
+                            .GetQuery()
+                            .ExcludeSoftDeleted()
+                            .Where(x => x.order_no.Contains(code))
+                            .OrderBy(x => x.order_no)
+                            .LastOrDefaultAsync();
+            var order_no = code;
+            if (order != null)
+            {
+                var nChar = order.order_no[order.order_no.Length - 1];
+                int nInt = int.Parse(nChar.ToString()) + 1;
+                order_no += nInt;
+            }
+            else
+            {
+                order_no += 1;
+            }
+            return order_no;
+        }
+        public async Task<StatisticalResponse> GetStatistical(DateTime startDate, DateTime endDate, Guid? warehouse_id)
+        {
+            var startDateOnly = startDate.Date;
+            var endDateOnly = endDate.Date;
+
+            var orders = await orderRepository
+                                .GetQuery()
+                                .ExcludeSoftDeleted()
+                                .Where(i => i.order_date.Date >= startDateOnly && i.order_date.Date <= endDateOnly )
+                                .ToListAsync();
+            Dictionary<DateTime, int> invoiceCountByDate = new Dictionary<DateTime, int>();
+            foreach (var order in orders)
+            {
+                DateTime dateOnly = order.created_at.Date;
+                if (invoiceCountByDate.ContainsKey(dateOnly))
+                {
+                    invoiceCountByDate[dateOnly]++;
+                }
+                else
+                {
+                    invoiceCountByDate[dateOnly] = 1;
+                }
+            }
+            var sortedInvoiceCountByDate = invoiceCountByDate.OrderBy(x => x.Key);
+            var labels = sortedInvoiceCountByDate.Select(x => x.Key.ToString("dd-MM")).ToArray();
+            var dataSets = sortedInvoiceCountByDate.Select(x => x.Value).ToArray();
+
+            var statisticalData = new StatisticalResponse
+            {
+                labels = labels,
+                datasets = dataSets
+            };
+            return statisticalData;
         }
     }
 }

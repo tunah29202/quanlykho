@@ -29,7 +29,7 @@ namespace Common
             }
             public void OnActionExecuting(ActionExecutingContext context)
             {
-                //CheckUserPermission(context);
+                CheckUserPermission(context);
             }
             public void OnActionExecuted(ActionExecutedContext context)
             {
@@ -37,12 +37,12 @@ namespace Common
             }
             public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
             {
-                //OnActionExecuting(context);
+                OnActionExecuting(context);
                 await WriteLogAction(context);
                 await next();
             }
             #region Private method
-            private void CheckUserPemission(ActionExecutingContext context)
+            private void CheckUserPermission(ActionExecutingContext context)
             {
                 HttpRequest httpRequest = context.HttpContext.Request;
                 string path = context.ActionDescriptor.AttributeRouteInfo.Template;
@@ -54,6 +54,12 @@ namespace Common
                 if (user_id == null)
                 {
                     context.Result = new UnauthorizedObjectResult(new { ResponseCode.UnAuthorized, message = _ls.Get(Modules.Core, "Common", "NotHavePermission") });
+                    return;
+                }
+                var check_auth = _authServices.CheckUserAuthorized((Guid)user_id, path, action);
+                if(!check_auth)
+                {
+                    context.Result = new UnauthorizedObjectResult(new { code = ResponseCode.UnAuthorized, message = _ls.Get(Modules.Core, "Common", "NotHavePermission") });
                     return;
                 }
             }

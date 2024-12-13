@@ -37,6 +37,8 @@ export const API = {
   DELETE: (id: string | string[]) => `${FUNC_NAME}/delete/${id}`,
   DELETE_MULTI: `${FUNC_NAME}/delete-multi`,
   EXPORT: (id: string) => `${FUNC_NAME}/export-invoice/${id}`,
+  GET_INVOICE_NO: `/${FUNC_NAME}/get-invoice-no`,
+  STATISTICAL: `/${FUNC_NAME}/statistical`
 }
 
 // ========================== CONFIG TABLE ==========================
@@ -47,6 +49,7 @@ export const tableConfig = {
   showPaging: true,
   dbClick: false,
   index: true,
+  invoice:true,
 }
 
 export const colConfig = [
@@ -55,19 +58,17 @@ export const colConfig = [
     title: tl(FUNC_NAME, "invoice_no_text"),
   },
   {
-    key: "order_no",
-    title: tl(FUNC_NAME, "order_no_text"),
-  },
-  {
     key: "customer_company",
     title: tl(FUNC_NAME, "customer_company_text"),
   },
   {
     key: "invoice_date",
+    type:'datetime',
     title: tl(FUNC_NAME, "invoice_date_text"),
   },
   {
     key: "shipped_date",
+    type:'datetime',
     title: tl(FUNC_NAME, "shipped_date_text"),
   },
   {
@@ -98,10 +99,6 @@ export const colTabInvoiceConfig = [
     title: tl(FUNC_NAME, "price_unit_text"),
   },
   {
-    key: "unit",
-    title: tl(FUNC_NAME, "unit_text"),
-  },
-  {
     key: "quantity",
     title: tl(FUNC_NAME, "quantity_text"),
   },
@@ -114,35 +111,31 @@ export const colTabInvoiceConfig = [
 export const colTabCartonConfig = [
   {
     key: "image",
-    title: tl(FUNC_NAME, "image_text"),
+    title: tl( 'Product', "image_text"),
   },
   {
     key: "code",
-    title: tl(FUNC_NAME, "code_text"),
+    title: tl( 'Product', "code_text"),
   },
   {
     key: "name",
-    title: tl(FUNC_NAME, "name_text"),
+    title: tl( 'Product', "name_text"),
   },
   {
     key: "origin",
-    title: tl(FUNC_NAME, "origin_text"),
+    title: tl( 'Product', "origin_text"),
   },
   {
     key: "price_unit",
-    title: tl(FUNC_NAME, "price_unit_text"),
+    title: tl( 'Product', "price_unit_text"),
   },
   {
-    key: "unit",
-    title: tl(FUNC_NAME, "unit_text"),
+    key: "category",
+    title: tl( 'Product', "category_text"),
   },
   {
-    key: "quantity",
-    title: tl(FUNC_NAME, "quantity_text"),
-  },
-  {
-    key: "total_amount",
-    title: tl(FUNC_NAME, "total_amount_text"),
+    key: "ingredient",
+    title: tl( 'Product', "ingredient_text"),
   },
 ]
 

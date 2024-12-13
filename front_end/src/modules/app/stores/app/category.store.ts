@@ -7,7 +7,6 @@ export const useCategoryStore = defineStore('useCategoryStore', {
         formData: <any>{},
         goSort: <any>[],
         search: <any>[],
-        status: true,
         pageConfig: <any>[],
         loading: false,
     }),
@@ -24,7 +23,6 @@ export const useCategoryStore = defineStore('useCategoryStore', {
                     sort: this.goSort,
                     is_actived: true,
                     search: this.search,
-                    status: this.status,
                     ...this.pageConfig,
                 })
                 .then((data) => {

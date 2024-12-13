@@ -10,7 +10,12 @@ const orderService = {
             params: params,
         })
     },
-
+    async getNotInInvoice(params?: unknown): Promise<APIResponse<any[]>> {
+        const res = await apiClient.get(API.GET_NOT_IN_INVOICE, {
+            params: params,
+        })
+        return res;
+    },
     async detail(id: string): Promise<APIResponse<any>> {
         const res = await apiClient.get(API.DETAIL(id));
         return res.data;    
@@ -62,7 +67,16 @@ const orderService = {
                 return response
             })
     },
-
+    async getOrderNo(params?: unknown){
+        return await apiClient.get(API.GET_ORDER_NO,{
+            params: params
+        })
+    },
+    async getStatistical(params?: unknown): Promise<APIResponse<any[]>>{
+        return await apiClient.get(API.STATISTICAL, {
+            params: params,
+        })
+    }
 }
 
 export default orderService

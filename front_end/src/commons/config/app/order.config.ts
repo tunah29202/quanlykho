@@ -16,12 +16,15 @@ export const ROUTER_ORDER = [
 
 export const API = {
   LIST: `/${FUNC_NAME}`,
+  GET_NOT_IN_INVOICE: `${FUNC_NAME}/get-not-in-invoice`,
   CREATE: `/${FUNC_NAME}/create`,
   DETAIL: (id: string) => `${FUNC_NAME}/${id}`,
   UPDATE: (id: string) => `${FUNC_NAME}/update/${id}`,
   DELETE: (id: string | string[]) => `${FUNC_NAME}/delete/${id}`,
   DELETE_MULTI: `${FUNC_NAME}/delete-multi`,
   EXPORT: `${FUNC_NAME}/export-excel`,
+  GET_ORDER_NO: `/${FUNC_NAME}/get-order-no`,
+  STATISTICAL: `/${FUNC_NAME}/statistical`
 }
 
 // ========================== CONFIG TABLE ==========================
@@ -32,7 +35,8 @@ export const tableConfig = {
   showPaging: true,
   dbClick: false,
   index: true,
-  expand: true
+  expand: true,
+  order:true,
 }
 
 export const tableModalConfig = {
@@ -41,7 +45,7 @@ export const tableModalConfig = {
   showPaging: true,
   dbClick: false,
   index: false,
-  expand: true
+  expand: false
 }
 
 export const colConfig = [
@@ -50,7 +54,7 @@ export const colConfig = [
     title: tl(FUNC_NAME, "order_no_text"),
   },
   {
-    key: "customer_company",
+    key: "customer",
     title: tl(FUNC_NAME, "customer_company_text"),
   },
   {
@@ -59,6 +63,7 @@ export const colConfig = [
   },
   {
     key: "order_date",
+    type:'datetime',
     title: tl(FUNC_NAME, "order_date_text"),
   },
   {

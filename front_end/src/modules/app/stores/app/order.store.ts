@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import orderService from '@app/services/app/order.service'
+import tl from '@/utils/locallize'
+
 
 export const useOrderStore = defineStore('useOrderStore', {
     state: () => ({
@@ -7,9 +9,25 @@ export const useOrderStore = defineStore('useOrderStore', {
         formData: <any>{},
         goSort: <any>[],
         search: <any>[],
-        status: true,
+        category_name: <any>[],
+        warehouse_id: <any>[],
+        order_no: <any>[],
         pageConfig: <any>[],
         loading: false,
+        dateRange_dashboard: [
+            new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+            new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0),
+        ],
+        chartData: <any>{
+            labels: <any>[],
+            datasets: [
+            {
+                label: tl('Dashboard', 'number_invoice_text'),
+                backgroundColor: '#205995',
+                data: <any>[]
+            }
+            ]
+        },
     }),
     getters: {
         getData(state) {
@@ -22,9 +40,24 @@ export const useOrderStore = defineStore('useOrderStore', {
             await orderService
                 .getList({
                     sort: this.goSort,
-                    is_actived: true,
                     search: this.search,
-                    status: this.status,
+                    category_name: this.category_name,
+                    ...this.pageConfig,
+                })
+                .then((data) => {
+                    this.dataGrid = data.data ?? []
+                    this.pageConfig.total = data.total
+                })
+                .finally(() => {
+                    this.loading = false
+                })
+        },
+        async getNotInInvoice() {
+            this.loading = true
+            await orderService
+                .getNotInInvoice({
+                    sort: this.goSort,
+                    search: this.search,
                     ...this.pageConfig,
                 })
                 .then((data) => {
@@ -65,6 +98,56 @@ export const useOrderStore = defineStore('useOrderStore', {
                 .finally(() => {
                     this.loading = false
                 })
+        },
+        async getOrderNo(){
+            this.loading = true;
+
+            const warehouseSelectedJson = localStorage.getItem('warehouse_selected');
+            let warehouse_selected = null;
+            if(warehouseSelectedJson != null){
+                warehouse_selected = JSON.parse(warehouseSelectedJson);
+            }
+            const currentDate = new Date();
+            const year = currentDate.getFullYear();
+            const month = (currentDate.getMonth()+1).toString().padStart(2, '0');
+            const day = currentDate.getDate().toString().padStart(2, '0');
+            const formattedDate = `${year}${month}${day}`;
+            if(warehouse_selected != null){
+                await orderService.getOrderNo({
+                    code: `ORDER-${warehouse_selected.code}-${formattedDate}-`
+                })
+                .then((data: any)=>{
+                    const result = data.data ?? ''
+                    this.order_no = result
+                })
+                .finally(()=>{
+                    this.loading = false
+                })
+            }
+        },
+        async getStatistical(){
+            this.loading = true;
+            await orderService
+                    .getStatistical({
+                        startDate: this.dateRange_dashboard[0].toISOString(),
+                        endDate: this.dateRange_dashboard[1].toISOString(),
+                        warehouse_id: this.warehouse_id
+                    })
+                    .then((data: any)=>{
+                        const result = data.data ?? [];
+                        console.log(result)
+                        this.chartData = {
+                            labels: result.labels ?? [],
+                            datasets : [{
+                                label: tl('Dashboard', 'number_order_text'),
+                                backgroundColor: '#205995',
+                                data: result.datasets ?? []
+                            }]
+                        }
+                    })
+                    .finally(()=>{
+                        this.loading = false;
+                    })
         },
     },
 })

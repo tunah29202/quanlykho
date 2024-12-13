@@ -6,7 +6,6 @@ using Services.Core.Interfaces;
 namespace Controllers.Core
 {
     [Route("api/Invoice")]
-    [ApiAuthorize]
     [ApiController]
     public class InvoiceController : ControllerBase
     {
@@ -17,14 +16,14 @@ namespace Controllers.Core
             invoiceServices = _invoiceServices;
             ls = _ls;
         }
-
+        [ApiAuthorize]
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PagedRequest request)
+        public async Task<IActionResult> GetAll([FromQuery] InvoicePagedRequest request)
         {
             var data = await invoiceServices.GetAll(request);
             return Ok(data);
         }
-
+        [ApiAuthorize]
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetById(Guid id)
@@ -39,6 +38,7 @@ namespace Controllers.Core
                 return BadRequest(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
             }
         }
+        [ApiAuthorize]
         [HttpGet]
         [Route("export-invoice/{id}")]
         public async Task<IActionResult> ExportInvoiceById(Guid id)
@@ -50,22 +50,18 @@ namespace Controllers.Core
             else
                 return BadRequest(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, Screen.Invoice, MessageKey.TEMPLATE_NOT_FOUND) });
         }
-
+        [ApiAuthorize]
         [HttpPost]
         [Route("create")]
         public async Task<IActionResult> Create([FromBody] InvoiceRequest request)
         {
             int count = await invoiceServices.Create(request);
             if (count >= 1)
-            {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_CREATE) });
-            }
             else
-            {
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.E_CREATE) });
-            }
         }
-
+        [ApiAuthorize]
         [HttpPut]
         [Route("update/{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] InvoiceRequest request)
@@ -80,7 +76,7 @@ namespace Controllers.Core
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
             }
         }
-
+        [ApiAuthorize]
         [HttpDelete]
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
@@ -93,6 +89,34 @@ namespace Controllers.Core
             else
             {
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
+            }
+        }
+        [HttpGet]
+        [Route("get-invoice-no")]
+        public async Task<IActionResult> GetInvoiceNo(string code)
+        {
+            var data = await invoiceServices.GetInvoiceNo(code);
+            if(data != null)
+            {
+                return Ok(data.ToResponse());
+            }
+            else
+            {
+                return BadRequest(data?.ToResponse());
+            }
+        }
+        [HttpGet]
+        [Route("statistical")]
+        public async Task<IActionResult> GetStatistical(DateTime startDate, DateTime endDate, Guid warehouse_id)
+        {
+            var data = await invoiceServices.GetStatistical(startDate, endDate, warehouse_id);
+            if (data != null)
+            {
+                return Ok(data.ToResponse());
+            }
+            else
+            {
+                return BadRequest(data?.ToResponse());
             }
         }
     }

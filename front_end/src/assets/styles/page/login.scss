@@ -1,9 +1,5 @@
 @import '../available';
 
-* {
-  color: $-text-color;
-}
-
 .page-login {
     padding: 0;
     height: 100vh;
@@ -12,7 +8,6 @@
     .card-login {
         width: 400px;
         padding: 30px;
-        //transform: translatey(calc(calc(100vh - 520px) / 2));
         .logo-text {
             text-align: center;
             color: $-primary-color;
@@ -29,19 +24,6 @@
             align-items: center;
         }
 
-        .register-login {
-            text-align: center;
-            font-size: 13px;
-            margin-bottom: 35px;
-            padding-bottom: 20px;
-            border-bottom: solid 0.8px #eee;
-
-            .link-register {
-                color: #3498db;
-                font-size: 14px;
-            }
-        }
-
         .el-form-item {
             padding-bottom: 35px;
             margin: 0;
@@ -53,7 +35,6 @@
         }
 
         .container-btn-login {
-
             button {
                 height: 38px;
                 width: 100%;

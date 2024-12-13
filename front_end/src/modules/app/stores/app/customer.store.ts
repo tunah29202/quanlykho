@@ -7,7 +7,6 @@ export const useCustomerStore = defineStore('useCustomerStore', {
         formData: <any>{},
         goSort: <any>[],
         search: <any>[],
-        status: true,
         pageConfig: <any>[],
         loading: false,
     }),
@@ -22,9 +21,7 @@ export const useCustomerStore = defineStore('useCustomerStore', {
             await customerService
                 .getList({
                     sort: this.goSort,
-                    is_actived: true,
                     search: this.search,
-                    status: this.status,
                     ...this.pageConfig,
                 })
                 .then((data) => {
@@ -57,7 +54,6 @@ export const useCustomerStore = defineStore('useCustomerStore', {
             await customerService
                 .export({
                     sort: this.goSort,
-                    is_actived: true,
                     search: this.search,
                     ...this.pageConfig,
                     size: 1000000,

@@ -17,7 +17,13 @@
         <vc-card style="margin-top: 20px;">
             <div class="flex-end mt-auto">
                 <vc-row class="mt-4 mb-4">
-                    <vc-col :span="6" class="d-flex justify-content-end">
+                    <vc-col :span="6" style="display: flex;">
+                        <vc-button class="pr-5" @click="onExport" type="default" :icon="'Download'">
+                            {{ tl("Common", "BtnExportExcel") }}
+                        </vc-button>
+                        <vc-button class="pr-5" @click="onImport" type="default" :icon="'Upload'">
+                            {{ tl("Common", "BtnImportExcel") }}
+                        </vc-button>
                         <vc-button class="pr-5" @click="onAddNew" type="primary" :icon="'Plus'">
                             {{ tl("Common", "btn_add_new") }}
                         </vc-button>
@@ -45,6 +51,7 @@
         </vc-card>
         <vc-confirm ref="confirmDialog"></vc-confirm>
         <detail-modal ref="detailRef" :type="popupType"></detail-modal>
+        <vc-import ref="importDialogPrd" :urlImport="urlImport" :template="template" :onSuccess="onSuccess" :warehouse_id="warehouse_id"></vc-import>
     </div>
 </template>
 <script setup lang="ts">
@@ -54,14 +61,22 @@
     import { colConfig, tableConfig } from '@/commons/config/app/product.config'
     import { useProductStore } from '@app/stores/app/product.store'
     import { POPUP_TYPE } from '@/commons/const'
-    import { Search } from '@element-plus/icons-vue'
+    import { Download, Search, Upload } from '@element-plus/icons-vue'
     import DetailModal from './DetailModal.vue'
+    import VcImport from '@/components/commons/import/vc-import.vue'
 
     const store = useProductStore();
-    const { dataGrid, pageConfig, search, loading } = storeToRefs(store);
+    const { dataGrid, pageConfig, search, loading, warehouse_id } = storeToRefs(store);
     const popupType = ref<POPUP_TYPE>(POPUP_TYPE.CREATE);
     const confirmDialog = ref<any>(null);
+    const importDialogPrd = ref<any>(null);
     const detailRef = ref<any>(null);
+
+    const urlImport = ref("product/import-product")
+    const template = ref({
+    exportUrl: "product/download-file-template",
+    fileName: "TEMPLATE_IMPORT_PRODUCT.xlsx",
+    })
 
     onMounted(async () => {
         await onSearch()
@@ -70,11 +85,19 @@
     const onSearch = async () => {
         await store.getList()
     }
-
+    const onSuccess = async () => {
+        importDialogPrd.value.close()
+        await store.getList();
+    }
     const onPageChanged = async (page: any) => {
         pageConfig.value = { ...page };
         onSearch()
     };
+
+    const onImport = ()=>{
+        importDialogPrd.value.open()
+    }
+
     const onAddNew = () => {
         popupType.value = POPUP_TYPE.CREATE
         detailRef.value.open(tl("Common", "title_modal_add", [tl("Product", "product_text")]), null, async (res: any) => {

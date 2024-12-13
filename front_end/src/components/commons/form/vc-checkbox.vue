@@ -3,5 +3,4 @@
 </template>
 
 <style lang="scss">
-    @import "@/assets/styles/commons/vc-checkbox.scss";
 </style>

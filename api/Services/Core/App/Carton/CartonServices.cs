@@ -20,7 +20,7 @@ namespace Services.Core.Services
             productRepository = _unitOfWork.GetRepository<Product>();
         }
 
-        public async Task<PagedList<CartonResponse>> GetAll(PagedRequest request)
+        public async Task<PagedList<CartonResponse>> GetAll(CartonPagedRequest request)
         {
             PagedList<Carton> Cartons;
             if(request.get_all)
@@ -35,6 +35,7 @@ namespace Services.Core.Services
             {
                 Cartons = await cartonRepository.GetQuery()
                                     .ExcludeSoftDeleted()
+                                    .Where(x => x.warehouse_id == request.warehouse_id)
                                     .Where(x => !string.IsNullOrEmpty(request.search) ? x.carton_no.ToLower().Contains(request.search.ToLower()) : true)
                                     .SortBy(request.sort ?? "updated_at.desc")
                                     .Include(x => x.customer)
@@ -42,6 +43,24 @@ namespace Services.Core.Services
                                     .ThenInclude(x => x.product).ThenInclude(pr => pr.category)
                                     .ToPagedListAsync(request.page, request.size);
             }
+            var dataMapping = _mapper.Map<PagedList<CartonResponse>>(Cartons);
+            return dataMapping;
+        }
+        public async Task<PagedList<CartonResponse>> GetNotInInvoice(CartonPagedRequest request)
+        {
+            PagedList<Carton> Cartons;
+            Cartons = await cartonRepository
+                            .GetQuery()
+                            .ExcludeSoftDeleted()
+                            .Where(x=> x.warehouse_id == request.warehouse_id)
+                            .Where(x => !string.IsNullOrEmpty(request.search) ? x.carton_no.ToLower().Contains(request.search.ToLower()) : true)
+                            .SortBy(request.sort ?? "updated_at.desc")
+                            .Include(x => x.invoices)
+                            .Where(x => x.invoices == null || x.invoices.All(inv => inv.del_flg == true))
+                            .Include(x => x.customer)
+                            .Include(x => x.carton_details.Where(y => !y.del_flg))
+                                .ThenInclude(x => x.product).ThenInclude(pr => pr.category)
+                            .ToPagedListAsync(request.page, request.size);
             var dataMapping = _mapper.Map<PagedList<CartonResponse>>(Cartons);
             return dataMapping;
         }

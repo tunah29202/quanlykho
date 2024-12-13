@@ -14,7 +14,6 @@ using DocumentFormat.OpenXml.Spreadsheet;
 namespace Controllers.Core
 {
     [Route("api/product")]
-    [ApiAuthorize]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -30,21 +29,21 @@ namespace Controllers.Core
             ls = _ls;
             env = _env;
         }
-
+        [ApiAuthorize]
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] ProductPagedRequest request)
         {
             var data = await productServices.GetAll(request);
             return Ok(data);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("getProductInventory")]
         public async Task<IActionResult> GetProductInventory([FromBody] ProductPagedRequest request)
         {
             var data = await productServices.GetAll(request);
             return Ok(data);
         }
-
+        [ApiAuthorize]
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetById(Guid id)
@@ -59,37 +58,37 @@ namespace Controllers.Core
                 return BadRequest(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND)});
             }
         }
-
+        [ApiAuthorize]
         [HttpPost]
         [Route("create")]
         public async Task<IActionResult> Create([FromForm] ProductRequest request)
         {
             int count = await productServices.Create(request);
             if (count >= 1)
-            {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_CREATE) });
-            }
+            else if (count == -1)
+                return Ok(new { code = ResponseCode.Invalid, message = ls.Get(Modules.Core, Screen.Product, MessageKey.I_DUPLICATE_004) });
+            else if (count == -2)
+                return Ok(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, Screen.Product, MessageKey.FILE_NOT_FOUND) });
             else
-            {
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.E_CREATE) });
-            }
         }
-
+        [ApiAuthorize]
         [HttpPut]
         [Route("update/{id}")]
         public async Task<IActionResult> Update(Guid id, [FromForm] ProductRequest request)
         {
             int count = await productServices.Update(id, request);
             if (count >= 1)
-            {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_UPDATE) });
-            }
+            else if (count == -1)
+                return Ok(new { code = ResponseCode.Invalid, message = ls.Get(Modules.Core, Screen.Product, MessageKey.I_DUPLICATE_004) });
+            else if (count == -2)
+                return Ok(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, Screen.Product, MessageKey.FILE_NOT_FOUND) });
             else
-            {
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
-            }
         }
-        
+        [ApiAuthorize]
         [HttpDelete]
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
@@ -99,11 +98,34 @@ namespace Controllers.Core
             {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_DELETE) });
             }
+            else if (count == -2)
+                return Ok(new { code = ResponseCode.Invalid, message = ls.Get(Modules.Core, Screen.Product, MessageKey.W_DELETE) });
             else
             {
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
             }
         }
+        [HttpGet]
+        [Route("download-file-template")]
+        public IActionResult DownloadTemplate()
+        {
+            string template = Path.Combine(env.WebRootPath, Template);
+            string templatePath = Path.Combine(template, "IMPORT_PRODUCT_TEMPLATE.xlsx");
+            if (!System.IO.File.Exists(templatePath))
+            {
+                return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, Screen.Product, MessageKey.TEMPLATE_NOT_FOUND) });
+            }
+            using(MemoryStream stream = new MemoryStream())
+            {
+                using(var file = new FileStream(templatePath, FileMode.Open, FileAccess.Read))
+                {
+                    file.CopyTo(stream);
+                }
+                stream.Position = 0;
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "modifiled_template.xlsx");
+            }
+        }
+        [ApiAuthorize]
         [HttpPost]
         [Route("import-product")]
         public async Task<IActionResult> ImportExcel([FromForm] ProductImportRequest request)
@@ -118,6 +140,7 @@ namespace Controllers.Core
             }
             return Ok(result.Item1);
         }
+        [ApiAuthorize]
         [HttpGet]
         [Route("export-product")]
         public async Task<IActionResult> ExportExcel([FromQuery] ProductPagedRequest request)

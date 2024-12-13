@@ -2,15 +2,15 @@
     <div vc-page page-invoice>
         <vc-card >
             <el-breadcrumb :separator-icon="ArrowRight" class="pb-4" style="border-bottom: 1px solid #cdcdcd;" >
-                <el-breadcrumb-item :to="{path: '/invoice'}">Quản lý hoá đơn</el-breadcrumb-item>
-                <el-breadcrumb-item>Chi tiết hoá đơn</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{path: '/invoice'}">{{ tl('SideBar', 'invoice_management') }}</el-breadcrumb-item>
+                <el-breadcrumb-item>{{_id ? tl('Invoice', 'edit_text') :tl('Invoice', 'add_new_text')}}</el-breadcrumb-item>
             </el-breadcrumb>
             <el-form :model="invoice" ref="invoiceForm" :rules="rules" label-position="right"
              style="padding: 12px 16px;" require-asterisk-position="right" >
                 <vc-row :gutter="20">
                     <vc-col :lg="6" :md="12" :sm="24" :xs=24 >
                         <vc-input-group :label="tl('Invoice', 'invoice_no_text')">
-                            <vc-input v-model="invoice.invoice_no"></vc-input>
+                            <vc-input v-model="invoice_no" disabled />
                         </vc-input-group>
                         <vc-input-group required prop="carton_no" :label="tl('Invoice', 'carton_no_text')">
                             <el-input v-model="invoice.carton_no" readonly style="max-width: 600px;" class="input-with-select" >
@@ -28,13 +28,13 @@
                         </vc-input-group>
                     </vc-col>
                     <vc-col :lg="6" :md="12" :sm="24" :xs=24 >
-                        <vc-input-group :label="tl('Carton', 'total_weight_text')">
+                        <vc-input-group :label="tl('Invoice', 'total_weight_text')">
                             <vc-input v-model="invoice.total_weight" disabled />
                         </vc-input-group>
-                        <vc-input-group :label="tl('Carton', 'total_volumn_text')">
+                        <vc-input-group :label="tl('Invoice', 'total_volumn_text')">
                             <vc-input v-model="invoice.total_volumn" disabled />
                         </vc-input-group>
-                        <vc-input-group :label="tl('Carton', 'total_weight_text')">
+                        <vc-input-group :label="tl('Invoice', 'total_amount_text')">
                             <vc-input v-model="invoice.total_amount" disabled />
                         </vc-input-group>
                     </vc-col>
@@ -47,8 +47,8 @@
                                 <el-option v-for="shipper in dataShipper" :key="shipper.id" :value="shipper.id" :label="shipper.name" />
                             </el-select>
                         </vc-input-group>
-                        <vc-input-group required prop="invoice.shipped_date" :label="tl('invoice', 'shipped_date_holder')">
-                            <el-date-picker v-model="invoice.shipped_date" type="date" 
+                        <vc-input-group required prop="shipped_date" :label="tl('Invoice', 'shipped_date_text')">
+                            <el-date-picker v-model="invoice.shipped_date" type="datetime" format="YYYY/MM/DD hh:mm:ss"
                             :placeholder="tl('Invoice', 'shipped_date_holder')" :disabled-date="disabledDate" />
                         </vc-input-group>
                     </vc-col>
@@ -77,7 +77,7 @@
                         <el-descriptions-item>
                             <template #label>
                                 <div class="cell-item">
-                                    {{ tl('Invoice', 'customer_text') }}
+                                    {{ tl('Customer', 'name_text') }}
                                 </div>
                             </template>
                             {{ customer.name }}
@@ -205,13 +205,13 @@
     const storePaymentMethod = usePaymentMethodStore();
     const {dataGrid: dataPaymentMethod} = storeToRefs(storePaymentMethod);
     const storeInvoice = useInvoiceStore();
-    const {warehouse_id} = storeToRefs(storeInvoice)
+    const {warehouse_id, invoice_no} = storeToRefs(storeInvoice)
     
     onMounted(async ()=>{
         await storeShipper.getList(true);
         await storePaymentMethod.getList(true);
         if(_id) await getInvoiceDetail();
-        else await console.log('getInvoiceNo')
+        else await storeInvoice.getInvoiceNo();     
     })
 
     watchEffect(async ()=>{
@@ -228,6 +228,7 @@
     const getInvoiceDetail = async ()=>{
         const res = await invoiceService.detail(_id);
         Object.assign(invoice, res);
+        invoice_no.value = invoice.invoice_no;
         const carton = invoice.carton
         invoice.carton_id = carton?.id
         invoice.carton_no = carton?.carton_no
@@ -282,11 +283,9 @@
     const rules= reactive({
     invoice_no: [
         { label: tl("Invoice", "invoice_no_text"), required: true, validator: validate.required, trigger: ["blur"] },
-        { label: tl('Invoice', 'invoice_no_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 30 },
     ],
     invoice_date: [
         { label: tl("Invoice", "invoice_date_text"), required: true, validator: validate.required, trigger: ["blur"] },
-        { label: tl('Invoice', 'invoice_date_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
     ],
     shipped_per: [
         { label: tl("Invoice", "shipped_per_text"), required: true, validator: validate.required, trigger: ["blur"] },
@@ -294,25 +293,18 @@
     ],
     shipped_date: [
         { label: tl("Invoice", "shipped_date_text"), required: true, validator: validate.required, trigger: ["blur"] },
-        { label: tl('Invoice', 'shipped_date_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
     ],
-    address: [
-        { label: tl("Invoice", "address_text"), required: true, validator: validate.required, trigger: ["blur"] },
-        { label: tl('Invoice', 'address_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+    shipper_id: [
+        { label: tl("Invoice", "shipper_text"), required: true, validator: validate.required, trigger: ["blur"] },
     ],
-    tax: [
-        { label: tl("Invoice", "tax_text"), required: true, validator: validate.required, trigger: ["blur"] },
-        { label: tl('Invoice', 'tax_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+    payment_method_id: [
+        { label: tl("Invoice", "payment_method_text"), required: true, validator: validate.required, trigger: ["blur"] },
     ],
-    tel: [
-        { label: tl("Invoice", "tel_text"), required: true, validator: validate.required, trigger: ["blur"] },
-        { label: tl('Invoice', 'tel_text'), validator: validate.phoneNumberRule, trigger: ["change"]},
-        { label: tl('Invoice', 'tel_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 15 },
+    order_no: [
+        { label: tl("Invoice", "order_no_text"), required: true, validator: validate.required, trigger: ["blur"] },
     ],
-    email: [
-        { label: tl("Invoice", "email_text"), required: true, validator: validate.required, trigger: ["blur"] },
-        { label: tl('Invoice', 'email_text'), validator: validate.emailNumberRule, trigger: ["change"]},
-        { label: tl('Invoice', 'email_text'), validator: validate.maxLengthRule, trigger: ["blur"], max: 100 },
+    carton_no: [
+        { label: tl("Invoice", "carton_no_text"), required: true, validator: validate.required, trigger: ["blur"] },
     ],
     });
     
@@ -376,9 +368,10 @@
             
             isLoading.value = true;
             invoice.warehouse_id = warehouse_id.value;
-            invoice.shipped_date = new Date(invoice.shipped_date).toLocaleDateString('en-EN');
+            invoice.invoice_no = invoice_no.value;
+            invoice.shipped_date = new Date(invoice.shipped_date).toLocaleString('en-EN');
             if(invoice.id){
-                invoice.invoice_date = new Date(invoice.invoice_date).toLocaleDateString('en-EN');
+                invoice.invoice_date = new Date(invoice.invoice_date).toLocaleString('en-EN');
                 await invoiceService.update(invoice).finally(()=>{
                     isLoading.value = false;
                     router.push({
@@ -387,7 +380,7 @@
                 })
             }
             else{
-                invoice.invoice_date = new Date().toLocaleDateString('en-EN');
+                invoice.invoice_date = new Date().toLocaleString('en-EN');
                 console.log(invoice)
                 await invoiceService.create(invoice).finally(()=>{
                     isLoading.value = false;

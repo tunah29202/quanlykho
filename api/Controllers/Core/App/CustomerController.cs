@@ -79,6 +79,8 @@ namespace Controllers.Core
             {
                 return Ok(new { code = ResponseCode.Success, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.S_DELETE) });
             }
+            else if (count == -2)
+                return Ok(new { code = ResponseCode.Invalid, message = ls.Get(Modules.Core, Screen.Customer, MessageKey.W_DELETE) });
             else
             {
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
