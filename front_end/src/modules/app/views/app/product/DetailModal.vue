@@ -191,7 +191,7 @@
     import { useCategoryStore } from '@app/stores/app/category.store';
     import categoryService from '@app/services/app/category.service';
     import { storeToRefs } from 'pinia';
-    import { useToast } from '@/components/commons/alert/vc-toast.vue';
+    import useToast from '@/components/commons/alert/vc-toast.vue';
     import {Plus, Picture as IconPicture} from '@element-plus/icons-vue';
     import DetailModal from '../category/DetailModal.vue';
 

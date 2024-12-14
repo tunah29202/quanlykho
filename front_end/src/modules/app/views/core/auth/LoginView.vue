@@ -96,7 +96,7 @@
     import { storeToRefs } from 'pinia';
     import userService from '@app/services/core/user.service';
     import authService from '@app/services/core/auth.service';
-    import { useToast } from '@/components/commons/alert/vc-toast.vue';
+    import useToast from '@/components/commons/alert/vc-toast.vue';
 
     const authStore = useAuthStore()
     const { loggedIn } = storeToRefs(authStore)

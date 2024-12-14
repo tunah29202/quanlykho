@@ -29,7 +29,7 @@ namespace Common
             }
             public void OnActionExecuting(ActionExecutingContext context)
             {
-                CheckUserPermission(context);
+                //CheckUserPermission(context);
             }
             public void OnActionExecuted(ActionExecutedContext context)
             {

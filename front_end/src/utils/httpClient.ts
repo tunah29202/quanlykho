@@ -6,7 +6,7 @@ import type {
     AxiosRequestConfig,
     AxiosResponse,
 } from 'axios'
-import { useToast } from '@/components/commons/alert/vc-toast.vue'
+import useToast from '@/components/commons/alert/vc-toast.vue'
 import type { APIResponse } from '@/interfaces/response.interface'
 
 const apiClient = axios.create({

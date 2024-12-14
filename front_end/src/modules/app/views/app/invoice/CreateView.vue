@@ -374,19 +374,22 @@
                 invoice.invoice_date = new Date(invoice.invoice_date).toLocaleString('en-EN');
                 await invoiceService.update(invoice).finally(()=>{
                     isLoading.value = false;
-                    router.push({
-                        name: 'InvoiceList',
-                    })
+                    setTimeout(() => {
+                        router.push({
+                            name: 'InvoiceList',
+                        });
+                    }, 500);
                 })
             }
             else{
                 invoice.invoice_date = new Date().toLocaleString('en-EN');
-                console.log(invoice)
                 await invoiceService.create(invoice).finally(()=>{
                     isLoading.value = false;
-                    router.push({
-                        name: 'InvoiceList',
-                    })
+                    setTimeout(() => {
+                        router.push({
+                            name: 'InvoiceList',
+                        });
+                    }, 500);
                 })
             }
         })

@@ -31,7 +31,7 @@
                               :loading="loading" @pageChanged="onPageChanged">
                         <template #action="{data}">
                             <div class="d-flex flex-center">
-                                <vc-button type="warning" size="small" class="btn-acttion" @click="onExport(data)" :icon="'View'">
+                                <vc-button type="success" size="small" class="btn-acttion" @click="onExport(data)" :icon="'Finished'">
                                 </vc-button>
                                 <vc-button type="primary" size="small" class="btn-acttion" @click="onEdit(data)" :icon="'Edit'">
                                 </vc-button>
@@ -53,8 +53,9 @@
     import { colConfig, tableConfig } from '@/commons/config/app/invoice.config'
     import { useInvoiceStore } from '@app/stores/app/invoice.store'
     import { POPUP_TYPE } from '@/commons/const'
-    import { Search } from '@element-plus/icons-vue'
+    import { Finished, Search } from '@element-plus/icons-vue'
     import { useRouter } from 'vue-router'
+
     
     const router = useRouter();
 

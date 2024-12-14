@@ -22,7 +22,7 @@ export const API = {
   UPDATE: (id: string) => `${FUNC_NAME}/update/${id}`,
   DELETE: (id: string | string[]) => `${FUNC_NAME}/delete/${id}`,
   DELETE_MULTI: `${FUNC_NAME}/delete-multi`,
-  EXPORT: `${FUNC_NAME}/export-excel`,
+  EXPORT: `${FUNC_NAME}/export-product`,
 }
 
 // ========================== CONFIG TABLE ==========================

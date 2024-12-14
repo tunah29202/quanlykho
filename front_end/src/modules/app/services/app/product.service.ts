@@ -1,7 +1,7 @@
 import apiClient from '@/utils/httpClient'
 import { API } from '@/commons/config/app/product.config'
 import type { APIResponse } from '@/interfaces/response.interface'
-import { useToast } from '@/components/commons/alert/vc-toast.vue'
+import useToast from '@/components/commons/alert/vc-toast.vue'
 import fileService from '@/utils/file'
 
 const productService = {
@@ -29,7 +29,7 @@ const productService = {
                 responseType: 'blob',
             })
             .then((response: any) => {
-                fileService.resolveAndDownloadBlob(response, `Danhsachguoidung.xlsx`);
+                fileService.resolveAndDownloadBlob(response, `Danhsachsanpham.xlsx`);
             })
     },
 

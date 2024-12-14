@@ -1,7 +1,7 @@
 import apiClient from '@/utils/httpClient'
 import { API } from '@/commons/config/app/invoice.config'
 import type { APIResponse } from '@/interfaces/response.interface'
-import { useToast } from '@/components/commons/alert/vc-toast.vue'
+import useToast from '@/components/commons/alert/vc-toast.vue'
 import fileService from '@/utils/file'
 
 const invoiceService = {
@@ -30,7 +30,6 @@ const invoiceService = {
         return await apiClient
             .post(API.CREATE, data)
             .then((response: any) => {
-                useToast.handleApiResponse(response);
                 return response
             })
     },

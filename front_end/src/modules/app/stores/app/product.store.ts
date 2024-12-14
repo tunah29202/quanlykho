@@ -89,6 +89,7 @@ export const useProductStore = defineStore('useProductStore', {
                 .export({
                     sort: this.goSort,
                     search: this.search,
+                    warehouse_id: this.warehouse_id,
                     ...this.pageConfig,
                     size: 1000000,
                 })

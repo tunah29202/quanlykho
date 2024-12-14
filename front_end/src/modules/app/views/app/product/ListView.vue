@@ -98,6 +98,10 @@
         importDialogPrd.value.open()
     }
 
+    const onExport = () => {
+        store.export()
+    };
+
     const onAddNew = () => {
         popupType.value = POPUP_TYPE.CREATE
         detailRef.value.open(tl("Common", "title_modal_add", [tl("Product", "product_text")]), null, async (res: any) => {

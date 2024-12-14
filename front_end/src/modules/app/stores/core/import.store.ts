@@ -1,9 +1,11 @@
 ﻿import { defineStore } from 'pinia'
 import tl from '@/utils/locallize'
 import apiClient from '@/utils/httpClient'
-import { useToast } from '@/components/commons/alert/vc-toast.vue'
+import useToast from '@/components/commons/alert/vc-toast.vue'
 import fileService from '@/utils/file'
 import { ResponseCode } from '@/commons/const'
+import datetime from '@/utils/datetime'
+
 
 export const useImportStore = defineStore('useImportStore', {
     state: () => ({
@@ -83,7 +85,7 @@ export const useImportStore = defineStore('useImportStore', {
               }
               else {
                 // Xử lý khi không có lỗi
-                useToast.fromApiResponse(response);
+                useToast.handleApiResponse(response);
                 onSuccess();
                 this.close();
               }
@@ -99,7 +101,7 @@ export const useImportStore = defineStore('useImportStore', {
             // Xử lý khi có lỗi
             if (params.isError) {
               useToast.push({
-                message: tl('Common', 'import_error', [`insert_products_error_${dateTime.formatDateTimeGrenCode(new Date().toDateString())}.xlsx`]),
+                message: tl('Common', 'import_error', [`insert_products_error_${datetime.formatDateTimeNew(new Date().toDateString())}.xlsx`]),
                 type: 'error',
               });
               fileService.resolveAndDownloadBlob(response, 'insert_products_error.xlsx');

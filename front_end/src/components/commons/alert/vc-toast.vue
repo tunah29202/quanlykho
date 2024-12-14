@@ -19,7 +19,7 @@
         push({ message, type });
     };
 
-    export const useToast = {
+    export default {
         push,
         handleApiResponse,
     };

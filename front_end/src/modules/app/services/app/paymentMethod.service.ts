@@ -1,7 +1,7 @@
 import apiClient from '@/utils/httpClient'
 import { API } from '@/commons/config/app/payment.config'
 import type { APIResponse } from '@/interfaces/response.interface'
-import { useToast } from '@/components/commons/alert/vc-toast.vue'
+import useToast from '@/components/commons/alert/vc-toast.vue'
 import fileService from '@/utils/file'
 
 const paymentMethodService = {

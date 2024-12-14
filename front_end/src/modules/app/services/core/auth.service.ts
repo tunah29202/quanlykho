@@ -7,7 +7,7 @@ import type {
 import type { APIResponse } from '@/interfaces/response.interface'
 import { API } from '@/commons/config/core/auth.config'
 import { COOKIE_KEY } from '@/commons/const'
-import { useToast } from '@/components/commons/alert/vc-toast.vue'
+import useToast from '@/components/commons/alert/vc-toast.vue'
 
 const authService = {
     async signIn(data: AuthRequestLogin): Promise<APIResponse<AuthResponse>> {

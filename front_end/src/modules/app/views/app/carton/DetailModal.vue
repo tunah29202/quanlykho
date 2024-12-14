@@ -132,7 +132,7 @@
     import { useProductStore } from '@app/stores/app/product.store';
     import { useCustomerStore } from '@app/stores/app/customer.store';
     
-    import { useToast } from '@/components/commons/alert/vc-toast.vue';
+    import useToast from '@/components/commons/alert/vc-toast.vue';
     import { storeToRefs } from 'pinia';
     import { colConfigLeft, tableModalConfig } from '@/commons/config/app/carton.config';
     import number from '@/utils/number';
