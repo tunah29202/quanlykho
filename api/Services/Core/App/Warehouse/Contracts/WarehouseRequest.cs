@@ -12,7 +12,7 @@ namespace Services.Core.Contracts
     {
         public WarehouseRequestValidator()
         {
-            RuleFor(_ => _.code).NotNull().NotEmpty().MaximumLength(10);
+            RuleFor(_ => _.code).NotNull().NotEmpty().MaximumLength(30);
             RuleFor(_ => _.name).NotNull().NotEmpty().MaximumLength(250);
             RuleFor(_ => _.address).NotNull().NotEmpty().MaximumLength(250);
             RuleFor(_ => _.tel).NotNull().NotEmpty().MaximumLength(15);

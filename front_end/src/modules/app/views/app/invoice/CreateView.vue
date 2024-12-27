@@ -263,7 +263,6 @@
         };
         shipperInfo = await shipperService.detail(invoice.shipper_id);
         Object.assign(shipper, shipperInfo);
-        console.log(shipper)
     }
     
     const onClickBack = () =>{

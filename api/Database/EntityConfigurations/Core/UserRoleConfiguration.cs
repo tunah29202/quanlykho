@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
-            builder.ToTable("a_user_role", "public");
+            builder.ToTable("a_user_role", "dbo");
 
             builder.Property(t => t.role_cd).HasMaxLength(30).IsRequired();
             builder.Property(t => t.user_id).IsRequired();

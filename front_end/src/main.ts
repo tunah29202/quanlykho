@@ -11,7 +11,7 @@ import resourceService from '@app/services/core/resource.service'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import vi from 'element-plus/dist/locale/vi.mjs'
-
+console.log(import.meta.env.VITE_API_URL);
 
 const app = createApp(App)
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'

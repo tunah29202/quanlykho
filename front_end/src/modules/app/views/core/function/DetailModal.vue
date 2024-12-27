@@ -182,7 +182,6 @@
             functInfo = (await functionService.detail(item))
         callback = _callback;
         Object.assign(funct, functInfo)
-        console.log(funct)
         modal.value.open();
     };
 

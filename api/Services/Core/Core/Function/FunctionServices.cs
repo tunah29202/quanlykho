@@ -6,18 +6,20 @@ using Services.Core.Interfaces;
 using Database.Entities;
 using Common;
 using Helpers.Excel;
+using System.Configuration;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 namespace Services.Core.Services
 {
     public class FunctionServices : BaseServices, IFunctionServices
     {
         private readonly IRepository<Function> functionRepository;
-        private readonly IWebHostEnvironment _env;
+        private readonly IWebHostEnvironment env;
         private readonly string _imageStoragePath = "Images";
-        public FunctionServices(IUnitOfWork _unitOfWork, IMapper _mapper, IWebHostEnvironment env) : base(_unitOfWork, _mapper) 
+        private readonly string _Template = "Template";
+        public FunctionServices(IUnitOfWork _unitOfWork, IMapper _mapper, IWebHostEnvironment _env) : base(_unitOfWork, _mapper) 
         { 
             functionRepository = _unitOfWork.GetRepository<Function>();
-            _env = env;
+            env = _env;
         }
 
         public async Task<PagedList<FunctionResponse>> GetAll(PagedRequest request)
@@ -44,8 +46,8 @@ namespace Services.Core.Services
         }
         public async Task<(object?, MemoryStream?)> ImportExcel(IFormFile file)
         {
-            var directory = Path.Combine(_env.WebRootPath, _imageStoragePath);
-            if (!Directory.Exists(directory))
+            var directory = Path.Combine(env.WebRootPath, _imageStoragePath);
+            if (!Directory.Exists(_imageStoragePath))
             {
                 Directory.CreateDirectory(directory);
             };

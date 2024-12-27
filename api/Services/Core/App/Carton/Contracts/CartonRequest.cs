@@ -20,7 +20,7 @@ namespace Services.Core.Contracts
     {
         public CartonRequestValidator()
         {
-            RuleFor(_ => _.carton_no).NotNull().NotEmpty().MaximumLength(20);
+            RuleFor(_ => _.carton_no).NotNull().NotEmpty().MaximumLength(100);
             RuleFor(_ => _.net_weight).NotNull();
             RuleFor(_ => _.gross_weight).NotNull();
             RuleFor(_ => _.length).NotNull();

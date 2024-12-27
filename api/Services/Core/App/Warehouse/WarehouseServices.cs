@@ -42,7 +42,7 @@ namespace Services.Core.Services
                                                 .ToListAsync();
                     query = query.Where(w => userWarehouseIds.Contains(w.id));
                 }
-                Warehouses = query
+                Warehouses = query 
                                 .SortBy(request.sort ?? "updated_at.desc")
                                 .ToAllPageList();
             }

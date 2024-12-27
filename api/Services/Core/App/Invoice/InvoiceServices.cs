@@ -9,17 +9,19 @@ using Microsoft.EntityFrameworkCore;
 using Services.Common.Repository;
 using Services.Core.Contracts;
 using Services.Core.Interfaces;
+using System.Configuration;
 namespace Services.Core.Services
 {
     public class InvoiceServices : BaseServices, IInvoiceServices
     {
         private readonly IRepository<Invoice> invoiceRepository;
         private readonly IWebHostEnvironment env;
+        private readonly string _imageStoragePath = "Images";
+        private readonly string _Template = "Template";
         public InvoiceServices(IUnitOfWork _unitOfWork, IMapper _mapper, IWebHostEnvironment _env) : base(_unitOfWork, _mapper)
         {
             invoiceRepository = _unitOfWork.GetRepository<Invoice>();
             env = _env;
-
         }
 
         public async Task<PagedList<InvoiceResponse>> GetAll(InvoicePagedRequest request)
@@ -73,7 +75,10 @@ namespace Services.Core.Services
         public async Task<MemoryStream?> ExportInvoiceById(Guid id)
         {
             var fileName = $"Invoice_{DateTimeExtention.ToDateTimeStampString(DateTime.Now)}.xlsx";
-            string templatePath = Path.Combine(env.WebRootPath, "Template", InvoiceExcel.FILE_NAME);
+            var directory = Path.Combine(env.WebRootPath, _Template);
+            if (string.IsNullOrEmpty(directory) || !Directory.Exists(directory))
+                return null;
+            string templatePath = Path.Combine(directory, InvoiceExcel.FILE_NAME);
             string fileTemplate = Path.GetFullPath(templatePath);
             if(!File.Exists(fileTemplate))
                 return null;
@@ -275,7 +280,12 @@ namespace Services.Core.Services
                 {
                     if(!string.IsNullOrEmpty(product.image))
                     {
-                        var filePathImage = Path.Combine(env.WebRootPath, "Images", product.image);
+                        var imageStoragePath = Path.Combine(env.WebRootPath, _imageStoragePath);
+                        if (!Directory.Exists(imageStoragePath))
+                        {
+                            Directory.CreateDirectory(imageStoragePath);
+                        };
+                        var filePathImage = Path.Combine(imageStoragePath, product.image);
                         var fileName = Path.GetFileNameWithoutExtension(product.image);
                         if(File.Exists(filePathImage))
                         {

@@ -173,7 +173,7 @@
                                 <el-descriptions-item >
                                     <template #label>
                                         <div class="cell-item">
-                                            {{ tl('Customer', 'tax_text') }}
+                                            {{ tl('Invoice', 'tax_text') }}
                                         </div>
                                     </template>
                                     {{ invoice.invoice_tax}}

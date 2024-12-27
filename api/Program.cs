@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Microsoft.EntityFrameworkCore.SqlServer;
 using Database;
 using Services.Common.Repository;
 using Services.Core;
@@ -14,7 +14,7 @@ var configuration = builder.Configuration;
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")); 
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")); 
 });
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
@@ -52,11 +52,8 @@ builder.Services.AddCors(builder =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigins");

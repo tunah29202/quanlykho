@@ -210,10 +210,6 @@
         Object.assign(user, response);
     };
     const onAddWarehouse = ()=>{
-        if (!warehouseRef.value) {
-        console.error('warehouseRef chưa được khởi tạo!');
-        return;
-        }
         warehouseRef.value.open(user.id)
     }
     const onSetWarehouse_ids =(value: any)=>{
@@ -264,7 +260,6 @@
             userInfo = (await userService.detail(item))
         callback = _callback;
         Object.assign(user, userInfo)
-        console.log(user)
 
         modal.value.open();
     };

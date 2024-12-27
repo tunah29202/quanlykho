@@ -16,7 +16,6 @@ export default {
       value?.length >= min || tl("Common", "ValidateMinLength", [name, min])
     );
   },
-  
   maxLengthRule: (rule: any, value: any, callback: any) => {
     if (value !== null && value.length > rule.max) {
       callback(new Error(tl('Common', 'ValidateMaxLength', [rule.label ? rule.label : rule.field, `${rule.max}`])))
@@ -71,5 +70,17 @@ export default {
   },
   checkPassword: (value: any, newVal: any, name: string) => {
     return value === newVal || tl("User", "OtherPassWord", [name, length]);
+  },
+  validatePassword: (rule: any, value: any, callback: any) => {
+    if (value.length < 6) {
+      callback(new Error(tl('Common', 'LENGTH_MINIMUM')))
+    }
+    else if (!/[A-Z]/.test(value)) {
+      callback(new Error(tl('Common', 'UPPERCASE_REQUIRED')))
+    }
+    else if (!/\d/.test(value)) {
+      callback(new Error(tl('Common', 'DIGIT_REQUIRED')))
+    }
+    else callback();
   },
 };

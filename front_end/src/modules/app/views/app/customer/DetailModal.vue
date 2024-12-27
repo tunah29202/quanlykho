@@ -209,7 +209,6 @@
             customerInfo = (await customerService.detail(item))
         callback = _callback;
         Object.assign(customer, customerInfo)
-        console.log(customer)
         modal.value.open();
     };
 

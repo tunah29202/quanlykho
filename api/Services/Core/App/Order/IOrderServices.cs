@@ -4,8 +4,8 @@ namespace Services.Core.Interfaces
 {
     public interface IOrderServices
     {
-        Task<PagedList<OrderResponse>> GetAll(PagedRequest request);
-        Task<PagedList<OrderResponse>> GetNotInInvoice(PagedRequest request);
+        Task<PagedList<OrderResponse>> GetAll(OrderPagedRequest request);
+        Task<PagedList<OrderResponse>> GetNotInInvoice(OrderPagedRequest request);
         Task<OrderResponse> GetById(Guid id);
         Task<int> Create(OrderRequest request);
         Task<int> Update(Guid id, OrderRequest request);

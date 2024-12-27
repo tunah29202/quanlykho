@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Ingredient> builder)
         {
-            builder.ToTable("a_ingredient", "public");
+            builder.ToTable("a_ingredient", "dbo");
 
             builder.Property(t => t.category_id).IsRequired();
             builder.Property(t => t.name).HasMaxLength(2048).IsRequired();

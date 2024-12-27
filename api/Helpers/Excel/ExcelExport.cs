@@ -67,60 +67,6 @@ namespace Helpers.Excel
 
             return worksheetPart;
         }
-
-        public static WorkbookPart FillCellInfomation(this WorkbookPart workbookpart, Dictionary<string, object> cellInfo)
-        {
-            SharedStringTablePart shareStringPart;
-            if (workbookpart.GetPartsOfType<SharedStringTablePart>().Count() > 0)
-            {
-                shareStringPart = workbookpart.GetPartsOfType<SharedStringTablePart>().First();
-            }
-            else
-            {
-                shareStringPart = workbookpart.AddNewPart<SharedStringTablePart>();
-            }
-            // Insert a new worksheet.
-            WorksheetPart worksheetPart = workbookpart.WorksheetParts.First();
-            foreach (var item in cellInfo)
-            {
-                var dataObject = item.Value.GetType().GetProperties();
-                // Insert the text into the SharedStringTablePart.
-                var dataValue = dataObject[0].GetValue(item.Value, null)?.ToString();
-                InsertSharedStringItem(dataValue, shareStringPart);
-                uint indexValue = uint.Parse(Regex.Replace(item.Key, @"\D", ""));
-                string cellLName = Regex.Replace(item.Key, @"\d", "");
-                Cell cell = InsertCellInWorksheet(cellLName, indexValue, worksheetPart);
-                var dataType = (DataType?)dataObject[1].GetValue(item.Value, null);
-                switch (dataType)
-                {
-                    case DataType.NUMBER:
-                        cell.DataType = CellValues.Number;
-
-                        break;
-                    case DataType.DATE:
-                        cell.DataType = CellValues.Date;
-
-                        break;
-                    case DataType.DATETIME:
-                        cell.DataType = CellValues.Date;
-
-                        break;
-                    case DataType.MONTH:
-                        cell.DataType = CellValues.Date;
-                        break;
-                    default:
-                        cell.DataType = CellValues.String;
-                        break;
-                }
-                cell.CellValue = new CellValue(dataValue);
-
-            }
-            // Save the new worksheet.
-            worksheetPart.Worksheet.Save();
-            workbookpart.Workbook.Save();
-            return workbookpart;
-        }
-
         private static Cell InsertCellInWorksheet(string columnName, uint rowIndex, WorksheetPart worksheetPart)
         {
             Worksheet worksheet = worksheetPart.Worksheet;
@@ -169,32 +115,7 @@ namespace Helpers.Excel
             }
         }
         
-        private static int InsertSharedStringItem(string? text, SharedStringTablePart shareStringPart)
-        {
-            // If the part does not contain a SharedStringTable, create one.
-            if (shareStringPart.SharedStringTable == null)
-            {
-                shareStringPart.SharedStringTable = new SharedStringTable();
-            }
 
-            int i = 0;
-            // Iterate through all the items in the SharedStringTable. If the text already exists, return its index.
-            foreach (SharedStringItem item in shareStringPart.SharedStringTable.Elements<SharedStringItem>())
-            {
-                if (item.InnerText == text)
-                {
-                    return i;
-                }
-
-                i++;
-            }
-
-            // The text does not exist in the part. Create the SharedStringItem and return its index.
-            shareStringPart.SharedStringTable.AppendChild(new SharedStringItem(new DocumentFormat.OpenXml.Spreadsheet.Text(text)));
-            shareStringPart.SharedStringTable.Save();
-
-            return i;
-        }
         public static Cell? GetCell(int rowidx, string columnName, SheetData sheetData)
         {
             if (rowidx < 0) return null;

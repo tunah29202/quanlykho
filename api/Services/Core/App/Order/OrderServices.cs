@@ -25,7 +25,7 @@ namespace Services.Core.Services
             invoiceRepository = _unitOfWork.GetRepository<Invoice>();
         }
 
-        public async Task<PagedList<OrderResponse>> GetAll(PagedRequest request)
+        public async Task<PagedList<OrderResponse>> GetAll(OrderPagedRequest request)
         {
             PagedList<Order> Orders;
             if(request.get_all)
@@ -45,6 +45,7 @@ namespace Services.Core.Services
             {
                 Orders = await orderRepository.GetQuery()
                                     .ExcludeSoftDeleted()
+                                    .Where(x => x.order_warehouses.Any(ow => ow.warehouse_id == request.warehouse_id))
                                     .Where(x => !string.IsNullOrEmpty(request.search) ? x.order_no.ToLower().Contains(request.search.ToLower()) : true)
                                     .SortBy(request.sort ?? "updated_at.desc")
                                     .Include(x => x.customer)
@@ -57,12 +58,13 @@ namespace Services.Core.Services
             var dataMapping = _mapper.Map<PagedList<OrderResponse>>(Orders);
             return dataMapping;
         }
-        public async Task<PagedList<OrderResponse>> GetNotInInvoice(PagedRequest request)
+        public async Task<PagedList<OrderResponse>> GetNotInInvoice(OrderPagedRequest request)
         {
             PagedList<Order> Orders;
             Orders = await orderRepository
                             .GetQuery()
                             .ExcludeSoftDeleted()
+                            .Where(x => x.order_warehouses.Any(ow => ow.warehouse_id == request.warehouse_id))
                             .Where(x => !string.IsNullOrEmpty(request.search) ? x.order_no.ToLower().Contains(request.search.ToLower()) : true)
                             .SortBy(request.sort ?? "updated_at.desc")
                             .Include(x => x.invoices)

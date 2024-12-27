@@ -19,7 +19,7 @@ namespace Controllers.Core
         }
         [ApiAuthorize]
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PagedRequest request)
+        public async Task<IActionResult> GetAll([FromQuery] OrderPagedRequest request)
         {
             var data = await orderServices.GetAll(request);
             return Ok(data);
@@ -27,7 +27,7 @@ namespace Controllers.Core
         [ApiAuthorize]
         [HttpGet]
         [Route("get-not-in-invoice")]
-        public async Task<IActionResult> GetNotInInvoice([FromQuery] PagedRequest request)
+        public async Task<IActionResult> GetNotInInvoice([FromQuery] OrderPagedRequest request)
         {
             var data = await orderServices.GetNotInInvoice(request);
             return Ok(data);

@@ -55,7 +55,7 @@
             </el-form>
         </vc-card>
         <el-dialog v-model="isClose" :before-close="handleClose" :show-close="false" :lock-scroll="true"
-        :title="infoResetPass? tl('Login', 'forgot_password') : (verification? tl('Login', 'Verification') :(resetPassword? tl('login', 'ResetPassword'):''))"
+        :title="infoResetPass? tl('Login', 'forgot_password') : (verification? tl('Login', 'Verification') :(resetPassword? tl('Login', 'ResetPassword'):''))"
         width="450" >
             <el-form ref="resetFormRef" :model="infoResetForm" :rules="rulesResetForm">
                 <vc-input-group v-if="infoResetPass" required prop="username" :label="tl('Login', 'user_name')" >
@@ -67,12 +67,12 @@
                 <vc-input-group v-if="verification" required prop="verification" :label="tl('Login', 'confirmationCodeMessage')" >
                     <vc-input v-model="infoResetForm.verification" :placeholder="tl('Login', 'Verification')" />
                 </vc-input-group>
-                <vc-input-group v-if="resetPassword" required prop="newPass" :label="tl('ChangePassword', 'NewPassword')" >
-                    <vc-input v-model="infoResetForm.newPass" :placeholder="tl('ChangePassword', 'NewPassword')"
+                <vc-input-group v-if="resetPassword" required prop="newPass" :label="tl('ChangePassword', 'new_password')" >
+                    <vc-input v-model="infoResetForm.newPass" :placeholder="tl('ChangePassword', 'new_password')"
                     type="password" show-password autocomplete="off" />
                 </vc-input-group>
-                <vc-input-group v-if="resetPassword" required prop="confirmPass" :label="tl('ChangePassword', 'NewPasswordConfirm')" >
-                    <vc-input v-model="infoResetForm.confirmPass" :placeholder="tl('ChangePassword', 'NewPasswordConfirm')"
+                <vc-input-group v-if="resetPassword" required prop="confirmPass" :label="tl('ChangePassword', 'confirm_password')" >
+                    <vc-input v-model="infoResetForm.confirmPass" :placeholder="tl('ChangePassword', 'confirm_password')"
                     type="password" show-password autocomplete="off" />
                 </vc-input-group>
             </el-form>
@@ -216,12 +216,13 @@
         {required: true, validator: validate.required, trigger: 'blur', label: tl('Login', 'verification'),},
     ],
     confirmPass: [
-        {required: true, validator: validate.required, trigger: 'blur', label: tl("ChangePassword", "NewPasswordConfirm"),},
+        {required: true, validator: validate.required, trigger: 'blur', label: tl('ChangePassword', 'confirm_password'),},
         {validator: checkSamePassword, trigger: 'blur' }, 
+        { label: tl('User', 'password_text'), validator: validate.validatePassword, trigger: ["blur"] },
         { label: tl('User', 'password_text'), validator: validate.validatePassword, trigger: ["blur"] },
     ],
     newPass: [
-        {required: true, validator: validate.required, trigger: 'blur', label: tl("ChangePassword", "NewPassword"),},
+        {required: true, validator: validate.required, trigger: 'blur', label: tl('ChangePassword', 'new_password'),},
         {label: tl('User', 'password_text'), validator: validate.validatePassword, trigger: ["blur"]},
     ],
     })

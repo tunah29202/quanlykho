@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<CartonDetail> builder)
         {
-            builder.ToTable("a_carton_detail", "public");
+            builder.ToTable("a_carton_detail", "dbo");
 
             builder.Property(t => t.carton_id).IsRequired();
             builder.Property(t => t.quantity).IsRequired();

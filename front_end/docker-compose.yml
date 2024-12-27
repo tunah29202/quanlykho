@@ -1,0 +1,17 @@
+version: '3'
+services:
+  vue:
+    image: vue-app
+    container_name: vue-app-service
+    ports:
+      - "8080:80"
+    env_file:
+      - .env.Production
+    environment:
+      - NODE_ENV=Production
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

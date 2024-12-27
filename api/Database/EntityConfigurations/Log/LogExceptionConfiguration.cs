@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<LogException> builder)
         {
-            builder.ToTable("m_log_exception", "public");
+            builder.ToTable("m_log_exception", "dbo");
 
             builder.Property(t => t.function).HasMaxLength(200);
         }

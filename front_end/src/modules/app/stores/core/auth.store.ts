@@ -25,7 +25,6 @@ export const useAuthStore = defineStore('useAuthStore', {
                 this.permissions = accountInfo.permissions || []
                 localStorage.setItem('role_cd', this.account.role_cd)
             }
-            console.log(this.permissions)
             return this.loggedIn
         },
         async refresh() {
@@ -37,7 +36,6 @@ export const useAuthStore = defineStore('useAuthStore', {
                 this.permissions = accountInfo.permissions || [];
                 this.loggedIn = true;
             }
-            console.log(this.permissions)
             return this.loggedIn
         },
         logout() {

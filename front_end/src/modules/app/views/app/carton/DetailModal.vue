@@ -99,7 +99,7 @@
                                             <el-input type="number" min="1" v-model="row.quantity" @change="validateQuantity(row)" ></el-input>   
                                         </template>
                                     </el-table-column>
-                                    <el-table-column prop="quantity" :label="tl('Product', 'quantity_text')">
+                                    <el-table-column prop="quantity" :label="tl('Product', 'unit_text')">
                                         <template v-slot="{row}">
                                             <el-input v-model="row.unit"></el-input>   
                                         </template>
@@ -333,7 +333,6 @@
             }
             carton.total_amount = flagTotalAmount;
             carton.carton_details = [...flagCartonDetails];
-            console.log(carton)
             if (carton.id) {
                 await cartonService.update(carton).finally(() => {
                     isLoading.value = false;

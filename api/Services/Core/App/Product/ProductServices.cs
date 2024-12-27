@@ -20,7 +20,7 @@ namespace Services.Core.Services
         private readonly ILocalizeServices ls;
         private readonly IWebHostEnvironment env;
         private readonly string _imageStoragePath = "Images";
-        private readonly string Template = "Template";
+        private readonly string _Template = "Template";
 
         public ProductServices(IUnitOfWork _unitOfWork, IMapper _mapper, ILocalizeServices _ls, IWebHostEnvironment _env) : base(_unitOfWork, _mapper) 
         {
@@ -37,6 +37,7 @@ namespace Services.Core.Services
                 PagedList<Product> Products = productRepository
                             .GetQuery()
                             .ExcludeSoftDeleted()
+                            .Where(x => x.warehouse_id == request.warehouse_id)
                             .Include(x => x.category)
                             .SortBy(request.sort ?? "updated_at.desc")
                             .ToAllPageList();
@@ -195,13 +196,13 @@ namespace Services.Core.Services
 
         public async Task<(object?, MemoryStream?)> ImportExcel(ProductImportRequest request)
         {
-            var directory = Path.Combine(env.WebRootPath, _imageStoragePath);
-            if (!Directory.Exists(directory))
+            var imageStoragePath = Path.Combine(env.WebRootPath, _imageStoragePath);
+            if (!Directory.Exists(imageStoragePath))
             {
-                Directory.CreateDirectory(directory);
+                Directory.CreateDirectory(imageStoragePath);
             };
             const int totalCol = 9;
-            (List<ProductExportRequest> lstProduct, List<string> messages) = await ExcelImport.getDataFromExcel<ProductExportRequest>(request.file, totalCol, directory);
+            (List<ProductExportRequest> lstProduct, List<string> messages) = await ExcelImport.getDataFromExcel<ProductExportRequest>(request.file, totalCol, imageStoragePath);
             Dictionary<int, List<string>> lstErrors = new Dictionary<int, List<string>>();
             ProductExportRequestValidator validator = new ProductExportRequestValidator();
             for(int i = 0; i < lstProduct.Count; i++)

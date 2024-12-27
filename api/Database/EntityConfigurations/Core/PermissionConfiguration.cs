@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Permission> builder)
         {
-            builder.ToTable("a_permission", "public");
+            builder.ToTable("a_permission", "dbo");
 
             builder.Property(t => t.role_cd).HasMaxLength(30).IsRequired();
             builder.Property(t => t.function_cd).HasMaxLength(30).IsRequired();

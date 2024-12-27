@@ -166,7 +166,6 @@
             warehouseInfo = (await warehouseService.detail(item))
         callback = _callback;
         Object.assign(warehouse, warehouseInfo)
-        console.log(warehouse)
         modal.value.open();
     };
 

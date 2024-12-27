@@ -7,7 +7,7 @@
                 </vc-col>
                 <vc-col :span="18" style="display: grid;">
                     <el-dropdown @command="handleDropdown">
-                        <span class="el-dropdown-link" style="color: white; cursor: pointer;">
+                        <span class="el-dropdown-link" style="color: white; cursor: pointer;" >
                             Chọn kho
                             <el-icon class="el-icon--right">
                                 <arrow-down />
@@ -39,16 +39,20 @@
     import { useProductStore } from "@app/stores/app/product.store";
     import { useCartonStore } from "@app/stores/app/carton.store";
     import { useInvoiceStore } from "@app/stores/app/invoice.store";
+    import { useOrderStore } from "@app/stores/app/order.store";
 
     const storeProduct = useProductStore();
     storeToRefs(storeProduct);
     const storeCarton = useCartonStore();
     storeToRefs(storeCarton);
+    const storeOrder = useOrderStore();
+    storeToRefs(storeOrder);
     const storeInvoice = useInvoiceStore();
     storeToRefs(storeInvoice);
-    
     const storeWarehouse = useWarehouseStore();
     const {dataGridAll} = storeToRefs(storeWarehouse);
+    const currentRoute = useRoute();
+    
     const props= defineProps<{
         isCollapse?: boolean;
     }>();
@@ -72,6 +76,7 @@
         await storeWarehouse.setWarehouseSelected(item);
         selectedDropdownValue.value = item.name;
         await storeProduct.setWarehouseId(item.id);
+        await storeOrder.setWarehouseId(item.id);
         await storeCarton.setWarehouseId(item.id);
         await storeInvoice.setWarehouseId(item.id);
         if(currentRoute.path =='/'){
@@ -81,6 +86,9 @@
         else if(currentRoute.path =='/product'){
             await storeProduct.getList();
         }
+        else if(currentRoute.path =='/order'){
+            await storeOrder.getList();
+        }
         else if(currentRoute.path =='/carton'){
             await storeCarton.getList();
         }
@@ -89,8 +97,6 @@
         }
     }
 
-    const currentRoute = useRoute();
-    const router = useRouter();
 </script>
 <style lang="scss">
     @import "@/assets/styles/commons/sidebar";

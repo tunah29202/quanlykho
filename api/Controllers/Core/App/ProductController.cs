@@ -11,6 +11,7 @@ using DocumentFormat.OpenXml;
 using Helpers.Excel;
 using Database.Entities;
 using DocumentFormat.OpenXml.Spreadsheet;
+using System.IO;
 namespace Controllers.Core
 {
     [Route("api/product")]
@@ -21,8 +22,7 @@ namespace Controllers.Core
         private readonly ILocalizeServices ls;
         private readonly IWebHostEnvironment env;
         private readonly string _imageStoragePath = "Images";
-        private readonly string Template = "Template";
-
+        private readonly string _Template = "Template";
         public ProductController(IProductServices _productServices, ILocalizeServices _ls, IWebHostEnvironment _env) : base()
         {
             productServices = _productServices;
@@ -109,8 +109,7 @@ namespace Controllers.Core
         [Route("download-file-template")]
         public IActionResult DownloadTemplate()
         {
-            string template = Path.Combine(env.WebRootPath, Template);
-            string templatePath = Path.Combine(template, "IMPORT_PRODUCT_TEMPLATE.xlsx");
+            string templatePath = Path.Combine(env.WebRootPath, _Template, "IMPORT_PRODUCT_TEMPLATE.xlsx");
             if (!System.IO.File.Exists(templatePath))
             {
                 return BadRequest(new { code = ResponseCode.SystemError, message = ls.Get(Modules.Core, Screen.Product, MessageKey.TEMPLATE_NOT_FOUND) });
@@ -146,16 +145,16 @@ namespace Controllers.Core
         public async Task<IActionResult> ExportExcel([FromQuery] ProductPagedRequest request)
         {
             var fileName = $"Product_{DateTimeExtention.ToDateTimeStampString(DateTime.Now)}.xlsx";
-            var directory = Path.Combine(env.WebRootPath, Template);
+            string directory = Path.Combine(env.WebRootPath, _Template);
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             };
-            var filePathDownload = Path.Combine(directory, Template);
+            var filePathDownload = Path.Combine(directory, fileName);
             var products = await productServices.GetAll(request);
             if (products == null)
                 return Ok(new { code = ResponseCode.NotFound, message = ls.Get(Modules.Core, ScreenKey.COMMON, MessageKey.NOT_FOUND) });
-            var imageStoragePath = Path.Combine(env.WebRootPath, _imageStoragePath);
+            string imageStoragePath = Path.Combine(env.WebRootPath, _imageStoragePath); ;
             using (var ms = new MemoryStream())
             {
                 using (SpreadsheetDocument document = SpreadsheetDocument.Create(ms, SpreadsheetDocumentType.Workbook))

@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.ToTable("a_role", "public");
+            builder.ToTable("a_role", "dbo");
 
             builder.Property(t => t.code).HasMaxLength(30).IsRequired();
             builder.Property(t => t.name).HasMaxLength(160).IsRequired();

@@ -60,7 +60,6 @@
     const rules = reactive({
         oldPass:[
             {required:true, validator: validate.required, trigger: 'blur', label: tl('ChangePassword', 'current_password')},
-            {label: tl('User', 'password_text'), validator: validate.validatePassword, trigger:["blur"]}
         ],
         newPass:[
             {required:true, validator: validate.required, trigger: 'blur', label: tl('ChangePassword', 'new_password')},
@@ -82,7 +81,6 @@
     })
     }
     const onChangePassword = async()=>{
-        console.log(account)
         const data = {
             id: account.id,
             current_password: changeFormInfo.oldPass,

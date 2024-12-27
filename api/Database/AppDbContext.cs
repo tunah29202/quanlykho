@@ -6,7 +6,6 @@ namespace Database
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }   
         public virtual DbSet<User>? Users { get; set; }
         public virtual DbSet<Resource>? Resources { get; set; }

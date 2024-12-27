@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.ToTable("a_category", "public");
+            builder.ToTable("a_category", "dbo");
             builder.Property(t => t.name).IsRequired();
 
         }

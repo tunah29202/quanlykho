@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Shipper> builder)
         {
-            builder.ToTable("a_shipper", "public");
+            builder.ToTable("a_shipper", "dbo");
 
             builder.Property(t => t.name).HasMaxLength(250).IsRequired();
             builder.Property(t => t.address).HasMaxLength(250).IsRequired();

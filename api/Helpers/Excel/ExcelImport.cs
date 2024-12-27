@@ -48,7 +48,7 @@ using System.Reflection;
                                     string firstHeader = getCellValue(doc, (Cell)headerKey.ElementAt(0));
                                     if (firstHeader.ToLower().Contains("image"))
                                     {
-                                        string imageName = ExcelImage.GetImageFromExcel(doc, imageStorePath, "sheet1", $"{rowIndex - 1}", "0");
+                                        string imageName = ExcelImage.GetImageFromExcel(doc, imageStorePath, "Sheet1", $"{rowIndex - 1}", "0");
                                         dataTemp.Add(firstHeader, imageName);
                                         for (var col = 1; col < totalCol; col++)
                                         {

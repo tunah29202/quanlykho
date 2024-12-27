@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<LogAction> builder)
         {
-            builder.ToTable("m_log_action", "public");
+            builder.ToTable("m_log_action", "dbo");
 
             builder.Property(t => t.method).HasMaxLength(20);
             builder

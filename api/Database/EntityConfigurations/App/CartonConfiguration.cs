@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Carton> builder)
         {
-            builder.ToTable("a_carton", "public");
+            builder.ToTable("a_carton", "dbo");
 
             builder.Property(t => t.carton_no).HasMaxLength(20).IsRequired();
             builder.Property(t => t.net_weight).HasColumnType("numeric").IsRequired();

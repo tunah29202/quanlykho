@@ -73,7 +73,6 @@
     });
     const onSearch = async ()=>{
         await storeWarehouse.getList()
-        console.log(dataGrid);
     }
     const getWarehouse = async ()=>{
         const res = await userService.detail(warehouse.id);

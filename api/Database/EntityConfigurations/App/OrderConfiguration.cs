@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.ToTable("a_order", "public");
+            builder.ToTable("a_order", "dbo");
 
             builder.Property(t => t.order_no).HasMaxLength(100).IsRequired();
             builder.Property(t => t.order_date).IsRequired();

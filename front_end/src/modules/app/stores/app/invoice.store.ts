@@ -94,7 +94,6 @@ export const useInvoiceStore = defineStore('useInvoiceStore', {
                     })
                     .then((data: any)=>{
                         const result = data.data ?? [];
-                        console.log(result)
                         this.chartData = {
                             labels: result.labels ?? [],
                             datasets : [{

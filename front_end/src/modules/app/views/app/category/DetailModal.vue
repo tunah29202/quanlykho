@@ -111,7 +111,6 @@
             isLoading.value = true;
 
             if (category.id) {
-                console.log(category)
 
                 await categoryService.update(category).finally(() => {
                     isLoading.value = false;

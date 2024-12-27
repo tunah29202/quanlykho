@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Invoice> builder)
         {
-            builder.ToTable("a_invoice", "public");
+            builder.ToTable("a_invoice", "dbo");
 
             builder.Property(t => t.invoice_no).HasMaxLength(100).IsRequired();
             builder.Property(t => t.invoice_date).HasMaxLength(20);

@@ -41,6 +41,7 @@ export const useOrderStore = defineStore('useOrderStore', {
                 .getList({
                     sort: this.goSort,
                     search: this.search,
+                    warehouse_id : this.warehouse_id,
                     category_name: this.category_name,
                     ...this.pageConfig,
                 })
@@ -57,6 +58,7 @@ export const useOrderStore = defineStore('useOrderStore', {
             await orderService
                 .getNotInInvoice({
                     sort: this.goSort,
+                    warehouse_id : this.warehouse_id,
                     search: this.search,
                     ...this.pageConfig,
                 })
@@ -99,6 +101,9 @@ export const useOrderStore = defineStore('useOrderStore', {
                     this.loading = false
                 })
         },
+        setWarehouseId(item: any){
+            this.warehouse_id = item;
+        },
         async getOrderNo(){
             this.loading = true;
 
@@ -135,7 +140,6 @@ export const useOrderStore = defineStore('useOrderStore', {
                     })
                     .then((data: any)=>{
                         const result = data.data ?? [];
-                        console.log(result)
                         this.chartData = {
                             labels: result.labels ?? [],
                             datasets : [{

@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("a_user", "public");
+            builder.ToTable("a_user", "dbo");
             builder.Property(t => t.code).HasMaxLength(30);
             builder.Property(t => t.user_name).HasMaxLength(100).IsRequired();
             builder.Property(t => t.full_name).HasMaxLength(100).IsRequired();

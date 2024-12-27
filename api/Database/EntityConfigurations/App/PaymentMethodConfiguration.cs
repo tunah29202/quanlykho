@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<PaymentMethod> builder)
         {
-            builder.ToTable("a_payment_method", "public");
+            builder.ToTable("a_payment_method", "dbo");
 
             builder.Property(t => t.name).HasMaxLength(250).IsRequired();
         }

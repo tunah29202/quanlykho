@@ -318,6 +318,9 @@
         await onSearch();
         callback = _callback;
         Object.assign(order, orderInfo)
+        if(item){
+            order_no.value = order.order_no;   
+        }
         modal.value.open();
     };
 

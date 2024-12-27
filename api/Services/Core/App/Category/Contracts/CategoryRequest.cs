@@ -10,7 +10,7 @@ namespace Services.Core.Contracts
     {
         public CategoryRequestValidator()
         {
-            RuleFor(x => x.name).NotNull().NotEmpty().MaximumLength(20);
+            RuleFor(x => x.name).NotNull().NotEmpty().MaximumLength(300);
         }
     }
 }

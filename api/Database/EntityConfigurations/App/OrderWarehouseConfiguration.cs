@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<OrderWarehouse> builder)
         {
-            builder.ToTable("a_order_warehouse", "public");
+            builder.ToTable("a_order_warehouse", "dbo");
 
             builder.Property(t => t.warehouse_id).IsRequired();
             builder.Property(t => t.order_id).IsRequired();

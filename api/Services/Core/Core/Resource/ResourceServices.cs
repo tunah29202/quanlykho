@@ -14,12 +14,13 @@ namespace Services.Core.Services
     public class ResourceServices : BaseServices, IResourceServices
     {
         private readonly IRepository<Resource> resourceRepository;
-        private readonly IWebHostEnvironment _env;
+        private readonly IWebHostEnvironment env;
         private readonly string _imageStoragePath = "Images";
-        public ResourceServices(IUnitOfWork _unitOfWork, IMapper _mapper, IWebHostEnvironment env) : base(_unitOfWork, _mapper)
+        private readonly string _Template = "Template";
+        public ResourceServices(IUnitOfWork _unitOfWork, IMapper _mapper, IWebHostEnvironment _env) : base(_unitOfWork, _mapper)
         {
+            env = _env;
             resourceRepository = _unitOfWork.GetRepository<Resource>();
-            _env = env;
         }
 
         public async Task<PagedList<ResourceResponse>> GetAll(PagedRequest request)
@@ -60,8 +61,8 @@ namespace Services.Core.Services
 
         public async Task<(object?, MemoryStream?)> ImportExcel(ResourceImportRequest request)
         {
-            var directory = Path.Combine(_env.WebRootPath, _imageStoragePath);
-            if (!Directory.Exists(directory))
+            var directory = Path.Combine(env.WebRootPath, _imageStoragePath);
+            if (!Directory.Exists(_imageStoragePath))
             {
                 Directory.CreateDirectory(directory);
             };

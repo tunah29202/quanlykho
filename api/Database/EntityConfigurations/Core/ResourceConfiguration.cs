@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Resource> builder)
         {
-            builder.ToTable("m_resource", "public");
+            builder.ToTable("m_resource", "dbo");
 
             builder.Property(t => t.lang).HasMaxLength(15);
             builder.Property(t => t.module).HasMaxLength(100);

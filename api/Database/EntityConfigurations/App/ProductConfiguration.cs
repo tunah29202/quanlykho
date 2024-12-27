@@ -8,7 +8,7 @@ namespace Database.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("a_product", "public");
+            builder.ToTable("a_product", "dbo");
 
             builder.Property(t => t.name).HasMaxLength(250);
             builder.Property(t => t.image).HasMaxLength(250);
